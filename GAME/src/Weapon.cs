@@ -14,16 +14,16 @@ namespace Game.Characters
         protected int weaponId;
         protected string weaponName;
         protected int weaponLevel;
-        protected int weaponAttackAbility;
-        protected int weaponDefenseAbility;
+        protected int weaponAttack;
+        protected int weaponDefense;
 
         protected Weapon() { }
 
         public int GetWeaponId() { return weaponId; }
         public string GetWeaponName() { return weaponName; }
         public int GetWeaponLevel() { return weaponLevel; }
-        public int GetWeaponAttackAbility() { return weaponAttackAbility; }
-        public int GetWeaponDefenseAbility() { return weaponDefenseAbility; }
+        public int GetWeaponAttack() { return weaponAttack; }
+        public int GetWeaponDefense() { return weaponDefense; }
 
         public Weapon UpgradeWeapon() {
             if(random.Next(0, 2) == 0)
@@ -40,16 +40,16 @@ namespace Game.Characters
         public Weapon UpgradeSuccess()
         {
             weaponLevel++;
-            weaponAttackAbility *= 2;
-            weaponDefenseAbility *= 2;
+            weaponAttack *= 2;
+            weaponDefense *= 2;
             return this;
         }
 
         public Weapon UpgradeFail()
         {
             weaponLevel = 0;
-            weaponAttackAbility = 0;
-            weaponDefenseAbility = 0;
+            weaponAttack = 0;
+            weaponDefense = 0;
             return this;
         }
     }
@@ -61,13 +61,13 @@ namespace Game.Characters
             weaponId = id;
             weaponName = name;
             weaponLevel = level;
-            weaponAttackAbility = attack;
-            weaponDefenseAbility = defense;
+            weaponAttack = attack;
+            weaponDefense = defense;
         }
 
         public override string ToString()
         {
-            return $"[Sword {weaponId}] Name: {weaponName}, Level: {weaponLevel}, Attack: {weaponAttackAbility}, Defense: {weaponDefenseAbility}";
+            return $"[Sword {weaponId}] Name: {weaponName}, Level: {weaponLevel}, Attack: {weaponAttack}, Defense: {weaponDefense}";
         }
     }
     public class Shield : Weapon
@@ -77,13 +77,13 @@ namespace Game.Characters
             weaponId = id;
             weaponName = name;
             weaponLevel = level;
-            weaponAttackAbility = attack;
-            weaponDefenseAbility = defense;
+            weaponAttack = attack;
+            weaponDefense = defense;
         }
 
         public override string ToString()
         {
-            return $"[Shield {weaponId}] Name: {weaponName}, Level: {weaponLevel}, Attack: {weaponAttackAbility}, Defense: {weaponDefenseAbility}";
+            return $"[Shield {weaponId}] Name: {weaponName}, Level: {weaponLevel}, Attack: {weaponAttack}, Defense: {weaponDefense}";
         }
     }
 
