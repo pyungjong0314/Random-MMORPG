@@ -174,7 +174,6 @@ namespace Game.Characters
         }
     }
 
-
     public static class CharacterFactory
     {
         static int id = 1;

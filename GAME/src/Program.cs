@@ -23,10 +23,10 @@ namespace WindowsFormsApp1
             Character c2 = CharacterFactory.CharacterCreate("철수");
             Character c3 = CharacterFactory.CharacterCreate("훈이");
 
-            Weapon w1 = WeaponFactory.SwordCreate();
-            Weapon w2 = WeaponFactory.SwordCreate();
-            Weapon w3 = WeaponFactory.ShieldCreate();
-            Weapon w4 = WeaponFactory.ShieldCreate();
+            Weapon w1 = WeaponFactory.WeaponCreate(0);
+            Weapon w2 = WeaponFactory.WeaponCreate(0);
+            Weapon w3 = WeaponFactory.WeaponCreate(1);
+            Weapon w4 = WeaponFactory.WeaponCreate(1);
 
             Console.WriteLine(c1.ToString());
             Console.WriteLine(c2.ToString());

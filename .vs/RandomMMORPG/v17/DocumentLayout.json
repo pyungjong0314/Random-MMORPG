@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\game\\src\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|c:\\users\\pyungjong\\desktop\\random-mmorpg\\game\\src\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\game\\src\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|c:\\users\\pyungjong\\desktop\\random-mmorpg\\game\\src\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\game\\src\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\game\\src\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,38 +38,50 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "Form1.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Form1.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\Form1.cs",
+              "ToolTip": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Form1.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "GAME\\src\\Form1.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T08:46:46.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Character.cs",
               "DocumentMoniker": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Character.cs",
               "RelativeDocumentMoniker": "GAME\\src\\Character.cs",
               "ToolTip": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Character.cs",
               "RelativeToolTip": "GAME\\src\\Character.cs",
-              "ViewState": "AQIAAJgAAAAAAAAAAAAcwKoAAABgAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-23T04:12:54.291Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Weapon.cs",
               "DocumentMoniker": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Weapon.cs",
               "RelativeDocumentMoniker": "GAME\\src\\Weapon.cs",
               "ToolTip": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Weapon.cs",
               "RelativeToolTip": "GAME\\src\\Weapon.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAA9wCUAAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T03:22:47.82Z"
+              "WhenOpened": "2025-05-23T03:22:47.82Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Program.cs",
               "RelativeDocumentMoniker": "GAME\\src\\Program.cs",
               "ToolTip": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Program.cs",
               "RelativeToolTip": "GAME\\src\\Program.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAuwCgAAAAtAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T08:10:05.89Z",
               "EditorCaption": ""

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -9,7 +11,7 @@ namespace Game.Characters
 {
     public class Weapon
     {
-        Random random = new Random();
+        private static Random random = new Random();
 
         protected int weaponId;
         protected string weaponName;
@@ -17,7 +19,11 @@ namespace Game.Characters
         protected int weaponAttack;
         protected int weaponDefense;
 
-        protected Weapon() { }
+        public void setWeaponId(int id) {  weaponId = id; }
+        public void setWeaponName(string name) { weaponName = name; }
+        public void setWeaponLevel(int level) { weaponLevel = level; }
+        public void setWeaponAttack(int attack) { weaponAttack = attack; }
+        public void setWeaponDefense(int defense) { weaponDefense = defense; }
 
         public int GetWeaponId() { return weaponId; }
         public string GetWeaponName() { return weaponName; }
@@ -26,14 +32,15 @@ namespace Game.Characters
         public int GetWeaponDefense() { return weaponDefense; }
 
         public Weapon UpgradeWeapon() {
-            if(random.Next(0, 2) == 0)
-            {
-                UpgradeFail();
-            }
-            else
+            if(random.Next(0, 2) == 1)
             {
                 UpgradeSuccess();
             }
+            else
+            {
+                UpgradeFail();
+            }
+
             return this;
         }
 
@@ -56,30 +63,14 @@ namespace Game.Characters
 
     public class Sword : Weapon
     {
-        public Sword(int id, string name, int level, int attack, int defense)
-        {
-            weaponId = id;
-            weaponName = name;
-            weaponLevel = level;
-            weaponAttack = attack;
-            weaponDefense = defense;
-        }
-
         public override string ToString()
         {
             return $"[Sword {weaponId}] Name: {weaponName}, Level: {weaponLevel}, Attack: {weaponAttack}, Defense: {weaponDefense}";
         }
     }
+
     public class Shield : Weapon
     {
-        public Shield(int id, string name, int level, int attack, int defense)
-        {
-            weaponId = id;
-            weaponName = name;
-            weaponLevel = level;
-            weaponAttack = attack;
-            weaponDefense = defense;
-        }
 
         public override string ToString()
         {
@@ -93,14 +84,50 @@ namespace Game.Characters
         private static int id = 1;
         private static Random random = new Random();
 
-        public static Weapon SwordCreate()
+        private static void InitWeaponBase(Weapon weapon)
         {
-            return new Sword(id++, "검", 1, random.Next(1, 10), 0);
+            weapon.setWeaponId(id++);
+            weapon.setWeaponLevel(1);
         }
 
-        public static Weapon ShieldCreate()
+
+        private static Sword SwordCreate()
         {
-            return new Shield(id++, "방패", 1, 0, random.Next(1, 10));
+            Sword sword = new Sword();
+
+            InitWeaponBase(sword);
+            
+            sword.setWeaponName("용사의 검");
+            sword.setWeaponAttack(random.Next(1, 10));
+            sword.setWeaponDefense(0);
+
+            return sword;
+        }
+
+        private static Shield ShieldCreate()
+        {
+            Shield shield = new Shield();
+
+            InitWeaponBase(shield);
+
+            shield.setWeaponName("방패");
+            shield.setWeaponAttack(0);
+            shield.setWeaponDefense(random.Next(1, 10));
+
+            return shield;
+        }
+
+        public static Weapon WeaponCreate(int type) // 0: Sword / 1: Shield
+        {
+            switch (type)
+            {
+                case 0:
+                    return SwordCreate();
+                case 1:
+                    return ShieldCreate();
+                default:
+                    throw new ArgumentException("Invalid weapon type");
+            }
         }
     }
 }
