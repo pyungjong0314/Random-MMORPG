@@ -136,7 +136,7 @@ namespace Game.Monsters
         }
     }
 
-    // DarkKnight 
+    // DarkKnight
     public class DarkKnight : BossMonster
     {
         public DarkKnight()
@@ -161,6 +161,75 @@ namespace Game.Monsters
             ShadowStrike();
         }
     }
+
+
+    // 몬스터 팩토리 클래스
+    public static class BossMonsterFactory
+    {
+
+        //  공통 부분 수정
+        private static void BaseBossMonster(BossMonster bossMonster)
+        {
+            // 여기서 공통 부분 설정
+            bossMonster.setLevel(200);
+            bossMonster.SetMapId(3);
+        }
+
+
+        private static LunaCrab LunaCrabCreate()
+        {
+            LunaCrab lunaCrab = new LunaCrab();
+            BaseBossMonster(lunaCrab);
+            // 고블린 설정
+            lunaCrab.setName("lunacrab");
+            lunaCrab.SetMapId(100);
+
+            return lunaCrab;
+        }
+
+
+        private static GoblinKing GoblinKingCreate()
+        {
+            GoblinKing goblinKing = new GoblinKing();
+            BaseBossMonster(goblinKing);
+            // 고블린 설정
+            goblinKing.setName("goblinking");
+            goblinKing.SetMapId(100);
+
+            return goblinKing;
+        }
+
+
+        private static DarkKnight DarkKnightCreate()
+        {
+            DarkKnight darkKnight = new DarkKnight();
+            BaseBossMonster(darkKnight);
+            // 고블린 설정
+            darkKnight.setName("darkknight");
+            darkKnight.SetMapId(100);
+
+            return darkKnight;
+        }
+
+        public static BossMonster CreateBossMonster(int type)
+        {
+            switch (type)
+            {
+                case 0:
+                    return LunaCrabCreate();
+                case 1:
+                    return GoblinKingCreate();
+                case 2:
+                    return DarkKnightCreate();
+                default:
+                    throw new ArgumentException("Invalid monster type");
+            }
+        }
+    }
+
+
+
+
 
 
 
@@ -317,8 +386,8 @@ namespace Game.Monsters
             // 슬라임 설정
             slime.setName("slime");
             slime.SetMapId(200);
-    
-        return slime;
+
+            return slime;
         }
 
 
