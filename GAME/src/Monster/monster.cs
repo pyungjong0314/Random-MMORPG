@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Game.Maps;
 
 namespace Game.Monsters
 {
@@ -20,6 +20,9 @@ namespace Game.Monsters
         public int MonsterHp;
         public int MonsterAttackAbility;
         public int MonsterDefenseAbility;
+
+
+        public Map MapRef { get; set; } // 몬스터가 자신이 소속된 맵을 기억함
 
         public Monster() { } // 이거 꼭 추가!
 
@@ -59,13 +62,26 @@ namespace Game.Monsters
         public virtual void MonsterCreate() { }
         public virtual void MonsterSave() { }
         public virtual void MonsterLoad() { }
-        public virtual void MonsterGetAttack() { }
-        public virtual void MonsterGetHp() { }
+
+        public virtual void MonsterGetAttack(int damage) {
+            MonsterHp -= damage; // 데미지 받은만큼 Hp 감소
+            if (MonsterHp <= 0)
+            {
+                MonsterDie();
+            }
+        } 
+
+        public virtual void MonsterGetHp() {  }
         public virtual void MonsterMoveMap(int newMapId) => MonsterMapId = newMapId;
         public virtual void MonsterMoveLocation(int x, int y) => MonsterLocation = (x, y);
         public virtual void MonsterAttackEnemy() { }
         public virtual void MonsterDefend() { }
-        public virtual void MonsterDie() { }
+
+        public virtual void MonsterDie() { 
+            Console.WriteLine("Monster has died!");
+            MapRef?.RemoveMonster(this); // 맵에서 자기 자신 제거
+        }
+
         public virtual void MonsterDropWeapon() { }
     }
 
