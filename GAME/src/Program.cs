@@ -1,46 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Game.Characters;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using Game.Characters;
+    using Game.Monsters;
+    using Game.Maps;
+    using System.Data;
 
-namespace WindowsFormsApp1
-{
-    internal static class Program
+    namespace WindowsFormsApp1
     {
-        /// <summary>
-        /// 해당 애플리케이션의 주 진입점입니다.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        internal static class Program
         {
-            /*Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());*/
+            [STAThread]
 
-            Character c1 = CharacterFactory.CharacterCreate("짱구");
-            Character c2 = CharacterFactory.CharacterCreate("철수");
-            Character c3 = CharacterFactory.CharacterCreate("훈이");
+            static void Main()
+            {
+                Map m = MapFactory.CreateMap(1);
 
-            Weapon w1 = WeaponFactory.WeaponCreate(0);
-            Weapon w2 = WeaponFactory.WeaponCreate(0);
-            Weapon w3 = WeaponFactory.WeaponCreate(1);
-            Weapon w4 = WeaponFactory.WeaponCreate(1);
+                // 초기 상태 출력 및 1000 데미지
+                foreach (var monster in m.monsters.ToList()) // ToList()로 복사본 사용
+                {
+                    Console.WriteLine($"{monster.MonsterName}{monster.MonsterLocation}{monster.MonsterHp}");
+                    monster.MonsterGetAttack(1000);
+                }
 
-            Console.WriteLine(c1.ToString());
-            Console.WriteLine(c2.ToString());
-            Console.WriteLine(c3.ToString());
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
 
-            Console.WriteLine(w1.ToString());
-            Console.WriteLine(w2.ToString());
-            Console.WriteLine(w3.ToString());
-            Console.WriteLine(w4.ToString());
+                // 3000 추가 데미지
+                foreach (var monster in m.monsters.ToList())
+                {
+                    Console.WriteLine($"{monster.MonsterName}{monster.MonsterLocation}{monster.MonsterHp}");
+                    monster.MonsterGetAttack(3000);
+                }
 
-            w1.UpgradeWeapon();
-            Console.WriteLine(w1.ToString());
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
 
-            Console.ReadLine();
+
+                // 최종 생존자 출력
+                foreach (var monster in m.monsters)
+                {
+                    Console.WriteLine($"{monster.MonsterName}{monster.MonsterLocation}{monster.MonsterHp}");
+                }
+            }
         }
     }
-}
