@@ -26,6 +26,84 @@ namespace Game.Maps
         public int map_height;
 
 
+
+        // 몬스터 생성 고정 좌표
+        // 몬스터 생성 고정 좌표
+        public Dictionary<string, List<(int x, int y)>> MonsterLocations = new Dictionary<string, List<(int x, int y)>>()
+        {
+            ["first_base_monster"] = new List<(int, int)>
+            {
+                (10, 20), (20, 20), (30, 20), (40, 20), (50, 20)
+            },
+            ["second_base_monster"] = new List<(int, int)>
+            {
+                (20, 50), (30, 50), (40, 50), (50, 50), (60, 50)
+            },
+            ["boss_monster"] = new List<(int, int)>
+            {
+                (50, 100)
+            }
+        };
+
+
+
+        // 리스폰 몬스터 리스트
+        private List<(Type monsterType, (int x, int y) location, int countdown)> respawnQueue
+            = new List<(Type, (int, int), int)>();
+
+
+
+        // 몬스터 다시 생성
+        public void RequestRespawn(Type monsterType, (int x, int y) location, int delayInSeconds)
+        {
+            respawnQueue.Add((monsterType, location, delayInSeconds));
+        }
+
+
+        // 몬스터 생성
+        private Monster CreateMonsterFromType(Type monsterType)
+        {
+            if (monsterType == typeof(Goblin)) return new Goblin();
+            if (monsterType == typeof(Slime)) return new Slime();
+            if (monsterType == typeof(Scorpion)) return new Scorpion();
+            if (monsterType == typeof(Witch)) return new Witch();
+            if (monsterType == typeof(Basilisk)) return new Basilisk();
+            if (monsterType == typeof(Orc)) return new Orc();
+            if (monsterType == typeof(LunaCrab)) return new LunaCrab();
+            if (monsterType == typeof(GoblinKing)) return new GoblinKing();
+            if (monsterType == typeof(DarkKnight)) return new DarkKnight();
+
+            // 필요 시 보스 몬스터도 추가
+            throw new Exception("Unknown monster type");
+        }
+
+
+
+
+
+        // 맵 업데이트 함수에서 카운트 줄이기 + 리스폰 실행
+        public void Update()
+        {
+            for (int i = respawnQueue.Count - 1; i >= 0; i--)
+            {
+                var item = respawnQueue[i];
+                if (item.countdown <= 1)
+                {
+                    Monster newMonster = CreateMonsterFromType(item.monsterType);
+                    AddMonster(newMonster, item.location.x, item.location.y);
+                    respawnQueue.RemoveAt(i);
+                }
+                else
+                {
+                    respawnQueue[i] = (item.monsterType, item.location, item.countdown - 1);
+                }
+            }
+        }
+
+
+
+
+
         public Map() { }
         /*   TileGrid map_tile;
            Character[] map_character_list;
@@ -50,8 +128,10 @@ namespace Game.Maps
 
         public void RemoveMonster(Monster m)
         {
-            monsters.Remove(m);
-            Console.WriteLine($"{m.MonsterName} removed from map.");
+            monsters.Remove(m);   
+            Console.WriteLine($"{m.MonsterName} {m.MonsterId} has died!");
+            Console.WriteLine($"{m.MonsterName} dropped {m.MonsterCoinValue} coins");
+            // 무기도 드랍하도록 추후 설정
         }
     }
     public static class MapFactory
@@ -71,13 +151,23 @@ namespace Game.Maps
             Map m = new Map();
             m.map_id = 1;
 
-            for (int i = 0; i < 5; i++)
+
+
+            foreach (var spawn in m.MonsterLocations["first_base_monster"])
             {
-                m.AddMonster(new Goblin(), i * 3, i * 3);
-                m.AddMonster(new Slime(), i * 7, i * 7);
+                m.AddMonster(new Goblin(), spawn.x,  spawn.y);
             }
 
-            m.AddMonster(new GoblinKing(), 50, 100);
+
+            foreach (var spawn in m.MonsterLocations["second_base_monster"])
+            {
+                m.AddMonster(new Slime(), spawn.x, spawn.y);
+            }
+
+            foreach (var spawn in m.MonsterLocations["boss_monster"])
+            {
+                m.AddMonster(new GoblinKing(), spawn.x, spawn.y);
+            }
 
             return m;
         }
@@ -87,13 +177,24 @@ namespace Game.Maps
             Map m = new Map();
             m.map_id = 2;
 
-            for (int i = 0; i < 5; i++)
+
+            foreach (var spawn in m.MonsterLocations["first_base_monster"])
             {
-                m.AddMonster(new Witch(), i * 3, i * 3);
-                m.AddMonster(new Basilisk(), i * 7, i * 7);
+                m.AddMonster(new Witch(), spawn.x, spawn.y);
             }
 
-            m.AddMonster(new LunaCrab(), 50, 100);
+
+            foreach (var spawn in m.MonsterLocations["second_base_monster"])
+            {
+                m.AddMonster(new Basilisk(), spawn.x, spawn.y);
+            }
+
+
+            foreach (var spawn in m.MonsterLocations["boss_monster"])
+            {
+                m.AddMonster(new LunaCrab(), spawn.x, spawn.y);
+            }
+
             
             return m;
         }
@@ -103,13 +204,24 @@ namespace Game.Maps
             Map m = new Map();
             m.map_id = 3;
 
-            for (int i = 0; i < 5; i++)
+            foreach (var spawn in m.MonsterLocations["first_base_monster"])
             {
-                m.AddMonster(new Scorpion(), i * 3, i * 3);
-                m.AddMonster(new Orc(), i * 7, i * 7);
+                m.AddMonster(new Scorpion(), spawn.x, spawn.y);
             }
 
-            m.AddMonster(new DarkKnight(), 50, 100);
+
+            foreach (var spawn in m.MonsterLocations["second_base_monster"])
+            {
+                m.AddMonster(new Orc(), spawn.x, spawn.y);
+            }
+
+
+            foreach (var spawn in m.MonsterLocations["boss_monster"])
+            {
+                m.AddMonster(new DarkKnight(), spawn.x, spawn.y);
+            }
+
+
             return m;
         }
 

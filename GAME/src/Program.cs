@@ -1,51 +1,51 @@
-﻿    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Windows.Forms;
-    using Game.Characters;
-    using Game.Monsters;
-    using Game.Maps;
-    using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using Game.Monsters;
+using Game.Maps;
 
-    namespace WindowsFormsApp1
+namespace WindowsFormsApp1
+{
+    internal static class Program
     {
-        internal static class Program
+        [STAThread]
+        static void Main()
         {
-            [STAThread]
+            // cmd 103 = 지도 모든 몬스터의 위치 표시 (예시 : map_id = 1)
+            Map m = MapFactory.CreateMap(2);
 
-            static void Main()
+            Console.WriteLine("=== 지도 모든 몬스터의 위치 표시 (cmd 103) ===");
+            foreach (var monster in m.monsters)
             {
-                Map m = MapFactory.CreateMap(1);
-
-                // 초기 상태 출력 및 1000 데미지
-                foreach (var monster in m.monsters.ToList()) // ToList()로 복사본 사용
-                {
-                    Console.WriteLine($"{monster.MonsterName}{monster.MonsterLocation}{monster.MonsterHp}");
-                    monster.MonsterGetAttack(1000);
-                }
-
+                Console.WriteLine($"MID : {monster.MonsterId}, Name : {monster.MonsterName}, Pos : {monster.MonsterLocation}, HP : {monster.MonsterHp}  Coin : {monster.MonsterCoinValue}");
                 Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine();
-
-                // 3000 추가 데미지
-                foreach (var monster in m.monsters.ToList())
-                {
-                    Console.WriteLine($"{monster.MonsterName}{monster.MonsterLocation}{monster.MonsterHp}");
-                    monster.MonsterGetAttack(3000);
-                }
-
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine();
+            }
 
 
-                // 최종 생존자 출력
-                foreach (var monster in m.monsters)
-                {
-                    Console.WriteLine($"{monster.MonsterName}{monster.MonsterLocation}{monster.MonsterHp}");
-                }
+            // cmd 502 = 몬스터 피해가 피해 받았을때 (예시 : damage = 4000)
+            Console.WriteLine("\n=== 몬스터 피해가 피해 받았을때 (cmd 502) ===");
+            foreach (var monster in m.monsters.ToList())
+            {
+                int coins = monster.MonsterGetAttack(4000);
+                Console.WriteLine();
+            }
+
+            // 리스폰 테스트를 위해 6초간 매초 Update 호출
+            Console.WriteLine("\n=== 몬스터 리스폰 대기중... (6초) ===");
+            for (int i = 0; i < 6; i++)
+            {
+                Console.WriteLine($"[Time: {i + 1}s] 업데이트 호출");
+                m.Update();
+                Thread.Sleep(1000); // 1초 대기
+            }
+
+            // 몬스터 리스폰 결과 출력
+            Console.WriteLine("\n=== 몬스터가 다시 생성됨 ===");
+            foreach (var monster in m.monsters.ToList())
+            {
+                Console.WriteLine($"MID : {monster.MonsterId}, Name : {monster.MonsterName}, Pos : {monster.MonsterLocation}, HP : {monster.MonsterHp}");
             }
         }
     }
+}
