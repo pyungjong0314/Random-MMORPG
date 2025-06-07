@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game.Maps;
+
 
 
 namespace Game.Monsters
@@ -14,12 +16,15 @@ namespace Game.Monsters
         public string MonsterName;
         public string MonsterId; // mid
         public int MonsterLevel;
-        public int MonsterCoinValue;
+        public int MonsterCoinValue = 0;
         public int MonsterMapId;
         public (int x, int y) MonsterLocation;
         public int MonsterHp;
         public int MonsterAttackAbility;
         public int MonsterDefenseAbility;
+
+        // 몬스터가 자신이 소속된 맵을 기억함
+        public Map MapRef { get; set; }
 
         public Monster() { } // 이거 꼭 추가!
 
@@ -59,13 +64,35 @@ namespace Game.Monsters
         public virtual void MonsterCreate() { }
         public virtual void MonsterSave() { }
         public virtual void MonsterLoad() { }
-        public virtual void MonsterGetAttack() { }
-        public virtual void MonsterGetHp() { }
+
+        // 데미지 받은만큼 Hp 감소
+        public virtual int MonsterGetAttack(int damage) {
+            MonsterHp -= damage;
+            if (MonsterHp <= 0)
+            {
+                return MonsterDie();
+            }
+            return 0;
+        } 
+
+        // HP 회복
+        public virtual void MonsterGetHp(int hp) { MonsterHp += hp; }
+
         public virtual void MonsterMoveMap(int newMapId) => MonsterMapId = newMapId;
         public virtual void MonsterMoveLocation(int x, int y) => MonsterLocation = (x, y);
         public virtual void MonsterAttackEnemy() { }
         public virtual void MonsterDefend() { }
-        public virtual void MonsterDie() { }
+
+        // 몬스터 죽으면 다시 리스폰
+        public virtual int MonsterDie()
+        {
+            MapRef?.RemoveMonster(this);
+            MapRef?.RequestRespawn(this.GetType(), MonsterLocation, 5);
+            return MonsterCoinValue;
+        }
+
+
+
         public virtual void MonsterDropWeapon() { }
     }
 
@@ -84,41 +111,15 @@ namespace Game.Monsters
 
 
     // 보스몹 리스트
-    // LunaCrab 
-    public class LunaCrab : BossMonster
-    {
-        public LunaCrab()
-            : base(
-                name: "LunaCrab",
-                id: "101",
-                level: 5,
-                coinValue: 90,
-                mapId: 10,
-                location: (4, 2),
-                hp: 2700,
-                attack: 55,
-                defense: 30)
-        { }
-
-        public void ShellGuard() { Console.WriteLine("루나크랩이 껍질 방어를 사용했다!"); }
-        public void TidalSmash() { Console.WriteLine("루나크랩이 해일 강타를 사용했다!"); }
-
-        public override void UltimateSkill()
-        {
-            ShellGuard();
-            TidalSmash();
-        }
-    }
-
     // GoblinKing 
     public class GoblinKing : BossMonster
     {
         public GoblinKing()
             : base(
                 name: "GoblinKing",
-                id: "102",
+                id: "1000",
                 level: 5,
-                coinValue: 90,
+                coinValue: 1000,
                 mapId: 10,
                 location: (4, 2),
                 hp: 2700,
@@ -136,15 +137,42 @@ namespace Game.Monsters
         }
     }
 
-    // DarkKnight 
+    // LunaCrab 
+    public class LunaCrab : BossMonster
+    {
+        public LunaCrab()
+            : base(
+                name: "LunaCrab",
+                id: "2000",
+                level: 5,
+                coinValue: 1000,
+                mapId: 10,
+                location: (4, 2),
+                hp: 2700,
+                attack: 55,
+                defense: 30)
+        { }
+
+        public void ShellGuard() { Console.WriteLine("루나크랩이 껍질 방어를 사용했다!"); }
+        public void TidalSmash() { Console.WriteLine("루나크랩이 해일 강타를 사용했다!"); }
+
+        public override void UltimateSkill()
+        {
+            ShellGuard();
+            TidalSmash();
+        }
+    }
+
+
+    // DarkKnight
     public class DarkKnight : BossMonster
     {
         public DarkKnight()
             : base(
                 name: "DarkKnight",
-                id: "103",
+                id: "3000",
                 level: 5,
-                coinValue: 90,
+                coinValue: 1000,
                 mapId: 10,
                 location: (4, 2),
                 hp: 2700,
@@ -163,21 +191,95 @@ namespace Game.Monsters
     }
 
 
+    // 몬스터 팩토리 클래스
+    public static class BossMonsterFactory
+    {
+
+        //  공통 부분 수정
+        private static void BaseBossMonster(BossMonster bossMonster)
+        {
+            // 여기서 공통 부분 설정
+            bossMonster.setLevel(200);
+            bossMonster.SetMapId(3);
+        }
+
+
+        private static LunaCrab LunaCrabCreate()
+        {
+            LunaCrab lunaCrab = new LunaCrab();
+            BaseBossMonster(lunaCrab);
+            
+            
+            // 고블린 설정
+            lunaCrab.setName("lunacrab");
+            lunaCrab.SetMapId(100);
+
+            return lunaCrab;
+        }
+
+
+        private static GoblinKing GoblinKingCreate()
+        {
+            GoblinKing goblinKing = new GoblinKing();
+            BaseBossMonster(goblinKing);
+            // 고블린 설정
+            goblinKing.setName("goblinking");
+            goblinKing.SetMapId(100);
+
+
+            return goblinKing;
+        }
+
+
+        private static DarkKnight DarkKnightCreate()
+        {
+            DarkKnight darkKnight = new DarkKnight();
+            BaseBossMonster(darkKnight);
+            // 고블린 설정
+            darkKnight.setName("darkknight");
+            darkKnight.SetMapId(100);
+
+            return darkKnight;
+        }
+
+        public static BossMonster CreateBossMonster(int type)
+        {
+            switch (type)
+            {
+                case 0:
+                    return LunaCrabCreate();
+                case 1:
+                    return GoblinKingCreate();
+                case 2:
+                    return DarkKnightCreate();
+                default:
+                    throw new ArgumentException("Invalid monster type");
+            }
+        }
+    }
+
+
+
+
+
+
 
 
     // 일반 몬스터 리스트
     // Goblin 
     public class Goblin : Monster
     {
+        private static int goblinCount = 0;
+
         public Goblin()
             : base(
                 name: "Goblin",
-                id: "001",
+                id: (100 + goblinCount++).ToString(),
                 level: 5,
                 coinValue: 90,
                 mapId: 10,
                 location: (4, 2),
-                hp: 2700,
+                hp: 500,
                 attack: 55,
                 defense: 30)
         { }
@@ -188,15 +290,17 @@ namespace Game.Monsters
     // Slime 
     public class Slime : Monster
     {
+        private static int slimeCount = 0;
+
         public Slime()
             : base(
                 name: "Slime",
-                id: "002",
+                id: (200 + slimeCount++).ToString(),
                 level: 5,
                 coinValue: 90,
                 mapId: 10,
                 location: (4, 2),
-                hp: 2700,
+                hp: 500,
                 attack: 55,
                 defense: 30)
         { }
@@ -207,15 +311,17 @@ namespace Game.Monsters
     // Scorpion 
     public class Scorpion : Monster
     {
+        private static int scorpionCount = 0;
+
         public Scorpion()
             : base(
                 name: "Scorpion",
-                id: "003",
+                id: (300 + scorpionCount++).ToString(),
                 level: 5,
                 coinValue: 90,
                 mapId: 10,
                 location: (4, 2),
-                hp: 2700,
+                hp: 500,
                 attack: 55,
                 defense: 30)
         { }
@@ -226,15 +332,17 @@ namespace Game.Monsters
     // Witch 
     public class Witch : Monster
     {
+        private static int  witchCount = 0;
+
         public Witch()
             : base(
                 name: "Witch",
-                id: "004",
+                id: (400 + witchCount++).ToString(),
                 level: 5,
                 coinValue: 90,
                 mapId: 10,
                 location: (4, 2),
-                hp: 2700,
+                hp: 500,
                 attack: 55,
                 defense: 30)
         { }
@@ -245,15 +353,18 @@ namespace Game.Monsters
     // Basilisk 
     public class Basilisk : Monster
     {
+        private static int basiliskCount = 0;
+
+
         public Basilisk()
             : base(
                 name: "Basilisk",
-                id: "005",
+                id: (500 + basiliskCount++).ToString(),
                 level: 5,
                 coinValue: 90,
                 mapId: 10,
                 location: (4, 2),
-                hp: 2700,
+                hp: 500,
                 attack: 55,
                 defense: 30)
         { }
@@ -264,15 +375,17 @@ namespace Game.Monsters
     // Orc 
     public class Orc : Monster
     {
+        private static int orcCount = 0;
+
         public Orc()
             : base(
                 name: "Orc",
-                id: "006",
+                id: (600 + orcCount++).ToString(),
                 level: 5,
                 coinValue: 90,
                 mapId: 10,
                 location: (4, 2),
-                hp: 2700,
+                hp: 500,
                 attack: 55,
                 defense: 30)
         { }
@@ -317,8 +430,8 @@ namespace Game.Monsters
             // 슬라임 설정
             slime.setName("slime");
             slime.SetMapId(200);
-    
-        return slime;
+
+            return slime;
         }
 
 

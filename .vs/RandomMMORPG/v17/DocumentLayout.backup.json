@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|c:\\users\\\uBC15\uD61C\uB828\\desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\random-mmorpg\\game\\src\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\fontmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|c:\\users\\\uBC15\uD61C\uB828\\desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\random-mmorpg\\game\\src\\fontmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\fontmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -212,7 +212,8 @@
               "RelativeToolTip": "GAME\\src\\FontManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T00:16:31.574Z"
+              "WhenOpened": "2025-06-07T00:16:31.574Z",
+              "EditorCaption": ""
             }
           ]
         }
