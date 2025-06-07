@@ -15,11 +15,11 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            /*Application.EnableVisualStyles();
+            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());*/
+            Application.Run(new MainForm());
 
-            Character c1 = CharacterFactory.CharacterCreate("짱구");
+            /*Character c1 = CharacterFactory.CharacterCreate("짱구");
             Character c2 = CharacterFactory.CharacterCreate("철수");
             Character c3 = CharacterFactory.CharacterCreate("훈이");
 
@@ -40,7 +40,7 @@ namespace WindowsFormsApp1
             w1.UpgradeWeapon();
             Console.WriteLine(w1.ToString());
 
-            Console.ReadLine();
+            Console.ReadLine();*/
         }
     }
 }

@@ -1,22 +1,50 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\",
+  "WorkspaceRootPath": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|c:\\users\\pyungjong\\desktop\\random-mmorpg\\game\\src\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\fontmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\fontmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|c:\\users\\\uBC15\uD61C\uB828\\desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\random-mmorpg\\game\\src\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\game\\src\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME\\src\\Character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\testmapform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\testmapform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME\\src\\Weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\testmapform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\testmapform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\storyform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\storyform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\battleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\battleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\storyform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\storyform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\battleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\battleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\game\\src\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{97D4D680-D882-4290-AC49-FEF437C34949}|GAME\\src\\RandomMMORPG.csproj|solutionrelative:game\\src\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +54,138 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 15,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\Program.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\Program.cs",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\Program.cs",
+              "RelativeToolTip": "GAME\\src\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T08:10:05.89Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Resources.resx",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\Properties\\Resources.resx",
+              "RelativeDocumentMoniker": "GAME\\src\\Properties\\Resources.resx",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\Properties\\Resources.resx",
+              "RelativeToolTip": "GAME\\src\\Properties\\Resources.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-06-05T02:25:56.712Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\MainForm.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\MainForm.cs",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\MainForm.cs",
+              "RelativeToolTip": "GAME\\src\\MainForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T05:32:42.636Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainForm.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\MainForm.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\MainForm.cs",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\MainForm.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "GAME\\src\\MainForm.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T06:20:06.237Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StoryForm.cs",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\StoryForm.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\StoryForm.cs",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\StoryForm.cs",
+              "RelativeToolTip": "GAME\\src\\StoryForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T06:19:38.476Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "StoryForm.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\StoryForm.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\StoryForm.cs",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\StoryForm.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "GAME\\src\\StoryForm.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T06:13:46.03Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TestMapForm.cs",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\TestMapForm.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\TestMapForm.cs",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\TestMapForm.cs",
+              "RelativeToolTip": "GAME\\src\\TestMapForm.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T12:38:23.362Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TestMapForm.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\TestMapForm.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\TestMapForm.cs",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\TestMapForm.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "GAME\\src\\TestMapForm.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T12:38:25.178Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BattleForm.cs",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\BattleForm.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\BattleForm.cs",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\BattleForm.cs",
+              "RelativeToolTip": "GAME\\src\\BattleForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T00:15:13.04Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BattleForm.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\BattleForm.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\BattleForm.cs",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\BattleForm.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "GAME\\src\\BattleForm.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T00:15:16.923Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -37,51 +195,24 @@
               "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Form1.cs",
-              "RelativeDocumentMoniker": "GAME\\src\\Form1.cs",
-              "ToolTip": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Form1.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "GAME\\src\\Form1.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T08:46:46.107Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Character.cs",
-              "DocumentMoniker": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Character.cs",
-              "RelativeDocumentMoniker": "GAME\\src\\Character.cs",
-              "ToolTip": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Character.cs",
-              "RelativeToolTip": "GAME\\src\\Character.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T04:12:54.291Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Weapon.cs",
-              "DocumentMoniker": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Weapon.cs",
-              "RelativeDocumentMoniker": "GAME\\src\\Weapon.cs",
-              "ToolTip": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Weapon.cs",
-              "RelativeToolTip": "GAME\\src\\Weapon.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T03:22:47.82Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Program.cs",
-              "RelativeDocumentMoniker": "GAME\\src\\Program.cs",
-              "ToolTip": "C:\\Users\\pyungjong\\Desktop\\Random-MMORPG\\GAME\\src\\Program.cs",
-              "RelativeToolTip": "GAME\\src\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4AAAAAAAAA",
+              "Title": "FontManager.cs",
+              "DocumentMoniker": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\FontManager.cs",
+              "RelativeDocumentMoniker": "GAME\\src\\FontManager.cs",
+              "ToolTip": "C:\\Users\\\uBC15\uD61C\uB828\\Desktop\\4-1\\\uC751\uC18C\uC2E4 \uD300\uD50C\\Random-MMORPG\\GAME\\src\\FontManager.cs",
+              "RelativeToolTip": "GAME\\src\\FontManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T08:10:05.89Z",
+              "WhenOpened": "2025-06-07T00:16:31.574Z",
               "EditorCaption": ""
             }
           ]
