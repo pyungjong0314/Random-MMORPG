@@ -50,24 +50,58 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character\Character.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FontManager.cs" />
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BattleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BattleForm.Designer.cs">
+      <DependentUpon>BattleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Map\map.cs" />
+    <Compile Include="Monster\monster.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Weapon\Weapon.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="StoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StoryForm.Designer.cs">
+      <DependentUpon>StoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestMapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestMapForm.Designer.cs">
+      <DependentUpon>TestMapForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Weapon\Weapon.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BattleForm.resx">
+      <DependentUpon>BattleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoryForm.resx">
+      <DependentUpon>StoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestMapForm.resx">
+      <DependentUpon>TestMapForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -80,6 +114,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestMap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MainBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BattleBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player1Character.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player2Character.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CoinFront.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CoinBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dice1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
