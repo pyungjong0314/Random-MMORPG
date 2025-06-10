@@ -91,9 +91,8 @@ namespace WindowsFormsApp1
 
             if (CurrentIndex >= StoryTexts.Count)
             {
-                TestMapForm testForm = new TestMapForm();
-                testForm.Show();
-                this.Hide();
+                
+                this.Close();
             }
             else
             {

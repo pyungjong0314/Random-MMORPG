@@ -72,6 +72,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Server\Server.cs" />
     <Compile Include="StoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,5 +155,6 @@
   <ItemGroup>
     <None Include="Resources\Dice1.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
