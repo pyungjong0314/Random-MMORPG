@@ -36,11 +36,12 @@
             // 
             this.NewGameButton.BackColor = System.Drawing.Color.Transparent;
             this.NewGameButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.NewGameButton.Font = new System.Drawing.Font("Galmuri11 Bold", 22.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.NewGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.NewGameButton.ForeColor = System.Drawing.Color.White;
-            this.NewGameButton.Location = new System.Drawing.Point(331, 276);
+            this.NewGameButton.Location = new System.Drawing.Point(414, 331);
+            this.NewGameButton.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NewGameButton.Name = "NewGameButton";
-            this.NewGameButton.Size = new System.Drawing.Size(152, 50);
+            this.NewGameButton.Size = new System.Drawing.Size(190, 60);
             this.NewGameButton.TabIndex = 0;
             this.NewGameButton.Text = "새 게임";
             this.NewGameButton.UseCompatibleTextRendering = true;
@@ -50,29 +51,31 @@
             // 
             this.LoadGameButton.BackColor = System.Drawing.Color.Transparent;
             this.LoadGameButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LoadGameButton.Font = new System.Drawing.Font("Galmuri11 Bold", 22.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.LoadGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.LoadGameButton.ForeColor = System.Drawing.Color.White;
-            this.LoadGameButton.Location = new System.Drawing.Point(320, 350);
+            this.LoadGameButton.Location = new System.Drawing.Point(400, 420);
+            this.LoadGameButton.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LoadGameButton.Name = "LoadGameButton";
-            this.LoadGameButton.Size = new System.Drawing.Size(174, 50);
+            this.LoadGameButton.Size = new System.Drawing.Size(218, 60);
             this.LoadGameButton.TabIndex = 1;
             this.LoadGameButton.Text = "불러오기";
             this.LoadGameButton.UseCompatibleTextRendering = true;
             this.LoadGameButton.Click += new System.EventHandler(this.LoadGameButton_Click);
             // 
-            // Form1
+            // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.MainBackground;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 569);
+            this.ClientSize = new System.Drawing.Size(1000, 683);
             this.Controls.Add(this.LoadGameButton);
             this.Controls.Add(this.NewGameButton);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);

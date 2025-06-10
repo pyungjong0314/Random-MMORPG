@@ -28,7 +28,7 @@ namespace WindowsFormsApp1
             this.Hide();
 
             // StoryForm이 닫히면 TestMap이 열림
-            //storyForm.FormClosed += (s, args) =>
+            storyForm.FormClosed += (s, args) =>
             {
                 // storyForm 닫히면 MapForm 열기 
                 TestMapForm testForm = new TestMapForm(newCharacter);
