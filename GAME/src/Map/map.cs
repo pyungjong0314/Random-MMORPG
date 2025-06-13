@@ -1,20 +1,8 @@
-using Game.Characters;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Game.Monsters;
-
-
-
-/*
- *  TileFactory에서 다양한 종류의 타일(예: 물, 풀)을 만들고,
-이를 TileGrid에 배치하여 타일 격자 형태로 구성한 후,
-최종적으로 해당 타일 격자를 Map에 넣어 하나의 지도를 구성할 예정.  
-    MapFactory를 통해 다양한 종류의 맵을 구현할 예정.
-*/
-
+using Game.BossMonsters;
+using Game.BaseMonster;
 
 namespace Game.Maps
 {
@@ -25,42 +13,61 @@ namespace Game.Maps
         public int map_width;
         public int map_height;
 
+        // 현재 맵에 존재하는 몬스터 리스트
+        public List<Monster> Monsters { get; private set; } = new List<Monster>();
 
+        // 리스폰 대기 큐 (몬스터 타입, 리스폰까지 남은 시간)
+        private List<(Type monsterType, (int x, int y) location, int countdown)> respawnQueue =
+            new List<(Type monsterType, (int x, int y) location, int countdown)>();
 
-        // 몬스터 생성 고정 좌표
-        // 몬스터 생성 고정 좌표
-        public Dictionary<string, List<(int x, int y)>> MonsterLocations = new Dictionary<string, List<(int x, int y)>>()
+        public Map() { }
+
+        // 몬스터를 맵에 추가하고 랜덤 좌표 지정
+        public void AddMonster(Monster m)
         {
-            ["first_base_monster"] = new List<(int, int)>
-            {
-                (100, 100), (300, 100), (500, 100), (700, 100), (900, 100)
-            },
-            ["second_base_monster"] = new List<(int, int)>
-            {
-                (100, 300), (300, 300), (500, 300), (700, 300), (900, 300)
-            },
-            ["boss_monster"] = new List<(int, int)>
-            {
-                (50, 100)
-            }
-        };
+            if (m.MonsterLocation == default)
+                m.MonsterLocation = GetRandomLocation();
 
+            m.MapRef = this;
+            Monsters.Add(m);
+        }
 
+        // 몬스터를 맵에서 제거하고 죽음 출력
+        public void RemoveMonster(Monster m)
+        {
+            Monsters.Remove(m);
+            Console.WriteLine($"{m.MonsterName} has dropped  {m.MonsterCoinValue} coins");
 
-        // 리스폰 몬스터 리스트
-        private List<(Type monsterType, (int x, int y) location, int countdown)> respawnQueue
-            = new List<(Type, (int, int), int)>();
+        }
 
-
-
-        // 몬스터 다시 생성
+        // 몬스터 리스폰 요청 (타입, 위치, 지연 시간 지정)
         public void RequestRespawn(Type monsterType, (int x, int y) location, int delayInSeconds)
         {
             respawnQueue.Add((monsterType, location, delayInSeconds));
+            Console.WriteLine($"{monsterType} has respwan ({location.x},{location.y}) after {delayInSeconds}s");
         }
 
+        // 매 프레임마다 리스폰 큐 업데이트 및 처리
+        public void Update()
+        {
+            for (int i = respawnQueue.Count - 1; i >= 0; i--)
+            {
+                var item = respawnQueue[i];
+                if (item.countdown <= 1)
+                {
+                    Monster newMonster = CreateMonsterFromType(item.monsterType);
+                    newMonster.MonsterLocation = item.location;
+                    AddMonster(newMonster);
+                    respawnQueue.RemoveAt(i);
+                }
+                else
+                {
+                    respawnQueue[i] = (item.monsterType, item.location, item.countdown - 1);
+                }
+            }
+        }
 
-        // 몬스터 생성
+        // 타입에 따른 몬스터 생성기
         private Monster CreateMonsterFromType(Type monsterType)
         {
             if (monsterType == typeof(Goblin)) return new Goblin();
@@ -73,208 +80,91 @@ namespace Game.Maps
             if (monsterType == typeof(GoblinKing)) return new GoblinKing();
             if (monsterType == typeof(DarkKnight)) return new DarkKnight();
 
-            // 필요 시 보스 몬스터도 추가
             throw new Exception("Unknown monster type");
         }
 
-
-
-
-
-        // 맵 업데이트 함수에서 카운트 줄이기 + 리스폰 실행
-        public void Update()
+        // 랜덤 좌표 생성기
+        private (int x, int y) GetRandomLocation()
         {
-            for (int i = respawnQueue.Count - 1; i >= 0; i--)
-            {
-                var item = respawnQueue[i];
-                if (item.countdown <= 1)
-                {
-                    Monster newMonster = CreateMonsterFromType(item.monsterType);
-                    AddMonster(newMonster, item.location.x, item.location.y);
-                    respawnQueue.RemoveAt(i);
-                }
-                else
-                {
-                    respawnQueue[i] = (item.monsterType, item.location, item.countdown - 1);
-                }
-            }
-        }
-
-
-
-
-
-        public Map() { }
-        /*   TileGrid map_tile;
-           Character[] map_character_list;
-           Weapon[] map_weapon_list;
-           Money[] map_money_list;
-           Exp[] map_exp_list;*/
-
-
-        // 몬스터를 저장할 리스트
-        public List<Monster> monsters = new List<Monster>();
-
-
-        public Map MapRef { get; set; } // 몬스터가 자신이 소속된 맵을 기억함
-
-        public void AddMonster(Monster monster, int x, int y)
-        {
-            monster.SetLocation(x, y);
-            monster.MapRef = this; // 소속 맵 설정
-            monsters.Add(monster);
-        }
-
-
-        public void RemoveMonster(Monster m)
-        {
-            monsters.Remove(m);   
-            Console.WriteLine($"{m.MonsterName} {m.MonsterId} has died!");
-            Console.WriteLine($"{m.MonsterName} dropped {m.MonsterCoinValue} coins");
-            // 무기도 드랍하도록 추후 설정
+            Random rnd = new Random();
+            return (rnd.Next(0, 1000), rnd.Next(0, 1000));
         }
     }
+
     public static class MapFactory
     {
-
-        private static void BaseMap(Map map)
-        {
-            // 임의적으로 모든 맵 크기를 동일하게 설정
-            map.map_width = 100;
-            map.map_height = 100;
-        }
-
-
-        // 모든 맵마다 기본 몬스터 2종류 5마리씩, 보스몹 1마리 생성
-        private static Map DungeonMapCreate()
-        {
-            Map m = new Map();
-            m.map_id = 1;
-
-
-
-            foreach (var spawn in m.MonsterLocations["first_base_monster"])
-            {
-                m.AddMonster(new Goblin(), spawn.x,  spawn.y);
-            }
-
-
-            foreach (var spawn in m.MonsterLocations["second_base_monster"])
-            {
-                m.AddMonster(new Slime(), spawn.x, spawn.y);
-            }
-
-            foreach (var spawn in m.MonsterLocations["boss_monster"])
-            {
-                m.AddMonster(new GoblinKing(), spawn.x, spawn.y);
-            }
-
-            return m;
-        }
-
-        private static Map FieldMapCreate()
-        {
-            Map m = new Map();
-            m.map_id = 2;
-
-
-            foreach (var spawn in m.MonsterLocations["first_base_monster"])
-            {
-                m.AddMonster(new Witch(), spawn.x, spawn.y);
-            }
-
-
-            foreach (var spawn in m.MonsterLocations["second_base_monster"])
-            {
-                m.AddMonster(new Basilisk(), spawn.x, spawn.y);
-            }
-
-
-            foreach (var spawn in m.MonsterLocations["boss_monster"])
-            {
-                m.AddMonster(new LunaCrab(), spawn.x, spawn.y);
-            }
-
-            
-            return m;
-        }
-
-        private static Map TownMapCreate()
-        {
-            Map m = new Map();
-            m.map_id = 3;
-
-            foreach (var spawn in m.MonsterLocations["first_base_monster"])
-            {
-                m.AddMonster(new Scorpion(), spawn.x, spawn.y);
-            }
-
-
-            foreach (var spawn in m.MonsterLocations["second_base_monster"])
-            {
-                m.AddMonster(new Orc(), spawn.x, spawn.y);
-            }
-
-
-            foreach (var spawn in m.MonsterLocations["boss_monster"])
-            {
-                m.AddMonster(new DarkKnight(), spawn.x, spawn.y);
-            }
-
-
-            return m;
-        }
-
-
+        // 맵 ID에 따라 다양한 몬스터들이 배치된 맵 생성
         public static Map CreateMap(int map_id)
         {
+            Map map = new Map { map_id = map_id, map_width = 1000, map_height = 1000 };
+
             switch (map_id)
             {
                 case 1:
-                    return DungeonMapCreate();
+    
+                    var goblin1 = new Goblin();
+                    goblin1.MonsterLocation = (100, 200);
+
+
+                    var goblin2 = new Goblin();
+                    goblin2.MonsterLocation = (100, 300);
+
+                    var goblin3 = new Goblin();
+                    goblin3.MonsterLocation = (100, 400);
+
+
+
+                    var scorpion1 = new Scorpion();
+                    scorpion1.MonsterLocation = (300, 200);
+
+
+                    var scorpion2 = new Scorpion();
+                    scorpion2.MonsterLocation = (300, 300);
+
+
+                    var scorpion3 = new Scorpion();
+                    scorpion3.MonsterLocation = (300, 400);
+
+                    var witch1 = new Witch();
+                    witch1.MonsterLocation = (500, 200);
+
+                    var witch2= new Witch();
+                    witch2.MonsterLocation = (500, 300);
+
+                    var witch3= new Witch();
+                    witch3.MonsterLocation = (500, 400);
+
+                    AddMonsters(map, new List<Monster> { goblin1, goblin2, goblin3, scorpion1, scorpion2, scorpion3, witch1, witch2, witch3 });
+                    break;
+
                 case 2:
-                    return FieldMapCreate();
+                    AddMonsters(map, new List<Monster>
+                    {
+                        new Witch(), new Witch(), new Basilisk(), new Basilisk(), new LunaCrab()
+                    });
+                    break;
+
                 case 3:
-                    return TownMapCreate();
+                    AddMonsters(map, new List<Monster>
+                    {
+                        new Scorpion(), new Scorpion(), new Orc(), new Orc(), new DarkKnight()
+                    });
+                    break;
+
                 default:
-                    throw new ArgumentException("Invalid monster type");
+                    throw new ArgumentException("Invalid map ID");
+            }
+
+            return map;
+        }
+
+        // 몬스터 리스트를 받아 맵에 추가
+        private static void AddMonsters(Map map, List<Monster> monsters)
+        {
+            foreach (var monster in monsters)
+            {
+                map.AddMonster(monster);
             }
         }
     }
-
-
-
-
-    /*  public class TileGrid
-      {
-          public Tile[,] Grid;
-
-          public TileGrid(int width, int height)
-          {
-              Grid = new Tile[width, height];
-          }
-
-          public void SetTile(int x, int y, Tile tile)
-          {
-              Grid[x, y] = tile;
-          }
-
-          public Tile GetTile(int x, int y) => Grid[x, y];
-      }
-
-
-      public class Tile
-      {
-          public int tile_x, tile_y;
-          public string tile_type;
-          public bool tile_is_walkable;
-
-
-
-          public static class TileFactory
-          {
-              public static Tile CreateGrassTile() => new Tile("Grass", true);
-              public static Tile CreateWaterTile() => new Tile("Water", false);
-          }
-      }*/
 }

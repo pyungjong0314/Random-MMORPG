@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
 
-            // cmd 103 = 지도 모든 몬스터의 위치 표시 (예시 : map_id = 1)
+/*            // cmd 103 = 지도 모든 몬스터의 위치 표시 (예시 : map_id = 1)
             Map m = MapFactory.CreateMap(2);
 
             Console.WriteLine("=== 지도 모든 몬스터의 위치 표시 (cmd 103) ===");
@@ -55,7 +55,7 @@ namespace WindowsFormsApp1
             foreach (var monster in m.monsters.ToList())
             {
                 Console.WriteLine($"MID : {monster.MonsterId}, Name : {monster.MonsterName}, Pos : {monster.MonsterLocation}, HP : {monster.MonsterHp}");
-            }
+            }*/
         }
     }
 }

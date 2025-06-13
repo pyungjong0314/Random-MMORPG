@@ -46,7 +46,7 @@ namespace Game.BaseMonster
             MonsterDefenseAbility = defense;
         }
 
-
+        public bool IsDead { get; private set; } = false;
         public void setName(string name) => MonsterName = name;
         public void setId(string id) => MonsterId = id;
         public void setLevel(int level) => MonsterLevel = level;
@@ -82,10 +82,20 @@ namespace Game.BaseMonster
         // 몬스터 죽으면 다시 리스폰
         public virtual int MonsterDie()
         {
-            // MapRef?.RemoveMonster(this);
-            MapRef?.RequestRespawn(this.GetType(), MonsterLocation, 5);
+
+            if (IsDead) return 0;
+
+            IsDead = true;
+
+            Console.WriteLine($"{MonsterName} has died.");
+
+            MapRef?.RemoveMonster(this);
+            MapRef?.RequestRespawn(this.GetType(), MonsterLocation, 3); // 3초 뒤 같은 자리에 리스폰 요청
+
+
             return MonsterCoinValue;
         }
+
 
 
 
