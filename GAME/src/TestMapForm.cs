@@ -1,19 +1,40 @@
-﻿using Game.Characters;
+﻿using Game.BaseMonster;
+using Game.Characters;
 using Game.Maps;
+using Game.Monsters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
     public partial class TestMapForm : Form
     {
+
+        private Timer updateTimer;
+
+
+        // 리스폰 타이머
+        private void StartUpdateTimer()
+        {
+            updateTimer = new Timer();
+            updateTimer.Interval = 1000; // 1초마다 호출
+            updateTimer.Tick += (s, e) =>
+            {
+                map.Update();
+                this.Invalidate(); // 리스폰된 몬스터를 다시 그리기
+            };
+            updateTimer.Start();
+        }
+
+
+        private void TestMapForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private Character character;
         private Map map = MapFactory.CreateMap(1);
 
@@ -24,133 +45,111 @@ namespace WindowsFormsApp1
 
         private ContextMenuStrip monsterContextMenu;
         private ToolStripMenuItem attackMenuItem;
-        private Point lastClickedMonsterLocation;
+        private Monster lastClickedMonster;
 
         public TestMapForm(Character InitCharacter)
         {
             InitializeComponent();
             character = InitCharacter;
 
-            this.Invalidate();
-
-
             InitializeMonsterContextMenu();
             this.MouseDown += TestForm_MouseDown;
+            this.KeyDown += TestForm_KeyDown;
+            this.DoubleBuffered = true; // 깜빡임 방지
+
+            StartUpdateTimer(); // ← 리스폰 활성화!
+
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
+            // 캐릭터 출력
             e.Graphics.DrawImage(characterImage, character.GetCharacterLocation().x, character.GetCharacterLocation().y, 64, 64);
 
-            foreach (var monsterLocation in map.MonsterLocations["first_base_monster"])
+            // 몬스터 출력
+            foreach (var monster in map.Monsters)
             {
-                e.Graphics.DrawImage(goblinImage, monsterLocation.x, monsterLocation.y, 80, 80);
-            }
-
-            foreach (var monsterLocation in map.MonsterLocations["second_base_monster"])
-            {
-                e.Graphics.DrawImage(wizardImage, monsterLocation.x, monsterLocation.y, 100, 100);
+                Image image = GetMonsterImage(monster);
+                var loc = monster.MonsterLocation;
+                e.Graphics.DrawImage(image, loc.x, loc.y, 80, 80);
             }
         }
 
+        private Image GetMonsterImage(Monster m)
+        {
+            if (m is Goblin) return goblinImage;
+            if (m is Scorpion) return scorpionImage;
+            if (m is Witch) return wizardImage;
+            return goblinImage;
+        }
 
         private void TestForm_KeyDown(object sender, KeyEventArgs e)
         {
-            int moveAmount = 5;  // 한 번에 이동할 픽셀 수
+            int moveAmount = 20;
 
             switch (e.KeyCode)
             {
-                // 상호작용
-                case Keys.Space:
-                    break;
-                case Keys.W:
-                    character.MoveLocation(0, -moveAmount);
-                    break;
-                case Keys.S:
-                    character.MoveLocation(0, moveAmount);
-                    break;
-                case Keys.A:
-                    character.MoveLocation(-moveAmount, 0);
-                    break;
-                case Keys.D:
-                    character.MoveLocation(moveAmount, 0);
-                    break;
+                case Keys.W: character.MoveLocation(0, -moveAmount); break;
+                case Keys.S: character.MoveLocation(0, moveAmount); break;
+                case Keys.A: character.MoveLocation(-moveAmount, 0); break;
+                case Keys.D: character.MoveLocation(moveAmount, 0); break;
             }
 
-            this.Invalidate();  // 위치 변경 후 다시 그리기 요청
+            this.Invalidate();
         }
 
-
-
-
-        /*
-         * Click
-         */
-
-        // 초기화 (폼 생성자 또는 Load 시 호출)
         private void InitializeMonsterContextMenu()
         {
             monsterContextMenu = new ContextMenuStrip();
 
-            // 메뉴 항목 추가
             monsterContextMenu.Items.Add("정보 확인하기", null, OnInfoClicked);
 
             attackMenuItem = new ToolStripMenuItem("공격하기", null, OnAttackClicked);
             monsterContextMenu.Items.Add(attackMenuItem);
 
-            // ContextMenu 열릴 때마다 거리 계산
             monsterContextMenu.Opening += MonsterContextMenu_Opening;
         }
 
-
-        // MouseDown에서 몬스터 클릭 감지
         private void TestForm_MouseDown(object sender, MouseEventArgs e)
         {
-            foreach (var location in map.MonsterLocations["first_base_monster"])
+            foreach (var monster in map.Monsters)
             {
-                Rectangle monsterRect = new Rectangle(location.x, location.y, 64, 64);
-
+                Rectangle monsterRect = new Rectangle(monster.MonsterLocation.x, monster.MonsterLocation.y, 80, 80);
                 if (monsterRect.Contains(e.Location))
                 {
-                    // 클릭한 몬스터 위치 저장
-                    lastClickedMonsterLocation = new Point(location.x, location.y);
-
-                    // ContextMenu 표시
+                    lastClickedMonster = monster;
                     monsterContextMenu.Show(this, e.Location);
                     break;
                 }
             }
         }
 
-        // ContextMenu 열릴 때 거리 확인
-        private void MonsterContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        private void MonsterContextMenu_Opening(object sender, CancelEventArgs e)
         {
-            // 현재 캐릭터 위치 가져오기
             Point characterPosition = new Point(character.GetCharacterLocation().x, character.GetCharacterLocation().y);
+            Point monsterPosition = new Point(lastClickedMonster.MonsterLocation.x, lastClickedMonster.MonsterLocation.y);
 
-            // 거리 계산
-            double distance = Math.Sqrt(Math.Pow(lastClickedMonsterLocation.X - characterPosition.X, 2) +
-                                        Math.Pow(lastClickedMonsterLocation.Y - characterPosition.Y, 2));
+            double distance = Math.Sqrt(Math.Pow(monsterPosition.X - characterPosition.X, 2) +
+                                        Math.Pow(monsterPosition.Y - characterPosition.Y, 2));
 
-            double attackRange = 60; // 공격 가능 거리 설정 (원하는 값으로 수정 가능)
-
-            // 공격 가능 여부에 따라 메뉴 활성/비활성화
-            attackMenuItem.Enabled = distance <= attackRange;
+            attackMenuItem.Enabled = distance <= 60;
         }
 
-        // "정보 확인하기" 클릭 시 처리
         private void OnInfoClicked(object sender, EventArgs e)
         {
-            MessageBox.Show("몬스터 정보 표시");
+            MessageBox.Show($"{lastClickedMonster.MonsterName} - HP: {lastClickedMonster.MonsterHp}");
         }
 
-        // "공격하기" 클릭 시 처리
         private void OnAttackClicked(object sender, EventArgs e)
         {
-            BattleForm battleForm = new BattleForm();
-            battleForm.Show();
+            lastClickedMonster.MonsterGetAttack(100);
+            if (lastClickedMonster.MonsterHp <= 0)
+            {
+                map.RemoveMonster(lastClickedMonster);
+            }
+            this.Invalidate();
         }
     }
 }
