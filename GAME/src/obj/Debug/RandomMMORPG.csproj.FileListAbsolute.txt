@@ -37,3 +37,6 @@ C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\RandomMMORPG.csproj.
 C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\RandomMMORPG.csproj.CoreCompileInputs.cache
 C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.exe
 C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\박혜련\Desktop\4-1\응소실 팀플\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.LoadingForm.resources
+C:\Users\박혜련\Desktop\4-1\응소실 팀플\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Map1Form.resources
+C:\Users\박혜련\Desktop\4-1\응소실 팀플\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.NameForm.resources

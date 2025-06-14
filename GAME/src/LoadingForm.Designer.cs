@@ -47,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            //this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.LoadingBackground;
+            this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.LoadingBackground;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1482, 953);
             this.Controls.Add(this.label1);
