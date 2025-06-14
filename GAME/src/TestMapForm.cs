@@ -88,17 +88,38 @@ namespace WindowsFormsApp1
         private void TestForm_KeyDown(object sender, KeyEventArgs e)
         {
             int moveAmount = 20;
+            var current = character.GetCharacterLocation();
+            var target = current;
 
             switch (e.KeyCode)
             {
-                case Keys.W: character.MoveLocation(0, -moveAmount); break;
-                case Keys.S: character.MoveLocation(0, moveAmount); break;
-                case Keys.A: character.MoveLocation(-moveAmount, 0); break;
-                case Keys.D: character.MoveLocation(moveAmount, 0); break;
+                case Keys.W: target = (current.x, current.y - moveAmount); break;
+                case Keys.S: target = (current.x, current.y + moveAmount); break;
+                case Keys.A: target = (current.x - moveAmount, current.y); break;
+                case Keys.D: target = (current.x + moveAmount, current.y); break;
             }
 
-            this.Invalidate();
+            // 캐릭터가 몬스터와 겹치지 않도록 충돌 감지를 위한 사각형 영역을 설정함
+            Rectangle targetRect = new Rectangle(target.x, target.y, 30, 30);
+
+            bool isBlocked = false;
+            foreach (var monster in map.Monsters)
+            {
+                Rectangle monsterRect = new Rectangle(monster.MonsterLocation.x, monster.MonsterLocation.y, 80, 80);
+                if (targetRect.IntersectsWith(monsterRect))
+                {
+                    isBlocked = true;
+                    break;
+                }
+            }
+
+            if (!isBlocked)
+            {
+                character.MoveLocation(target.x - current.x, target.y - current.y);
+                this.Invalidate();
+            }
         }
+
 
         private void InitializeMonsterContextMenu()
         {
