@@ -5,6 +5,7 @@ using Game.BossMonsters;
 using Game.BaseMonster;
 using System.Drawing;
 using Game.Characters;
+using System.Windows.Forms;
 
 
 namespace Game.Maps
@@ -17,8 +18,8 @@ namespace Game.Maps
         public int map_width;
         public int map_height;
 
-        
-        // 현재 맵에 존재하는 몬스터 리스트
+
+        // 맵에 존재하는 몬스터 리스트
         public List<Monster> Monsters { get; private set; } = new List<Monster>();
 
 
@@ -37,14 +38,18 @@ namespace Game.Maps
         public void RequestRespawn(Type monsterType, (int x, int y) location, int delayInSeconds)
         {
             respawnQueue.Add((monsterType, location, delayInSeconds));
-            Console.WriteLine($"{monsterType} has respwan ({location.x},{location.y}) after {delayInSeconds}s");
+            Console.WriteLine($"{monsterType} is respawning at ({location.x},{location.y}) after {delayInSeconds}s");
         }
 
-        
-        
+
+
         // 매 프레임마다 리스폰 큐 업데이트 및 처리
-        public void Update()
+        public PictureBox Update()
         {
+
+            // 슬라임 3번 죽여야 제거됨
+            PictureBox pb = new PictureBox();
+
             for (int i = respawnQueue.Count - 1; i >= 0; i--)
             {
                 var item = respawnQueue[i];
@@ -54,12 +59,23 @@ namespace Game.Maps
                     newMonster.MonsterLocation = item.location;
                     AddMonster(newMonster);
                     respawnQueue.RemoveAt(i);
-                }
+
+                    pb.Image = CreateImageFromType(item.monsterType);
+                    pb.Size = new Size(40, 40); // 이미지 크기 설정
+                    pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pb.BackColor = Color.Transparent;
+
+                    pb.Location = new Point(newMonster.MonsterLocation.x, newMonster.MonsterLocation.y);
+                    pb.Tag = newMonster;
+
+                    return pb;
+                    }
                 else
                 {
                     respawnQueue[i] = (item.monsterType, item.location, item.countdown - 1);
                 }
             }
+            return null;
         }
 
 
@@ -69,10 +85,7 @@ namespace Game.Maps
 
         // 몬스터를 맵에 추가하고 랜덤 좌표 지정
         public void AddMonster(Monster m)
-        {
-            if (m.MonsterLocation == default)
-                m.MonsterLocation = GetRandomLocation();
-
+        { 
             m.MapRef = this;
             Monsters.Add(m);
         }
@@ -80,14 +93,34 @@ namespace Game.Maps
 
 
         // 몬스터 맵에서 제거 및 코인 드랍
-        public void RemoveMonster(Monster m)
+        public void RemoveMonster(Monster m, Form form)
         {
             Monsters.Remove(m);
             DroppedCoins.Add((m.MonsterLocation.x, m.MonsterLocation.y, m.MonsterCoinValue));  // 코인 맵에 드랍하기
             Console.WriteLine($"{m.MonsterName} has dropped  {m.MonsterCoinValue} coins  and {m.MonsterExperience} exp");
+
+            // PictureBox 제거
+            foreach (Control control in form.Controls)
+            {
+                if (control is PictureBox pb && pb.Tag == m)
+                {
+                    form.Controls.Remove(pb);
+                    pb.Dispose();
+                    break;
+                }
+            }
         }
 
-        
+        public Image CreateImageFromType(Type monsterType)
+        {
+            if (monsterType == typeof(Goblin)) return Image.FromFile("goblin1.png");
+            if (monsterType == typeof(Slime)) return Image.FromFile("C:\\Users\\me\\Desktop\\MMORPG\\Random-MMORPG\\GAME\\src\\Resources\\slime.png"); ;
+            if (monsterType == typeof(Scorpion)) return Image.FromFile("scorpion.png");
+            if (monsterType == typeof(Witch)) return Image.FromFile("wizard.png");
+            return Image.FromFile("goblin1.png");
+
+        }
+
         // 떨어진 코인 줍는 로직
         public (int totalAmount, int count) PickUpCoins((int x, int y) location)
         {
@@ -108,7 +141,8 @@ namespace Game.Maps
             });
 
             return (total, count);
-        }
+        } 
+
 
 
 
@@ -165,19 +199,6 @@ namespace Game.Maps
             }
 
             return map;
-        }
-
-
-
-
-
-        // 몬스터 리스트를 받아 맵에 추가
-        private static void AddMonsters(Map map, List<Monster> monsters)
-        {
-            foreach (var monster in monsters)
-            {
-                map.AddMonster(monster);
-            }
         }
     }
 }

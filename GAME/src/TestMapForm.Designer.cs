@@ -302,7 +302,6 @@
             this.monster_goblin1.TabIndex = 28;
             this.monster_goblin1.TabStop = false;
             this.monster_goblin1.Click += new System.EventHandler(this.monster_Click);
-            this.monster_goblin1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_goblin2
             // 
@@ -315,7 +314,6 @@
             this.monster_goblin2.TabIndex = 35;
             this.monster_goblin2.TabStop = false;
             this.monster_goblin2.Click += new System.EventHandler(this.monster_Click);
-            this.monster_goblin2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_goblin3
             // 
@@ -328,7 +326,6 @@
             this.monster_goblin3.TabIndex = 36;
             this.monster_goblin3.TabStop = false;
             this.monster_goblin3.Click += new System.EventHandler(this.monster_Click);
-            this.monster_goblin3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // pictureBox25
             // 
@@ -528,7 +525,6 @@
             this.monster_slime8.TabIndex = 34;
             this.monster_slime8.TabStop = false;
             this.monster_slime8.Click += new System.EventHandler(this.monster_Click);
-            this.monster_slime8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_slime7
             // 
@@ -541,7 +537,6 @@
             this.monster_slime7.TabIndex = 54;
             this.monster_slime7.TabStop = false;
             this.monster_slime7.Click += new System.EventHandler(this.monster_Click);
-            this.monster_slime7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_slime9
             // 
@@ -554,7 +549,6 @@
             this.monster_slime9.TabIndex = 55;
             this.monster_slime9.TabStop = false;
             this.monster_slime9.Click += new System.EventHandler(this.monster_Click);
-            this.monster_slime9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_goblin5
             // 
@@ -567,7 +561,6 @@
             this.monster_goblin5.TabIndex = 56;
             this.monster_goblin5.TabStop = false;
             this.monster_goblin5.Click += new System.EventHandler(this.monster_Click);
-            this.monster_goblin5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_goblin4
             // 
@@ -580,7 +573,6 @@
             this.monster_goblin4.TabIndex = 57;
             this.monster_goblin4.TabStop = false;
             this.monster_goblin4.Click += new System.EventHandler(this.monster_Click);
-            this.monster_goblin4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_goblin6
             // 
@@ -593,7 +585,6 @@
             this.monster_goblin6.TabIndex = 58;
             this.monster_goblin6.TabStop = false;
             this.monster_goblin6.Click += new System.EventHandler(this.monster_Click);
-            this.monster_goblin6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_slime10
             // 
@@ -606,7 +597,6 @@
             this.monster_slime10.TabIndex = 61;
             this.monster_slime10.TabStop = false;
             this.monster_slime10.Click += new System.EventHandler(this.monster_Click);
-            this.monster_slime10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_slime6
             // 
@@ -619,7 +609,6 @@
             this.monster_slime6.TabIndex = 64;
             this.monster_slime6.TabStop = false;
             this.monster_slime6.Click += new System.EventHandler(this.monster_Click);
-            this.monster_slime6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_slime3
             // 
@@ -632,7 +621,6 @@
             this.monster_slime3.TabIndex = 63;
             this.monster_slime3.TabStop = false;
             this.monster_slime3.Click += new System.EventHandler(this.monster_Click);
-            this.monster_slime3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_slime4
             // 
@@ -645,7 +633,6 @@
             this.monster_slime4.TabIndex = 62;
             this.monster_slime4.TabStop = false;
             this.monster_slime4.Click += new System.EventHandler(this.monster_Click);
-            this.monster_slime4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_slime1
             // 
@@ -658,7 +645,6 @@
             this.monster_slime1.TabIndex = 67;
             this.monster_slime1.TabStop = false;
             this.monster_slime1.Click += new System.EventHandler(this.monster_Click);
-            this.monster_slime1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_slime5
             // 
@@ -671,7 +657,6 @@
             this.monster_slime5.TabIndex = 69;
             this.monster_slime5.TabStop = false;
             this.monster_slime5.Click += new System.EventHandler(this.monster_Click);
-            this.monster_slime5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // monster_slime2
             // 
@@ -684,7 +669,6 @@
             this.monster_slime2.TabIndex = 68;
             this.monster_slime2.TabStop = false;
             this.monster_slime2.Click += new System.EventHandler(this.monster_Click);
-            this.monster_slime2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TestForm_MouseDown);
             // 
             // TestMapForm
             // 

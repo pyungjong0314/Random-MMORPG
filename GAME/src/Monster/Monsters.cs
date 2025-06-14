@@ -8,6 +8,8 @@ namespace Game.Monsters
 {
     // 일반 몬스터 리스트
     // Goblin 
+
+
     public class Goblin : Monster
     {
         private static int goblinCount = 0;

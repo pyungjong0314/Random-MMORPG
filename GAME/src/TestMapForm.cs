@@ -16,24 +16,37 @@ namespace WindowsFormsApp1
         // 리스폰 타이머
         private Timer updateTimer;
 
+
+
+
+
+        
+
+        // 타이머 업데이트하기 (리스폰 여부 확인)
         private void StartUpdateTimer()
         {
+            PictureBox pb = new PictureBox();
+
+
             updateTimer = new Timer();
             updateTimer.Interval = 1000; // 1초마다 호출
             updateTimer.Tick += (s, e) =>
             {
-                map.Update();
-                this.Invalidate(); // 리스폰된 몬스터를 생성
+                pb = map.Update();
+                
+                if (pb != null)
+                {
+                    this.Controls.Add(pb);
+                }
             };
             updateTimer.Start();
         }
 
 
-
-
         // 캐릭터 및 맵에 몬스터 생성
         private Character character;
         private Map map = MapFactory.CreateMap(1);
+
 
 
         // 이미지 생성
@@ -50,50 +63,49 @@ namespace WindowsFormsApp1
 
 
 
-
-        // 
+        // 테스트 맵 로딩
         private void TestMapForm_Load(object sender, EventArgs e)
         {
-            // 모든 몬스터 PictureBox를 가져옴
+
+            // 1. 모든 몬스터 PictureBox를 가져옴
             monsterPictureBoxes = this.Controls
                 .OfType<PictureBox>()
                 .Where(pb => pb.Name.StartsWith("monster_"))
                 .OrderBy(pb => pb.Name)
                 .ToList();
 
-                
-            // 모든 몬스터에 대한 위치 설정 및 태그
+
+            // 2. 모든 몬스터 객체와 사진 매핑
             for (int i = 0; i < monsterPictureBoxes.Count && i < map.Monsters.Count; i++)
             {
-                // 위치 설정
                 map.Monsters[i].MonsterLocation.x = monsterPictureBoxes[i].Location.X;
                 map.Monsters[i].MonsterLocation.y = monsterPictureBoxes[i].Location.Y;
 
-                // 태그 설정
-                Console.WriteLine($"{monsterPictureBoxes[i].Name} ← {map.Monsters[i].MonsterName} ({map.Monsters[i].MonsterLocation.x},{map.Monsters[i].MonsterLocation.y}).");
                 monsterPictureBoxes[i].Tag = map.Monsters[i];
+                map.Monsters[i].SetForm(this); // ← 현재 폼 전달
             }
+
         }
 
 
+
+
+        // 캐릭터 기능 초기화 
         public TestMapForm(Character InitCharacter)
         {
             InitializeComponent();
             character = InitCharacter;
-            Console.WriteLine($"Initially {character.GetCharacterName()}  {character.GetCharacterLevel()} has coin : {character.GetCharacterMoney()}, exp : {character.GetCharacterExp()} ");
-
 
             InitializeMonsterContextMenu();
-            this.MouseDown += TestForm_MouseDown;
-            this.KeyDown += TestForm_KeyDown;
+            this.KeyDown += TestForm_KeyDown;       // 보드 입력(예: W/A/S/D 이동) 이벤트를 연결
             this.DoubleBuffered = true; // 깜빡임 방지
 
             StartUpdateTimer(); // ← 리스폰 활성화!
-
         }
 
 
 
+        // 캐릭터 출력 및 코인 드랍하기
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -108,12 +120,21 @@ namespace WindowsFormsApp1
             }
         }
 
+
+        // 키보드 입력에 따라 캐릭터를 이동시키고 충돌 여부를 판단하는 메서드
         private void TestForm_KeyDown(object sender, KeyEventArgs e)
         {
+            // 캐릭터 이동 속도 설정
             int moveAmount = 20;
+
+            // 캐릭터 충돌 감지 영역 크기 설정 (가로, 세로)
+            int collisionWidth = 10;
+            int collisionHeight = 10;
+
             var current = character.GetCharacterLocation();
             var target = current;
 
+            // 키 입력(WASD)에 따라 이동 목표 좌표 설정
             switch (e.KeyCode)
             {
                 case Keys.W: target = (current.x, current.y - moveAmount); break;
@@ -122,27 +143,38 @@ namespace WindowsFormsApp1
                 case Keys.D: target = (current.x + moveAmount, current.y); break;
             }
 
+            // 이동할 영역을 사각형으로 정의하여 충돌 체크에 사용
+            Rectangle targetRect = new Rectangle(target.x, target.y, collisionWidth, collisionHeight);
 
-            // 캐릭터가 몬스터와 겹치지 않도록 충돌 감지를 위한 사각형 영역을 설정함
-            Rectangle targetRect = new Rectangle(target.x, target.y, 10, 10);
+            // 해당 위치에 보이는 PictureBox가 있으면 이동 차단
+            bool isBlocked = this.Controls
+                .OfType<PictureBox>()
+                .Any(pb => pb.Visible && pb.Bounds.IntersectsWith(targetRect));
 
-            bool isBlocked = false;
-
+            // 이동 가능하면 위치 이동 및 코인 습득 처리
             if (!isBlocked)
             {
                 character.MoveLocation(target.x - current.x, target.y - current.y);
 
+                // 캐릭터 위치에서 코인 습득
                 var pickupResult = map.PickUpCoins(character.GetCharacterLocation());
                 if (pickupResult.totalAmount > 0)
                 {
                     character.AquireMoney(pickupResult.totalAmount);
-                    Console.WriteLine($"Finally {character.GetCharacterName()} {character.GetCharacterLevel()} has coin : {character.GetCharacterMoney()}, exp : {character.GetCharacterExp()} ");
+                    Console.WriteLine($"Finally {character.GetCharacterName()} {character.GetCharacterLevel()}lvl has coin: {character.GetCharacterMoney()}, exp: {character.GetCharacterExp()}");
                 }
+
+                // 화면 다시 그리기
                 this.Invalidate();
             }
         }
 
 
+
+
+
+        /* ContextMenu 관련 코드 */
+        // 몬스터 우클릭 시 사용할 컨텍스트 메뉴 생성
         private void InitializeMonsterContextMenu()
         {
             monsterContextMenu = new ContextMenuStrip();
@@ -155,6 +187,23 @@ namespace WindowsFormsApp1
             monsterContextMenu.Opening += MonsterContextMenu_Opening;
         }
 
+
+        // 몬스터 체력 정보 출력
+        private void OnInfoClicked(object sender, EventArgs e)
+        {
+            MessageBox.Show($"{lastClickedMonster.MonsterName} - HP: {lastClickedMonster.MonsterHp}");
+        }
+
+
+        // 몬스터 공격
+        private void OnAttackClicked(object sender, EventArgs e)
+        {
+            lastClickedMonster.MonsterGetAttack(100, character);
+            this.Invalidate();
+        }
+
+
+        // 몬스터 PictureBox를 클릭했을 때 컨텍스트 메뉴를 표시하는 메서드
         private void monster_Click(object sender, EventArgs e)
         {
             PictureBox p = sender as PictureBox;
@@ -162,28 +211,15 @@ namespace WindowsFormsApp1
 
             lastClickedMonster = p.Tag as Monster;
 
-            // PictureBox의 화면 좌표 구하기
+            // PictureBox 중심 좌표를 화면 기준으로 변환
             Point screenPoint = p.PointToScreen(new Point(p.Width / 2, p.Height / 2));
 
-            // 컨텍스트 메뉴 화면 위치에 표시
+            // 해당 위치에 컨텍스트 메뉴 표시
             monsterContextMenu.Show(screenPoint);
         }
 
-        private void TestForm_MouseDown(object sender, MouseEventArgs e)
-        {
-            // PictureBox 안에 있는 몬스터
-            foreach (var pb in monsterPictureBoxes)
-            {
-                if (pb.Bounds.Contains(e.Location))
-                {
-                    Console.Write("!");
-                    lastClickedMonster = pb.Tag as Monster;
-                    monsterContextMenu.Show(this, e.Location);
-                    break;
-                }
-            }
-        }
 
+        // 일정 거리에서 몬스터 공격 기능 활성화
         private void MonsterContextMenu_Opening(object sender, CancelEventArgs e)
         {
             Point characterPosition = new Point(character.GetCharacterLocation().x, character.GetCharacterLocation().y);
@@ -195,15 +231,5 @@ namespace WindowsFormsApp1
             attackMenuItem.Enabled = distance <= 60;
         }
 
-        private void OnInfoClicked(object sender, EventArgs e)
-        {
-            MessageBox.Show($"{lastClickedMonster.MonsterName} - HP: {lastClickedMonster.MonsterHp}");
-        }
-
-        private void OnAttackClicked(object sender, EventArgs e)
-        {
-            lastClickedMonster.MonsterGetAttack(100, character);
-            this.Invalidate();
-        }
     }
 }

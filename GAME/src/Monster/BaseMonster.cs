@@ -2,13 +2,27 @@ using System;
 using Game.Maps;
 using Game.Monsters;
 using Game.Characters;
+using System.Windows.Forms;
 
 
 namespace Game.BaseMonster
 {
+
+
     // 일반몹 기본 클래스
     public class Monster
     {
+        public PictureBox MonsterPictureBox { get; set; }  // ← 추가
+
+
+        private Form form; // 이 줄은 클래스 내에 이미 있을 수 있음
+
+
+
+
+        public void SetForm(Form f) => form = f;
+
+
         // 일반몹 속성
         public string MonsterName;
         public string MonsterId; // mid
@@ -21,10 +35,12 @@ namespace Game.BaseMonster
         public int MonsterDefenseAbility;
         public int MonsterExperience;
 
+
         // 몬스터가 자신이 소속된 맵을 기억함
         public Map MapRef { get; set; }
 
         public Monster() { } 
+
 
         // 몬스터 기본 생성자
         public Monster(
@@ -71,7 +87,7 @@ namespace Game.BaseMonster
 
 
 
-        // 데미지 받은만큼 Hp 감소
+        // 몬스터가 데미지를 받았을때
         public virtual int MonsterGetAttack(int damage, Character character) {
             
             MonsterHp -= damage;
@@ -93,21 +109,19 @@ namespace Game.BaseMonster
         public virtual void MonsterAttackEnemy() { }
         public virtual void MonsterDefend() { }
 
-        
-        
-        // 몬스터 죽었을때 다시 리스폰
+
+
+        // 몬스터 죽었을때 다시 리스폰 (!!! 검토해보기 !!)
         public virtual int MonsterDie()
         {
-
             if (IsDead) return 0;
 
             IsDead = true;
 
             Console.WriteLine($"{MonsterName} has died.");
 
-            MapRef?.RemoveMonster(this); // 몬스터 제거
-            MapRef?.RequestRespawn(this.GetType(), MonsterLocation, 3); // 3초 뒤 같은 자리에 리스폰 요청
-           
+            MapRef?.RemoveMonster(this, form);
+            MapRef?.RequestRespawn(this.GetType(), MonsterLocation, 3);
 
             return MonsterCoinValue;
         }
@@ -162,7 +176,7 @@ namespace Game.BaseMonster
         }
 
 
-        // 스코피온 생성
+        // 스콜피온 생성
         private static Scorpion ScorpionCreate()
         {
             Scorpion scorpion = new Scorpion();
