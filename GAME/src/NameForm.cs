@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class NameForm : Form
     {
-        Character newCharacter;
+        private Character newCharacter;
         
         public NameForm()
         {
@@ -23,7 +23,18 @@ namespace WindowsFormsApp1
         private void NameSetButton_Click(object sender, EventArgs e)
         {
             newCharacter = CharacterFactory.CharacterCreate(NameTextBox.Text);
-            MessageBox.Show($"캐릭터 이름이 '{newCharacter.GetCharacterName()}'(으)로 설정되었습니다.", "캐릭터 이름 설정 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"캐릭터 이름이 {newCharacter.GetCharacterName()} 으로 설정되었습니다.", "캐릭터 생성 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            StoryForm storyForm = new StoryForm();
+            storyForm.Show();
+            this.Hide();
+
+            storyForm.FormClosed += (s, args) =>
+            {
+                // storyForm 닫히면 Map1Form 열기 
+                Map1Form map1Form = new Map1Form(newCharacter);
+                map1Form.Show();
+            };
         }
     }
 }

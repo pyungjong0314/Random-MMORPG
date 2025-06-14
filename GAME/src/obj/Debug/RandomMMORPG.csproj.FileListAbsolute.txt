@@ -40,3 +40,21 @@ C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\박혜련\Desktop\4-1\응소실 팀플\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.LoadingForm.resources
 C:\Users\박혜련\Desktop\4-1\응소실 팀플\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Map1Form.resources
 C:\Users\박혜련\Desktop\4-1\응소실 팀플\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.NameForm.resources
+C:\Users\박혜련\Desktop\4-1\응소실 팀플\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Shop.resources
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\bin\Debug\WindowsFormsApp1.exe
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\RandomMMORPG.csproj.AssemblyReference.cache
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.LoadingForm.resources
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.MainForm.resources
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.BattleForm.resources
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Map1Form.resources
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.NameForm.resources
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Shop.resources
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.StoryForm.resources
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.TestMapForm.resources
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\RandomMMORPG.csproj.GenerateResource.cache
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\RandomMMORPG.csproj.CoreCompileInputs.cache
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.exe
+C:\Users\박혜련\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.pdb

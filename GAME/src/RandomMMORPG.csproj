@@ -76,7 +76,6 @@
       <DependentUpon>Map1Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Map\map.cs" />
-    <Compile Include="Monster\monster.cs" />
     <Compile Include="NameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +94,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Server\Server.cs" />
+    <Compile Include="Shop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shop.Designer.cs">
+      <DependentUpon>Shop.cs</DependentUpon>
+    </Compile>
     <Compile Include="StoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +132,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shop.resx">
+      <DependentUpon>Shop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StoryForm.resx">
       <DependentUpon>StoryForm.cs</DependentUpon>
@@ -188,11 +196,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Background1.png" />
+    <None Include="Resources\Background11.png" />
+    <None Include="Resources\fountain.png" />
+    <None Include="Resources\fountain1.png" />
+    <None Include="Resources\board.png" />
+    <None Include="Resources\bench.png" />
+    <None Include="Resources\floor.png" />
+    <None Include="Resources\floor1.png" />
     <Content Include="Resources\goblin2.png" />
     <None Include="Resources\LoadingBackground.png" />
+    <None Include="Resources\portal.png" />
+    <None Include="Resources\portal1.png" />
+    <None Include="Resources\image %286%29.png" />
+    <None Include="Resources\portal3.png" />
+    <None Include="Resources\portal2.png" />
+    <None Include="Resources\portal4.png" />
+    <None Include="Resources\portal5.png" />
+    <None Include="Resources\house.png" />
+    <None Include="Resources\lamp.png" />
+    <None Include="Resources\pond.png" />
+    <None Include="Resources\pond1.png" />
+    <None Include="Resources\Map1FormBackground.png" />
+    <None Include="Resources\Map1FormBackground1.png" />
     <Content Include="Resources\scorpion.png" />
     <None Include="Resources\shopkeeper.png" />
     <None Include="Resources\shop.png" />
+    <None Include="Resources\stonefloor.png" />
+    <None Include="Resources\well.png" />
+    <None Include="Resources\stone.png" />
+    <None Include="Resources\tree.png" />
+    <None Include="Resources\well1.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

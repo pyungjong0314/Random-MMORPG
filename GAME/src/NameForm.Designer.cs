@@ -47,7 +47,6 @@
             this.AttackPanel.Name = "AttackPanel";
             this.AttackPanel.Size = new System.Drawing.Size(517, 313);
             this.AttackPanel.TabIndex = 28;
-            this.AttackPanel.Visible = false;
             // 
             // NameTextBox
             // 
@@ -65,7 +64,7 @@
             this.NameLabel.ForeColor = System.Drawing.Color.White;
             this.NameLabel.Location = new System.Drawing.Point(116, 42);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(306, 46);
+            this.NameLabel.Size = new System.Drawing.Size(297, 43);
             this.NameLabel.TabIndex = 21;
             this.NameLabel.Text = "이름을 입력하세요";
             // 
@@ -87,13 +86,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Background1;
+            this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Background11;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1482, 953);
             this.Controls.Add(this.AttackPanel);
             this.Name = "NameForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NewGameForm";
+            this.Text = "NameForm";
             this.AttackPanel.ResumeLayout(false);
             this.AttackPanel.PerformLayout();
             this.ResumeLayout(false);

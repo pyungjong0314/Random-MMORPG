@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NameForm());
+            Application.Run(new MainForm());
 
 /*            // cmd 103 = 지도 모든 몬스터의 위치 표시 (예시 : map_id = 1)
             Map m = MapFactory.CreateMap(2);
