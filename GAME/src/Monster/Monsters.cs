@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Game.BaseMonster;
 
 
@@ -21,7 +22,8 @@ namespace Game.Monsters
                 location: (4, 2),
                 hp: 500,
                 attack: 55,
-                defense: 30)
+                defense: 30,
+                exp:15)
         { }
 
         public void Slash() { Console.WriteLine("고블린이 베기를 사용했다!"); }
@@ -42,7 +44,8 @@ namespace Game.Monsters
                 location: (4, 2),
                 hp: 500,
                 attack: 55,
-                defense: 30)
+                defense: 30,
+                exp: 100)
         { }
 
         public void Spit() { Console.WriteLine("슬라임이 침 뱉기를 사용했다!"); }
@@ -63,7 +66,8 @@ namespace Game.Monsters
                 location: (4, 2),
                 hp: 500,
                 attack: 55,
-                defense: 30)
+                defense: 30,
+                exp:100)
         { }
 
         public void Sting() { Console.WriteLine("전갈이 침쏘기를 사용했다!"); }
@@ -79,12 +83,13 @@ namespace Game.Monsters
                 name: "Witch",
                 id: (400 + witchCount++).ToString(),
                 level: 5,
-                coinValue: 1000,
+                coinValue: 150,
                 mapId: 10,
                 location: (4, 2),
                 hp: 100,
                 attack: 55,
-                defense: 30)
+                defense: 30,
+                exp:5)
         { }
 
         public void CastSpell() { Console.WriteLine("마녀가 마법을 시전했다!"); }
@@ -106,7 +111,9 @@ namespace Game.Monsters
                 location: (4, 2),
                 hp: 500,
                 attack: 55,
-                defense: 30)
+                defense: 30,
+                exp:2
+               )
         { }
 
         public void Petrify() { Console.WriteLine("바실리스크가 석화 시선을 사용했다!"); }
@@ -127,7 +134,8 @@ namespace Game.Monsters
                 location: (4, 2),
                 hp: 500,
                 attack: 55,
-                defense: 30)
+                defense: 30,
+                exp:14)
         { }
 
         public void Rush() { Console.WriteLine("오크가 돌진을 사용했다!"); }

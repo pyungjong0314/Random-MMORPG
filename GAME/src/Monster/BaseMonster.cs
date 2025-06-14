@@ -1,12 +1,12 @@
 using System;
 using Game.Maps;
 using Game.Monsters;
-
+using Game.Characters;
 
 
 namespace Game.BaseMonster
 {
-    // 일반 몬스터 기본 클래스
+    // 일반몹 기본 클래스
     public class Monster
     {
         public string MonsterName;
@@ -18,6 +18,7 @@ namespace Game.BaseMonster
         public int MonsterHp;
         public int MonsterAttackAbility;
         public int MonsterDefenseAbility;
+        public int MonsterExperience;
 
         // 몬스터가 자신이 소속된 맵을 기억함
         public Map MapRef { get; set; }
@@ -33,7 +34,9 @@ namespace Game.BaseMonster
             (int x, int y) location,
             int hp,
             int attack,
-            int defense)
+            int defense,
+            int exp
+            )
         {
             MonsterName = name;
             MonsterId = id;
@@ -44,6 +47,7 @@ namespace Game.BaseMonster
             MonsterHp = hp;
             MonsterAttackAbility = attack;
             MonsterDefenseAbility = defense;
+            MonsterExperience = exp;
         }
 
         public bool IsDead { get; private set; } = false;
@@ -62,10 +66,11 @@ namespace Game.BaseMonster
         public virtual void MonsterLoad() { }
 
         // 데미지 받은만큼 Hp 감소
-        public virtual int MonsterGetAttack(int damage) {
+        public virtual int MonsterGetAttack(int damage, Character character) {
             MonsterHp -= damage;
             if (MonsterHp <= 0)
             {
+                character.AquireExp(this.MonsterExperience);
                 return MonsterDie();
             }
             return 0;
@@ -91,7 +96,7 @@ namespace Game.BaseMonster
 
             MapRef?.RemoveMonster(this);
             MapRef?.RequestRespawn(this.GetType(), MonsterLocation, 3); // 3초 뒤 같은 자리에 리스폰 요청
-
+           
 
             return MonsterCoinValue;
         }
@@ -115,11 +120,14 @@ namespace Game.BaseMonster
             monster.SetMapId(1);
         }
 
-
+        
+        // 고블린 생성
         private static Goblin GoblinCreate()
         {
             Goblin goblin = new Goblin();
             BaseMonster(goblin);
+
+
             // 고블린 설정
             goblin.setName("goblin");
             goblin.SetMapId(100);
@@ -127,7 +135,8 @@ namespace Game.BaseMonster
             return goblin;
         }
 
-
+        
+        // 슬라임 생성
         private static Slime SlimeCreate()
         {
             Slime slime = new Slime();
@@ -142,6 +151,7 @@ namespace Game.BaseMonster
         }
 
 
+        // 스코피온 생성
         private static Scorpion ScorpionCreate()
         {
             Scorpion scorpion = new Scorpion();
@@ -155,7 +165,7 @@ namespace Game.BaseMonster
         }
 
 
-
+        // 마녀 생성
         private static Witch WitchCreate()
         {
             Witch witch = new Witch();
@@ -169,6 +179,7 @@ namespace Game.BaseMonster
         }
 
 
+        // 바실리스크 생성
         private static Basilisk BasiliskCreate()
         {
             Basilisk basilisk = new Basilisk();
@@ -183,6 +194,7 @@ namespace Game.BaseMonster
         }
 
 
+        // 오크 생성
         private static Orc OrcCreate()
         {
             Orc orc = new Orc();
@@ -197,6 +209,8 @@ namespace Game.BaseMonster
             return orc;
         }
 
+
+        // 일반몹 생성 함수
         public static Monster CreateMonster(int type)
         {
             switch (type)

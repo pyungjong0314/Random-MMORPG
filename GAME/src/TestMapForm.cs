@@ -3,7 +3,6 @@ using Game.Characters;
 using Game.Maps;
 using Game.Monsters;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -17,11 +16,9 @@ namespace WindowsFormsApp1
 
         }
 
+        // 리스폰 타이머
         private Timer updateTimer;
 
-
-
-        // 리스폰 타이머
         private void StartUpdateTimer()
         {
             updateTimer = new Timer();
@@ -35,16 +32,20 @@ namespace WindowsFormsApp1
         }
 
 
-        // 캐릭터 및 맵 생성
+        // 캐릭터 및 맵에 몬스터 생성
         private Character character;
-        private Map map = MapFactory.CreateMap(1);
+        private Map map = MapFactory.CreateMap(1); // 첫번째 맵의 모든 몬스터 불러오기
 
 
-        // 캐릭터 이미지 생성
+        // 이미지 생성
         private Image characterImage = Properties.Resources.Player1Character;
         private Image goblinImage = Properties.Resources.goblin2;
         private Image scorpionImage = Properties.Resources.scorpion;
         private Image wizardImage = Properties.Resources.wizard;
+        private Image coinImage = Properties.Resources.CoinFront;
+
+
+
 
         private ContextMenuStrip monsterContextMenu;
         private ToolStripMenuItem attackMenuItem;
@@ -55,6 +56,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             character = InitCharacter;
+            Console.WriteLine($"Initially {character.GetCharacterName()}  {character.GetCharacterLevel()} has coin : {character.GetCharacterMoney()}, exp : {character.GetCharacterExp()} ");
+
 
             InitializeMonsterContextMenu();
             this.MouseDown += TestForm_MouseDown;
@@ -74,6 +77,7 @@ namespace WindowsFormsApp1
             // 캐릭터 출력
             e.Graphics.DrawImage(characterImage, character.GetCharacterLocation().x, character.GetCharacterLocation().y, 64, 64);
 
+
             // 몬스터 출력
             foreach (var monster in map.Monsters)
             {
@@ -81,14 +85,20 @@ namespace WindowsFormsApp1
                 var loc = monster.MonsterLocation;
                 e.Graphics.DrawImage(image, loc.x, loc.y, 80, 80);
             }
+
+            // 💰 드롭된 코인 출력
+            foreach (var coin in map.DroppedCoins)
+            {
+                e.Graphics.DrawImage(coinImage, coin.x, coin.y+30, 32, 32);
+            }
         }
 
         private Image GetMonsterImage(Monster m)
         {
             if (m is Goblin) return goblinImage;
-            if (m is Scorpion) return scorpionImage;
-            if (m is Witch) return wizardImage;
-            return goblinImage;
+            else if (m is Scorpion) return scorpionImage;
+            else if (m is Witch) return wizardImage;
+            return goblinImage; // 고블린으로 기본 설정
         }
 
         private void TestForm_KeyDown(object sender, KeyEventArgs e)
@@ -122,6 +132,13 @@ namespace WindowsFormsApp1
             if (!isBlocked)
             {
                 character.MoveLocation(target.x - current.x, target.y - current.y);
+
+                var pickupResult = map.PickUpCoins(character.GetCharacterLocation());
+                if (pickupResult.totalAmount > 0)
+                {
+                    character.AquireMoney(pickupResult.totalAmount);
+                    Console.WriteLine($"Finally {character.GetCharacterName()} {character.GetCharacterLevel()} has coin : {character.GetCharacterMoney()}, exp : {character.GetCharacterExp()} ");
+                }
                 this.Invalidate();
             }
         }
@@ -171,11 +188,7 @@ namespace WindowsFormsApp1
 
         private void OnAttackClicked(object sender, EventArgs e)
         {
-            lastClickedMonster.MonsterGetAttack(100);
-            if (lastClickedMonster.MonsterHp <= 0)
-            {
-                map.RemoveMonster(lastClickedMonster);
-            }
+            lastClickedMonster.MonsterGetAttack(100, character);
             this.Invalidate();
         }
     }

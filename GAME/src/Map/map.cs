@@ -3,42 +3,35 @@ using System.Collections.Generic;
 using Game.Monsters;
 using Game.BossMonsters;
 using Game.BaseMonster;
+using System.Drawing;
+using Game.Characters;
+
 
 namespace Game.Maps
 {
     public class Map
     {
+
         public string map_name;
         public int map_id;
         public int map_width;
         public int map_height;
 
+        
         // 현재 맵에 존재하는 몬스터 리스트
         public List<Monster> Monsters { get; private set; } = new List<Monster>();
+
+
+
+        // 맵에 드랍된 코인 리스트
+        public List<(int x, int y, int amount)> DroppedCoins { get; private set; } = new List<(int x, int y, int amount)>();
+
+
 
         // 리스폰 대기 큐 (몬스터 타입, 리스폰까지 남은 시간)
         private List<(Type monsterType, (int x, int y) location, int countdown)> respawnQueue =
             new List<(Type monsterType, (int x, int y) location, int countdown)>();
 
-        public Map() { }
-
-        // 몬스터를 맵에 추가하고 랜덤 좌표 지정
-        public void AddMonster(Monster m)
-        {
-            if (m.MonsterLocation == default)
-                m.MonsterLocation = GetRandomLocation();
-
-            m.MapRef = this;
-            Monsters.Add(m);
-        }
-
-        // 몬스터를 맵에서 제거하고 죽음 출력
-        public void RemoveMonster(Monster m)
-        {
-            Monsters.Remove(m);
-            Console.WriteLine($"{m.MonsterName} has dropped  {m.MonsterCoinValue} coins");
-
-        }
 
         // 몬스터 리스폰 요청 (타입, 위치, 지연 시간 지정)
         public void RequestRespawn(Type monsterType, (int x, int y) location, int delayInSeconds)
@@ -66,6 +59,60 @@ namespace Game.Maps
                 }
             }
         }
+
+
+        public Map() { }
+
+
+
+        // 몬스터를 맵에 추가하고 랜덤 좌표 지정
+        public void AddMonster(Monster m)
+        {
+            if (m.MonsterLocation == default)
+                m.MonsterLocation = GetRandomLocation();
+
+            m.MapRef = this;
+            Monsters.Add(m);
+        }
+
+
+
+        // 몬스터 맵에서 제거 및 코인 드랍
+        public void RemoveMonster(Monster m)
+        {
+            Monsters.Remove(m);
+            DroppedCoins.Add((m.MonsterLocation.x, m.MonsterLocation.y, m.MonsterCoinValue));
+            
+
+            Console.WriteLine($"{m.MonsterName} has dropped  {m.MonsterCoinValue} coins  and {m.MonsterExperience} exp");
+        }
+
+        
+        // 떨어진 코인 줍는 로직
+        public (int totalAmount, int count) PickUpCoins((int x, int y) location)
+        {
+            int pickupRange = 40;
+            int total = 0;
+            int count = 0;
+
+            DroppedCoins.RemoveAll(c =>
+            {
+                double dist = Math.Sqrt(Math.Pow(c.x - location.x, 2) + Math.Pow(c.y - location.y, 2));
+                if (dist <= pickupRange)
+                {
+                    total += c.amount;
+                    count++;
+                    return true;
+                }
+                return false;
+            });
+
+            return (total, count);
+        }
+
+
+
+
 
         // 타입에 따른 몬스터 생성기
         private Monster CreateMonsterFromType(Type monsterType)
@@ -101,10 +148,8 @@ namespace Game.Maps
             switch (map_id)
             {
                 case 1:
-    
                     var goblin1 = new Goblin();
                     goblin1.MonsterLocation = (100, 200);
-
 
                     var goblin2 = new Goblin();
                     goblin2.MonsterLocation = (100, 300);
@@ -117,13 +162,13 @@ namespace Game.Maps
                     var scorpion1 = new Scorpion();
                     scorpion1.MonsterLocation = (300, 200);
 
-
                     var scorpion2 = new Scorpion();
                     scorpion2.MonsterLocation = (300, 300);
 
-
                     var scorpion3 = new Scorpion();
                     scorpion3.MonsterLocation = (300, 400);
+
+
 
                     var witch1 = new Witch();
                     witch1.MonsterLocation = (500, 200);
@@ -133,6 +178,7 @@ namespace Game.Maps
 
                     var witch3= new Witch();
                     witch3.MonsterLocation = (500, 400);
+
 
                     AddMonsters(map, new List<Monster> { goblin1, goblin2, goblin3, scorpion1, scorpion2, scorpion3, witch1, witch2, witch3 });
                     break;

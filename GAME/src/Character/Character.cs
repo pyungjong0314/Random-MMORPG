@@ -49,8 +49,8 @@ namespace Game.Characters
 
             while (characterExp > characterLevel * 100)
             {
-                characterLevel++;
                 characterExp -= characterLevel * 100;
+                characterLevel++;
             }
         }
 
