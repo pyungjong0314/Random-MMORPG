@@ -51,6 +51,12 @@
   <ItemGroup>
     <Compile Include="Character\Character.cs" />
     <Compile Include="FontManager.cs" />
+    <Compile Include="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,8 +69,20 @@
     <Compile Include="BattleForm.Designer.cs">
       <DependentUpon>BattleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Map1Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Map1Form.Designer.cs">
+      <DependentUpon>Map1Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Map\map.cs" />
     <Compile Include="Monster\monster.cs" />
+    <Compile Include="NameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NameForm.Designer.cs">
+      <DependentUpon>NameForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -86,11 +104,20 @@
       <DependentUpon>TestMapForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Weapon\Weapon.cs" />
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BattleForm.resx">
       <DependentUpon>BattleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Map1Form.resx">
+      <DependentUpon>Map1Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NameForm.resx">
+      <DependentUpon>NameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -156,8 +183,12 @@
     <None Include="Resources\Dice1.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Background1.png" />
     <Content Include="Resources\goblin2.png" />
+    <None Include="Resources\LoadingBackground.png" />
     <Content Include="Resources\scorpion.png" />
+    <None Include="Resources\shopkeeper.png" />
+    <None Include="Resources\shop.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
