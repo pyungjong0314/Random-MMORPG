@@ -153,6 +153,16 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap orc {
+            get {
+                object obj = ResourceManager.GetObject("orc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Player1Character {
             get {
                 object obj = ResourceManager.GetObject("Player1Character", resourceCulture);
@@ -176,6 +186,16 @@ namespace WindowsFormsApp1.Properties {
         internal static System.Drawing.Bitmap scorpion {
             get {
                 object obj = ResourceManager.GetObject("scorpion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap slime {
+            get {
+                object obj = ResourceManager.GetObject("slime", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

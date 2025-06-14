@@ -171,11 +171,17 @@ namespace WindowsFormsApp1
 
         private void OnAttackClicked(object sender, EventArgs e)
         {
-            lastClickedMonster.MonsterGetAttack(100);
+            /*lastClickedMonster.MonsterGetAttack(100);
             if (lastClickedMonster.MonsterHp <= 0)
             {
                 map.RemoveMonster(lastClickedMonster);
-            }
+            }*/
+
+            //PictureBox target = sender as PictureBox;
+            //BattleForm battleForm = new BattleForm(target.Tag);
+            BattleForm battleForm = new BattleForm(character, map.Monsters[0]);
+            battleForm.Show();
+
             this.Invalidate();
         }
     }

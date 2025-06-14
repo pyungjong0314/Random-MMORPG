@@ -37,3 +37,6 @@ C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\RandomMMORPG.csproj.
 C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\RandomMMORPG.csproj.CoreCompileInputs.cache
 C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.exe
 C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\pyungjong\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Battle.CoinControl.resources
+C:\Users\pyungjong\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Battle.selectControl.resources
+C:\Users\pyungjong\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Battle.DiceControl.resources
