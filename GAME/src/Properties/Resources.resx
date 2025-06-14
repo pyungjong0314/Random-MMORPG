@@ -172,4 +172,22 @@
   <data name="wizard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wizard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="goblin1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goblin1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="luna_crab2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\luna_crab2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tree" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tree.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="well" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\well.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

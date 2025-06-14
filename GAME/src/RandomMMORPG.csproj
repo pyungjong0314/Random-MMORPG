@@ -159,8 +159,14 @@
     <None Include="Resources\Dice1.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\goblin1.png" />
     <Content Include="Resources\goblin2.png" />
+    <None Include="Resources\rock.png" />
+    <None Include="Resources\luna_crab2.png" />
     <Content Include="Resources\scorpion.png" />
+    <None Include="Resources\tree.png" />
+    <None Include="Resources\well.png" />
+    <None Include="Resources\slime.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

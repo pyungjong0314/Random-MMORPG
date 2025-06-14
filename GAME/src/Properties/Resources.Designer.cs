@@ -133,9 +133,29 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap goblin1 {
+            get {
+                object obj = ResourceManager.GetObject("goblin1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap goblin2 {
             get {
                 object obj = ResourceManager.GetObject("goblin2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap luna_crab2 {
+            get {
+                object obj = ResourceManager.GetObject("luna_crab2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -159,27 +179,7 @@ namespace WindowsFormsApp1.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
-        internal static System.Drawing.Bitmap Tree
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("Tree", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-
-        internal static System.Drawing.Bitmap Rock
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("Rock", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-
+        
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
@@ -193,9 +193,29 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap rock {
+            get {
+                object obj = ResourceManager.GetObject("rock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap scorpion {
             get {
                 object obj = ResourceManager.GetObject("scorpion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap slime {
+            get {
+                object obj = ResourceManager.GetObject("slime", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,6 +266,26 @@ namespace WindowsFormsApp1.Properties {
         internal static System.Drawing.Bitmap TestMap {
             get {
                 object obj = ResourceManager.GetObject("TestMap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap tree {
+            get {
+                object obj = ResourceManager.GetObject("tree", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap well {
+            get {
+                object obj = ResourceManager.GetObject("well", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -9,6 +9,7 @@ namespace Game.BaseMonster
     // 일반몹 기본 클래스
     public class Monster
     {
+        // 일반몹 속성
         public string MonsterName;
         public string MonsterId; // mid
         public int MonsterLevel;
@@ -23,8 +24,9 @@ namespace Game.BaseMonster
         // 몬스터가 자신이 소속된 맵을 기억함
         public Map MapRef { get; set; }
 
-        public Monster() { } // 이거 꼭 추가!
+        public Monster() { } 
 
+        // 몬스터 기본 생성자
         public Monster(
             string name,
             string id,
@@ -51,6 +53,8 @@ namespace Game.BaseMonster
         }
 
         public bool IsDead { get; private set; } = false;
+
+        // 몬스터 Setter
         public void setName(string name) => MonsterName = name;
         public void setId(string id) => MonsterId = id;
         public void setLevel(int level) => MonsterLevel = level;
@@ -65,26 +69,33 @@ namespace Game.BaseMonster
         public virtual void MonsterSave() { }
         public virtual void MonsterLoad() { }
 
+
+
         // 데미지 받은만큼 Hp 감소
         public virtual int MonsterGetAttack(int damage, Character character) {
+            
             MonsterHp -= damage;
+            
+            // 몬스터 hp가 0으로 감소될떄
             if (MonsterHp <= 0)
             {
-                character.AquireExp(this.MonsterExperience);
-                return MonsterDie();
+                character.AquireExp(this.MonsterExperience);  // 경험치 반환
+                return MonsterDie();  // 몬스터 사망
             }
             return 0;
         } 
 
+
         // HP 회복
         public virtual void MonsterGetHp(int hp) { MonsterHp += hp; }
-
         public virtual void MonsterMoveMap(int newMapId) => MonsterMapId = newMapId;
         public virtual void MonsterMoveLocation(int x, int y) => MonsterLocation = (x, y);
         public virtual void MonsterAttackEnemy() { }
         public virtual void MonsterDefend() { }
 
-        // 몬스터 죽으면 다시 리스폰
+        
+        
+        // 몬스터 죽었을때 다시 리스폰
         public virtual int MonsterDie()
         {
 
@@ -94,7 +105,7 @@ namespace Game.BaseMonster
 
             Console.WriteLine($"{MonsterName} has died.");
 
-            MapRef?.RemoveMonster(this);
+            MapRef?.RemoveMonster(this); // 몬스터 제거
             MapRef?.RequestRespawn(this.GetType(), MonsterLocation, 3); // 3초 뒤 같은 자리에 리스폰 요청
            
 
