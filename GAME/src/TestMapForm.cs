@@ -12,8 +12,13 @@ namespace WindowsFormsApp1
 {
     public partial class TestMapForm : Form
     {
+        private void TestMapForm_Load(object sender, EventArgs e)
+        {
+
+        }
 
         private Timer updateTimer;
+
 
 
         // 리스폰 타이머
@@ -24,20 +29,18 @@ namespace WindowsFormsApp1
             updateTimer.Tick += (s, e) =>
             {
                 map.Update();
-                this.Invalidate(); // 리스폰된 몬스터를 다시 그리기
+                this.Invalidate(); // 리스폰된 몬스터를 생성
             };
             updateTimer.Start();
         }
 
 
-        private void TestMapForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        // 캐릭터 및 맵 생성
         private Character character;
         private Map map = MapFactory.CreateMap(1);
 
+
+        // 캐릭터 이미지 생성
         private Image characterImage = Properties.Resources.Player1Character;
         private Image goblinImage = Properties.Resources.goblin2;
         private Image scorpionImage = Properties.Resources.scorpion;
@@ -46,6 +49,7 @@ namespace WindowsFormsApp1
         private ContextMenuStrip monsterContextMenu;
         private ToolStripMenuItem attackMenuItem;
         private Monster lastClickedMonster;
+
 
         public TestMapForm(Character InitCharacter)
         {
@@ -60,6 +64,8 @@ namespace WindowsFormsApp1
             StartUpdateTimer(); // ← 리스폰 활성화!
 
         }
+
+
 
         protected override void OnPaint(PaintEventArgs e)
         {

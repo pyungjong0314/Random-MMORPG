@@ -24,3 +24,16 @@ C:\Users\pyungjong\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Mai
 C:\Users\pyungjong\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.BattleForm.resources
 C:\Users\pyungjong\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.StoryForm.resources
 C:\Users\pyungjong\Desktop\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.TestMapForm.resources
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\bin\Debug\WindowsFormsApp1.exe
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\RandomMMORPG.csproj.AssemblyReference.cache
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.MainForm.resources
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.BattleForm.resources
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.StoryForm.resources
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.TestMapForm.resources
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\RandomMMORPG.csproj.GenerateResource.cache
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\RandomMMORPG.csproj.CoreCompileInputs.cache
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.exe
+C:\Users\me\Desktop\MMORPG\Random-MMORPG\GAME\src\obj\Debug\WindowsFormsApp1.pdb
