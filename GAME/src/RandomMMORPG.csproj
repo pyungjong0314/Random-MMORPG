@@ -49,24 +49,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle\Battle.cs" />
+    <Compile Include="Battle\CoinControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Battle\CoinControl.Designer.cs">
+      <DependentUpon>CoinControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Battle\DiceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Battle\DiceControl.Designer.cs">
+      <DependentUpon>DiceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Battle\selectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Battle\selectControl.Designer.cs">
+      <DependentUpon>selectControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Character\Character.cs" />
-    <Compile Include="FontManager.cs" />
+    <Compile Include="Story\FontManager.cs" />
     <Compile Include="LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Story\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Story\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BattleForm.cs">
+    <Compile Include="Battle\BattleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BattleForm.Designer.cs">
+    <Compile Include="Battle\BattleForm.Designer.cs">
       <DependentUpon>BattleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Map1Form.cs">
@@ -103,7 +122,10 @@
     <Compile Include="StoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StoryForm.Designer.cs">
+    <Compile Include="Story\StoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Story\StoryForm.Designer.cs">
       <DependentUpon>StoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TestMapForm.cs">
@@ -116,10 +138,19 @@
     <EmbeddedResource Include="LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Battle\CoinControl.resx">
+      <DependentUpon>CoinControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Battle\selectControl.resx">
+      <DependentUpon>selectControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Battle\DiceControl.resx">
+      <DependentUpon>DiceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Story\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BattleForm.resx">
+    <EmbeddedResource Include="Battle\BattleForm.resx">
       <DependentUpon>BattleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Map1Form.resx">
@@ -137,6 +168,9 @@
       <DependentUpon>Shop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StoryForm.resx">
+      <DependentUpon>StoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Story\StoryForm.resx">
       <DependentUpon>StoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestMapForm.resx">
@@ -227,6 +261,9 @@
     <None Include="Resources\stone.png" />
     <None Include="Resources\tree.png" />
     <None Include="Resources\well1.png" />
+    <None Include="Resources\orc.png" />
+    <Content Include="Resources\scorpion.png" />
+    <None Include="Resources\slime.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
