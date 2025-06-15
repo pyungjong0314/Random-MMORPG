@@ -54,6 +54,7 @@
             this.portal1 = new System.Windows.Forms.PictureBox();
             this.portal2 = new System.Windows.Forms.PictureBox();
             this.shopkeeper = new System.Windows.Forms.PictureBox();
+            this.fountain = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.stone4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tree6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shop)).BeginInit();
@@ -80,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.portal1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.portal2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shopkeeper)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fountain)).BeginInit();
             this.SuspendLayout();
             // 
             // stone4
@@ -306,9 +308,9 @@
             // 
             this.pond.BackColor = System.Drawing.Color.Transparent;
             this.pond.Image = global::WindowsFormsApp1.Properties.Resources.pond1;
-            this.pond.Location = new System.Drawing.Point(978, 702);
+            this.pond.Location = new System.Drawing.Point(1060, 681);
             this.pond.Name = "pond";
-            this.pond.Size = new System.Drawing.Size(301, 200);
+            this.pond.Size = new System.Drawing.Size(248, 171);
             this.pond.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pond.TabIndex = 32;
             this.pond.TabStop = false;
@@ -368,6 +370,17 @@
             this.shopkeeper.TabIndex = 35;
             this.shopkeeper.TabStop = false;
             // 
+            // fountain
+            // 
+            this.fountain.BackColor = System.Drawing.Color.Transparent;
+            this.fountain.Image = global::WindowsFormsApp1.Properties.Resources.fountain;
+            this.fountain.Location = new System.Drawing.Point(276, 25);
+            this.fountain.Name = "fountain";
+            this.fountain.Size = new System.Drawing.Size(203, 221);
+            this.fountain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.fountain.TabIndex = 36;
+            this.fountain.TabStop = false;
+            // 
             // Map1Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -401,6 +414,7 @@
             this.Controls.Add(this.pond);
             this.Controls.Add(this.portal2);
             this.Controls.Add(this.portal1);
+            this.Controls.Add(this.fountain);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.Name = "Map1Form";
@@ -434,6 +448,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.portal1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.portal2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shopkeeper)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fountain)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -466,5 +481,6 @@
         private System.Windows.Forms.PictureBox portal1;
         private System.Windows.Forms.PictureBox portal2;
         private System.Windows.Forms.PictureBox shopkeeper;
+        private System.Windows.Forms.PictureBox fountain;
     }
 }

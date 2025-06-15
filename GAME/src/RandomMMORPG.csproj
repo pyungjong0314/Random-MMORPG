@@ -203,6 +203,7 @@
     <None Include="Resources\bench.png" />
     <None Include="Resources\floor.png" />
     <None Include="Resources\floor1.png" />
+    <None Include="Resources\fountain2.png" />
     <Content Include="Resources\goblin2.png" />
     <None Include="Resources\LoadingBackground.png" />
     <None Include="Resources\portal.png" />
