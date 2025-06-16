@@ -91,13 +91,14 @@ namespace WindowsFormsApp1.Battle
                     break;
             }
 
+
             if (selectedMethod.Equals(coinResult))
             {
-                MessageBox.Show("성공");
+                parentForm.coinAttackButtonSuccess(CoinPanel);
             }
             else
             {
-                MessageBox.Show("실패");
+                parentForm.coinAttackButtonFail(CoinPanel);
             }
         }
     }

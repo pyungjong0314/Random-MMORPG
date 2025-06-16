@@ -28,35 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.AttackPanel = new System.Windows.Forms.Panel();
+            this.CoinPanel = new System.Windows.Forms.Panel();
             this.Label1 = new System.Windows.Forms.Label();
             this.ThrowButton = new System.Windows.Forms.Label();
             this.CoinFront = new System.Windows.Forms.PictureBox();
             this.DiceLabel = new System.Windows.Forms.Label();
             this.CoinBack = new System.Windows.Forms.PictureBox();
             this.CoinLabel = new System.Windows.Forms.Label();
-            this.AttackPanel.SuspendLayout();
+            this.CoinPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CoinFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoinBack)).BeginInit();
             this.SuspendLayout();
             // 
-            // AttackPanel
+            // CoinPanel
             // 
-            this.AttackPanel.BackColor = System.Drawing.Color.Transparent;
-            this.AttackPanel.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.GameBox;
-            this.AttackPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.AttackPanel.Controls.Add(this.Label1);
-            this.AttackPanel.Controls.Add(this.ThrowButton);
-            this.AttackPanel.Controls.Add(this.CoinFront);
-            this.AttackPanel.Controls.Add(this.DiceLabel);
-            this.AttackPanel.Controls.Add(this.CoinBack);
-            this.AttackPanel.Controls.Add(this.CoinLabel);
-            this.AttackPanel.Location = new System.Drawing.Point(107, 63);
-            this.AttackPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.AttackPanel.Name = "AttackPanel";
-            this.AttackPanel.Size = new System.Drawing.Size(412, 301);
-            this.AttackPanel.TabIndex = 31;
-            this.AttackPanel.Visible = false;
+            this.CoinPanel.BackColor = System.Drawing.Color.Transparent;
+            this.CoinPanel.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.GameBox;
+            this.CoinPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CoinPanel.Controls.Add(this.Label1);
+            this.CoinPanel.Controls.Add(this.ThrowButton);
+            this.CoinPanel.Controls.Add(this.CoinFront);
+            this.CoinPanel.Controls.Add(this.DiceLabel);
+            this.CoinPanel.Controls.Add(this.CoinBack);
+            this.CoinPanel.Controls.Add(this.CoinLabel);
+            this.CoinPanel.Location = new System.Drawing.Point(107, 63);
+            this.CoinPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.CoinPanel.Name = "CoinPanel";
+            this.CoinPanel.Size = new System.Drawing.Size(412, 301);
+            this.CoinPanel.TabIndex = 31;
+            this.CoinPanel.Visible = false;
             // 
             // Label1
             // 
@@ -142,11 +142,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.AttackPanel);
+            this.Controls.Add(this.CoinPanel);
             this.Name = "CoinControl";
             this.Size = new System.Drawing.Size(627, 426);
-            this.AttackPanel.ResumeLayout(false);
-            this.AttackPanel.PerformLayout();
+            this.CoinPanel.ResumeLayout(false);
+            this.CoinPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CoinFront)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoinBack)).EndInit();
             this.ResumeLayout(false);
@@ -155,7 +155,7 @@
 
         #endregion
 
-        public System.Windows.Forms.Panel AttackPanel;
+        public System.Windows.Forms.Panel CoinPanel;
         private System.Windows.Forms.Label Label1;
         private System.Windows.Forms.Label ThrowButton;
         private System.Windows.Forms.PictureBox CoinFront;

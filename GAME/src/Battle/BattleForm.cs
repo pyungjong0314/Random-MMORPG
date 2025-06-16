@@ -99,6 +99,7 @@ namespace WindowsFormsApp1
             myControl.AttackPanel.BringToFront();
         }
 
+        // 공격 방법 선택
         public void selectControlButton(Panel childPanel, string selectedItem)
         {
             this.Controls.Remove(childPanel);
@@ -116,12 +117,39 @@ namespace WindowsFormsApp1
             else if(selectedItem == "coin")
             {
                 CoinControl coinControl = new CoinControl(this);
-                coinControl.AttackPanel.Visible = true;
-                coinControl.AttackPanel.Location = new Point(200, 200);
+                coinControl.CoinPanel.Visible = true;
+                coinControl.CoinPanel.Location = new Point(200, 200);
 
-                this.Controls.Add(coinControl.AttackPanel);
-                coinControl.AttackPanel.BringToFront();
+                this.Controls.Add(coinControl.CoinPanel);
+                coinControl.CoinPanel.BringToFront();
             }
+        }
+
+
+        // 공격 성공 처리
+        public void coinAttackButtonSuccess(Panel childPanel)
+        {
+            this.Controls.Remove(childPanel);
+            childPanel.Dispose();
+
+            MessageBox.Show("공격 성공");
+            int damage = myCharacter.GetCharacterAttack() * 2;
+            targetMonster.MonsterGetAttack(damage);
+
+            setBattleStatus();
+        }
+
+        // 공격 실패 처리
+        public void coinAttackButtonFail(Panel childPanel)
+        {
+            this.Controls.Remove(childPanel);
+            childPanel.Dispose();
+
+            MessageBox.Show("공격 실패");
+            int damage = myCharacter.GetCharacterAttack() / 2;
+            targetMonster.MonsterGetAttack(damage);
+
+            setBattleStatus();
         }
     }
 }
