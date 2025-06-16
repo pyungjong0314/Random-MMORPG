@@ -67,6 +67,7 @@
     <Compile Include="Monster\BaseBossMonster.cs" />
     <Compile Include="Monster\BaseMonster.cs" />
     <Compile Include="Monster\BossMonster.cs" />
+    <Compile Include="Monster\MonsterManager.cs" />
     <Compile Include="Monster\Monsters.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -33,9 +33,11 @@ namespace WindowsFormsApp1
             updateTimer.Tick += (s, e) =>
             {
                 pb = map.Update();
-                
+
                 if (pb != null)
                 {
+                    ((Monster)pb.Tag).SetForm(this);
+                    pb.Click += monster_Click;
                     this.Controls.Add(pb);
                 }
             };

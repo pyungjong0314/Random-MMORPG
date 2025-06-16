@@ -4,9 +4,8 @@ using Game.Monsters;
 using Game.BossMonsters;
 using Game.BaseMonster;
 using System.Drawing;
-using Game.Characters;
 using System.Windows.Forms;
-
+using Game.MonsterManagers; 
 
 namespace Game.Maps
 {
@@ -21,7 +20,6 @@ namespace Game.Maps
 
         // 맵에 존재하는 몬스터 리스트
         public List<Monster> Monsters { get; private set; } = new List<Monster>();
-
 
 
         // 맵에 드랍된 코인 리스트
@@ -43,11 +41,12 @@ namespace Game.Maps
 
 
 
+
+
         // 매 프레임마다 리스폰 큐 업데이트 및 처리
         public PictureBox Update()
         {
 
-            // 슬라임 3번 죽여야 제거됨
             PictureBox pb = new PictureBox();
 
             for (int i = respawnQueue.Count - 1; i >= 0; i--)
@@ -55,16 +54,17 @@ namespace Game.Maps
                 var item = respawnQueue[i];
                 if (item.countdown <= 1)
                 {
-                    Monster newMonster = CreateMonsterFromType(item.monsterType);
+                    // 몬스터 객체 생성
+                    Monster newMonster = MonsterManager.CreateMonsterFromType(item.monsterType);
                     newMonster.MonsterLocation = item.location;
                     AddMonster(newMonster);
                     respawnQueue.RemoveAt(i);
 
-                    pb.Image = CreateImageFromType(item.monsterType);
-                    pb.Size = new Size(40, 40); // 이미지 크기 설정
+                    // 몬스터 PictureBox 생성함
+                    pb.Image = MonsterManager.CreateImageFromType(item.monsterType);
+                    pb.Size = MonsterManager.GetMonsterSize(item.monsterType); // 이미지 크기 설정
                     pb.SizeMode = PictureBoxSizeMode.StretchImage;
                     pb.BackColor = Color.Transparent;
-
                     pb.Location = new Point(newMonster.MonsterLocation.x, newMonster.MonsterLocation.y);
                     pb.Tag = newMonster;
 
@@ -111,15 +111,6 @@ namespace Game.Maps
             }
         }
 
-        public Image CreateImageFromType(Type monsterType)
-        {
-            if (monsterType == typeof(Goblin)) return Image.FromFile("goblin1.png");
-            if (monsterType == typeof(Slime)) return Image.FromFile("C:\\Users\\me\\Desktop\\MMORPG\\Random-MMORPG\\GAME\\src\\Resources\\slime.png"); ;
-            if (monsterType == typeof(Scorpion)) return Image.FromFile("scorpion.png");
-            if (monsterType == typeof(Witch)) return Image.FromFile("wizard.png");
-            return Image.FromFile("goblin1.png");
-
-        }
 
         // 떨어진 코인 줍는 로직
         public (int totalAmount, int count) PickUpCoins((int x, int y) location)
@@ -142,34 +133,6 @@ namespace Game.Maps
 
             return (total, count);
         } 
-
-
-
-
-
-
-        // 타입에 따른 몬스터 생성기
-        public Monster CreateMonsterFromType(Type monsterType)
-        {
-            if (monsterType == typeof(Goblin)) return new Goblin();
-            if (monsterType == typeof(Slime)) return new Slime();
-            if (monsterType == typeof(Scorpion)) return new Scorpion();
-            if (monsterType == typeof(Witch)) return new Witch();
-            if (monsterType == typeof(Basilisk)) return new Basilisk();
-            if (monsterType == typeof(Orc)) return new Orc();
-            if (monsterType == typeof(LunaCrab)) return new LunaCrab();
-            if (monsterType == typeof(GoblinKing)) return new GoblinKing();
-            if (monsterType == typeof(DarkKnight)) return new DarkKnight();
-
-            throw new Exception("Unknown monster type");
-        }
-
-        // 랜덤 좌표 생성기
-        private (int x, int y) GetRandomLocation()
-        {
-            Random rnd = new Random();
-            return (rnd.Next(0, 1000), rnd.Next(0, 1000));
-        }
     }
 
     public static class MapFactory
@@ -193,7 +156,7 @@ namespace Game.Maps
             {
                 for (int i = 0; i < count; i++)
                 {
-                    var monster = map.CreateMonsterFromType(type);
+                    var monster = MonsterManager.CreateMonsterFromType(type);
                     map.AddMonster(monster); // 랜덤 위치 부여됨
                 }
             }
