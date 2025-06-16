@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class Map1Form
+    partial class Berry2
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Berry2));
             this.stone4 = new System.Windows.Forms.PictureBox();
             this.tree6 = new System.Windows.Forms.PictureBox();
             this.shop = new System.Windows.Forms.PictureBox();
@@ -48,13 +49,23 @@
             this.stone7 = new System.Windows.Forms.PictureBox();
             this.stone8 = new System.Windows.Forms.PictureBox();
             this.stone9 = new System.Windows.Forms.PictureBox();
-            this.pond = new System.Windows.Forms.PictureBox();
             this.tree3 = new System.Windows.Forms.PictureBox();
             this.stone3 = new System.Windows.Forms.PictureBox();
             this.portal1 = new System.Windows.Forms.PictureBox();
             this.portal2 = new System.Windows.Forms.PictureBox();
             this.shopkeeper = new System.Windows.Forms.PictureBox();
             this.fountain = new System.Windows.Forms.PictureBox();
+            this.berry1 = new System.Windows.Forms.PictureBox();
+            this.berry4 = new System.Windows.Forms.PictureBox();
+            this.berry5 = new System.Windows.Forms.PictureBox();
+            this.berry6 = new System.Windows.Forms.PictureBox();
+            this.stone10 = new System.Windows.Forms.PictureBox();
+            this.berry3 = new System.Windows.Forms.PictureBox();
+            this.berry7 = new System.Windows.Forms.PictureBox();
+            this.berry8 = new System.Windows.Forms.PictureBox();
+            this.pond = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.stone4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tree6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shop)).BeginInit();
@@ -75,20 +86,30 @@
             ((System.ComponentModel.ISupportInitialize)(this.stone7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stone8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stone9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tree3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stone3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.portal1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.portal2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shopkeeper)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fountain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stone10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pond)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // stone4
             // 
             this.stone4.BackColor = System.Drawing.Color.Transparent;
             this.stone4.Image = global::WindowsFormsApp1.Properties.Resources.stone;
-            this.stone4.Location = new System.Drawing.Point(385, 794);
+            this.stone4.Location = new System.Drawing.Point(385, 783);
             this.stone4.Name = "stone4";
             this.stone4.Size = new System.Drawing.Size(59, 58);
             this.stone4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -99,7 +120,7 @@
             // 
             this.tree6.BackColor = System.Drawing.Color.Transparent;
             this.tree6.Image = global::WindowsFormsApp1.Properties.Resources.tree;
-            this.tree6.Location = new System.Drawing.Point(692, -12);
+            this.tree6.Location = new System.Drawing.Point(694, -12);
             this.tree6.Name = "tree6";
             this.tree6.Size = new System.Drawing.Size(155, 165);
             this.tree6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -110,7 +131,7 @@
             // 
             this.shop.BackColor = System.Drawing.Color.Transparent;
             this.shop.Image = global::WindowsFormsApp1.Properties.Resources.shop;
-            this.shop.Location = new System.Drawing.Point(1188, -83);
+            this.shop.Location = new System.Drawing.Point(1208, -83);
             this.shop.Name = "shop";
             this.shop.Size = new System.Drawing.Size(306, 404);
             this.shop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -187,7 +208,7 @@
             // 
             this.tree7.BackColor = System.Drawing.Color.Transparent;
             this.tree7.Image = global::WindowsFormsApp1.Properties.Resources.tree;
-            this.tree7.Location = new System.Drawing.Point(826, -13);
+            this.tree7.Location = new System.Drawing.Point(828, -13);
             this.tree7.Name = "tree7";
             this.tree7.Size = new System.Drawing.Size(155, 165);
             this.tree7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -231,7 +252,7 @@
             // 
             this.well.BackColor = System.Drawing.Color.Transparent;
             this.well.Image = global::WindowsFormsApp1.Properties.Resources.well1;
-            this.well.Location = new System.Drawing.Point(502, 687);
+            this.well.Location = new System.Drawing.Point(503, 687);
             this.well.Name = "well";
             this.well.Size = new System.Drawing.Size(183, 182);
             this.well.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -242,7 +263,7 @@
             // 
             this.lamp3.BackColor = System.Drawing.Color.Transparent;
             this.lamp3.Image = global::WindowsFormsApp1.Properties.Resources.lamp;
-            this.lamp3.Location = new System.Drawing.Point(1060, -13);
+            this.lamp3.Location = new System.Drawing.Point(1080, -13);
             this.lamp3.Name = "lamp3";
             this.lamp3.Size = new System.Drawing.Size(166, 227);
             this.lamp3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -253,7 +274,7 @@
             // 
             this.tree1.BackColor = System.Drawing.Color.Transparent;
             this.tree1.Image = global::WindowsFormsApp1.Properties.Resources.tree;
-            this.tree1.Location = new System.Drawing.Point(959, 24);
+            this.tree1.Location = new System.Drawing.Point(961, 24);
             this.tree1.Name = "tree1";
             this.tree1.Size = new System.Drawing.Size(155, 165);
             this.tree1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -264,7 +285,7 @@
             // 
             this.stone1.BackColor = System.Drawing.Color.Transparent;
             this.stone1.Image = global::WindowsFormsApp1.Properties.Resources.stone;
-            this.stone1.Location = new System.Drawing.Point(957, 136);
+            this.stone1.Location = new System.Drawing.Point(959, 136);
             this.stone1.Name = "stone1";
             this.stone1.Size = new System.Drawing.Size(59, 58);
             this.stone1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -275,7 +296,7 @@
             // 
             this.stone7.BackColor = System.Drawing.Color.Transparent;
             this.stone7.Image = global::WindowsFormsApp1.Properties.Resources.stone;
-            this.stone7.Location = new System.Drawing.Point(816, 95);
+            this.stone7.Location = new System.Drawing.Point(818, 95);
             this.stone7.Name = "stone7";
             this.stone7.Size = new System.Drawing.Size(59, 58);
             this.stone7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -286,7 +307,7 @@
             // 
             this.stone8.BackColor = System.Drawing.Color.Transparent;
             this.stone8.Image = global::WindowsFormsApp1.Properties.Resources.stone;
-            this.stone8.Location = new System.Drawing.Point(250, 15);
+            this.stone8.Location = new System.Drawing.Point(245, 11);
             this.stone8.Name = "stone8";
             this.stone8.Size = new System.Drawing.Size(59, 58);
             this.stone8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -297,23 +318,12 @@
             // 
             this.stone9.BackColor = System.Drawing.Color.Transparent;
             this.stone9.Image = global::WindowsFormsApp1.Properties.Resources.stone;
-            this.stone9.Location = new System.Drawing.Point(303, 1);
+            this.stone9.Location = new System.Drawing.Point(251, 61);
             this.stone9.Name = "stone9";
             this.stone9.Size = new System.Drawing.Size(59, 58);
             this.stone9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.stone9.TabIndex = 28;
             this.stone9.TabStop = false;
-            // 
-            // pond
-            // 
-            this.pond.BackColor = System.Drawing.Color.Transparent;
-            this.pond.Image = global::WindowsFormsApp1.Properties.Resources.pond1;
-            this.pond.Location = new System.Drawing.Point(1060, 681);
-            this.pond.Name = "pond";
-            this.pond.Size = new System.Drawing.Size(248, 171);
-            this.pond.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pond.TabIndex = 32;
-            this.pond.TabStop = false;
             // 
             // tree3
             // 
@@ -363,7 +373,7 @@
             // 
             this.shopkeeper.BackColor = System.Drawing.Color.Transparent;
             this.shopkeeper.Image = global::WindowsFormsApp1.Properties.Resources.shopkeeper;
-            this.shopkeeper.Location = new System.Drawing.Point(1170, 153);
+            this.shopkeeper.Location = new System.Drawing.Point(1190, 153);
             this.shopkeeper.Name = "shopkeeper";
             this.shopkeeper.Size = new System.Drawing.Size(84, 101);
             this.shopkeeper.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -374,22 +384,154 @@
             // 
             this.fountain.BackColor = System.Drawing.Color.Transparent;
             this.fountain.Image = global::WindowsFormsApp1.Properties.Resources.fountain;
-            this.fountain.Location = new System.Drawing.Point(276, 25);
+            this.fountain.Location = new System.Drawing.Point(261, 135);
             this.fountain.Name = "fountain";
             this.fountain.Size = new System.Drawing.Size(203, 221);
             this.fountain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.fountain.TabIndex = 36;
             this.fountain.TabStop = false;
             // 
-            // Map1Form
+            // berry1
+            // 
+            this.berry1.BackColor = System.Drawing.Color.Transparent;
+            this.berry1.Image = global::WindowsFormsApp1.Properties.Resources.berry1;
+            this.berry1.Location = new System.Drawing.Point(302, 2);
+            this.berry1.Name = "berry1";
+            this.berry1.Size = new System.Drawing.Size(74, 82);
+            this.berry1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.berry1.TabIndex = 37;
+            this.berry1.TabStop = false;
+            // 
+            // berry4
+            // 
+            this.berry4.BackColor = System.Drawing.Color.Transparent;
+            this.berry4.Image = global::WindowsFormsApp1.Properties.Resources.berry1;
+            this.berry4.Location = new System.Drawing.Point(815, 259);
+            this.berry4.Name = "berry4";
+            this.berry4.Size = new System.Drawing.Size(74, 82);
+            this.berry4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.berry4.TabIndex = 40;
+            this.berry4.TabStop = false;
+            // 
+            // berry5
+            // 
+            this.berry5.BackColor = System.Drawing.Color.Transparent;
+            this.berry5.Image = global::WindowsFormsApp1.Properties.Resources.berry1;
+            this.berry5.Location = new System.Drawing.Point(353, 689);
+            this.berry5.Name = "berry5";
+            this.berry5.Size = new System.Drawing.Size(74, 82);
+            this.berry5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.berry5.TabIndex = 41;
+            this.berry5.TabStop = false;
+            // 
+            // berry6
+            // 
+            this.berry6.BackColor = System.Drawing.Color.Transparent;
+            this.berry6.Image = global::WindowsFormsApp1.Properties.Resources.berry1;
+            this.berry6.Location = new System.Drawing.Point(353, 616);
+            this.berry6.Name = "berry6";
+            this.berry6.Size = new System.Drawing.Size(74, 82);
+            this.berry6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.berry6.TabIndex = 42;
+            this.berry6.TabStop = false;
+            // 
+            // stone10
+            // 
+            this.stone10.BackColor = System.Drawing.Color.Transparent;
+            this.stone10.Image = global::WindowsFormsApp1.Properties.Resources.stone;
+            this.stone10.Location = new System.Drawing.Point(484, 736);
+            this.stone10.Name = "stone10";
+            this.stone10.Size = new System.Drawing.Size(59, 58);
+            this.stone10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.stone10.TabIndex = 43;
+            this.stone10.TabStop = false;
+            // 
+            // berry3
+            // 
+            this.berry3.BackColor = System.Drawing.Color.Transparent;
+            this.berry3.Image = global::WindowsFormsApp1.Properties.Resources.berry1;
+            this.berry3.Location = new System.Drawing.Point(1062, 129);
+            this.berry3.Name = "berry3";
+            this.berry3.Size = new System.Drawing.Size(74, 82);
+            this.berry3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.berry3.TabIndex = 44;
+            this.berry3.TabStop = false;
+            // 
+            // berry7
+            // 
+            this.berry7.BackColor = System.Drawing.Color.Transparent;
+            this.berry7.Image = global::WindowsFormsApp1.Properties.Resources.berry1;
+            this.berry7.Location = new System.Drawing.Point(-28, 258);
+            this.berry7.Name = "berry7";
+            this.berry7.Size = new System.Drawing.Size(74, 82);
+            this.berry7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.berry7.TabIndex = 45;
+            this.berry7.TabStop = false;
+            // 
+            // berry8
+            // 
+            this.berry8.BackColor = System.Drawing.Color.Transparent;
+            this.berry8.Image = global::WindowsFormsApp1.Properties.Resources.berry1;
+            this.berry8.Location = new System.Drawing.Point(1427, 484);
+            this.berry8.Name = "berry8";
+            this.berry8.Size = new System.Drawing.Size(74, 82);
+            this.berry8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.berry8.TabIndex = 46;
+            this.berry8.TabStop = false;
+            // 
+            // pond
+            // 
+            this.pond.BackColor = System.Drawing.Color.Transparent;
+            this.pond.Image = ((System.Drawing.Image)(resources.GetObject("pond.Image")));
+            this.pond.Location = new System.Drawing.Point(917, 633);
+            this.pond.Name = "pond";
+            this.pond.Size = new System.Drawing.Size(288, 290);
+            this.pond.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pond.TabIndex = 47;
+            this.pond.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::WindowsFormsApp1.Properties.Resources.stone;
+            this.pictureBox1.Location = new System.Drawing.Point(987, 605);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(59, 58);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 48;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = global::WindowsFormsApp1.Properties.Resources.berry1;
+            this.pictureBox2.Location = new System.Drawing.Point(1040, 580);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(74, 82);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 49;
+            this.pictureBox2.TabStop = false;
+            // 
+            // Berry2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Map1FormBackground1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1482, 953);
-            this.Controls.Add(this.shopkeeper);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pond);
+            this.Controls.Add(this.berry8);
+            this.Controls.Add(this.berry7);
             this.Controls.Add(this.stone9);
+            this.Controls.Add(this.berry3);
+            this.Controls.Add(this.stone10);
+            this.Controls.Add(this.berry6);
+            this.Controls.Add(this.berry5);
+            this.Controls.Add(this.berry4);
+            this.Controls.Add(this.berry1);
+            this.Controls.Add(this.shopkeeper);
             this.Controls.Add(this.stone8);
             this.Controls.Add(this.stone7);
             this.Controls.Add(this.stone1);
@@ -411,13 +553,12 @@
             this.Controls.Add(this.tree2);
             this.Controls.Add(this.shop);
             this.Controls.Add(this.tree6);
-            this.Controls.Add(this.pond);
             this.Controls.Add(this.portal2);
             this.Controls.Add(this.portal1);
             this.Controls.Add(this.fountain);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
-            this.Name = "Map1Form";
+            this.Name = "Berry2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Map1";
             this.Load += new System.EventHandler(this.Map1Form_Load);
@@ -442,13 +583,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.stone7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stone8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stone9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pond)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tree3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stone3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.portal1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.portal2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shopkeeper)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fountain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stone10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.berry8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pond)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -475,12 +626,22 @@
         private System.Windows.Forms.PictureBox stone7;
         private System.Windows.Forms.PictureBox stone8;
         private System.Windows.Forms.PictureBox stone9;
-        private System.Windows.Forms.PictureBox pond;
         private System.Windows.Forms.PictureBox tree3;
         private System.Windows.Forms.PictureBox stone3;
         private System.Windows.Forms.PictureBox portal1;
         private System.Windows.Forms.PictureBox portal2;
         private System.Windows.Forms.PictureBox shopkeeper;
         private System.Windows.Forms.PictureBox fountain;
+        private System.Windows.Forms.PictureBox berry1;
+        private System.Windows.Forms.PictureBox berry4;
+        private System.Windows.Forms.PictureBox berry5;
+        private System.Windows.Forms.PictureBox berry6;
+        private System.Windows.Forms.PictureBox stone10;
+        private System.Windows.Forms.PictureBox berry3;
+        private System.Windows.Forms.PictureBox berry7;
+        private System.Windows.Forms.PictureBox berry8;
+        private System.Windows.Forms.PictureBox pond;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

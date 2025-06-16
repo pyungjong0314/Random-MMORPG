@@ -13,12 +13,12 @@ using Game.Maps;
 // 시작 마을
 namespace WindowsFormsApp1
 {
-    public partial class Map1Form : Form
+    public partial class Berry2 : Form
     {
         private Character character;
         private Image characterImage = Properties.Resources.Player1Character;
 
-        public Map1Form(Character InitCharacter)
+        public Berry2(Character InitCharacter)
         {
             InitializeComponent();
             character = InitCharacter;

@@ -95,10 +95,10 @@
       <DependentUpon>Map1Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Map\map.cs" />
-    <Compile Include="NameForm.cs">
+    <Compile Include="Story\NameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NameForm.Designer.cs">
+    <Compile Include="Story\NameForm.Designer.cs">
       <DependentUpon>NameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Monster\BaseBossMonster.cs" />
@@ -118,9 +118,6 @@
     </Compile>
     <Compile Include="Shop.Designer.cs">
       <DependentUpon>Shop.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StoryForm.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Story\StoryForm.cs">
       <SubType>Form</SubType>
@@ -156,7 +153,7 @@
     <EmbeddedResource Include="Map1Form.resx">
       <DependentUpon>Map1Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NameForm.resx">
+    <EmbeddedResource Include="Story\NameForm.resx">
       <DependentUpon>NameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -166,9 +163,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Shop.resx">
       <DependentUpon>Shop.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StoryForm.resx">
-      <DependentUpon>StoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Story\StoryForm.resx">
       <DependentUpon>StoryForm.cs</DependentUpon>
@@ -238,6 +232,7 @@
     <None Include="Resources\floor.png" />
     <None Include="Resources\floor1.png" />
     <None Include="Resources\fountain2.png" />
+    <None Include="Resources\Background12.png" />
     <Content Include="Resources\goblin2.png" />
     <None Include="Resources\LoadingBackground.png" />
     <None Include="Resources\portal.png" />
@@ -253,6 +248,7 @@
     <None Include="Resources\pond1.png" />
     <None Include="Resources\Map1FormBackground.png" />
     <None Include="Resources\Map1FormBackground1.png" />
+    <None Include="Resources\Map1FormBackground2.png" />
     <Content Include="Resources\scorpion.png" />
     <None Include="Resources\shopkeeper.png" />
     <None Include="Resources\shop.png" />

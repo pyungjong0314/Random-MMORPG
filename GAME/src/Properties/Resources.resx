@@ -124,8 +124,8 @@
   <data name="stonefloor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stonefloor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="well1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\well1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fountain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fountain2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BattleBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BattleBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,20 +160,26 @@
   <data name="board" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\board.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="goblin2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goblin2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="shop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Map1FormBackground1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Map1FormBackground1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="berry1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\berry1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Background11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Background11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="well1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\well1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="shopkeeper" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shopkeeper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Player1Character" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Player1Character.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CoinBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CoinBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,8 +199,8 @@
   <data name="Story2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Story2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="goblin2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\goblin2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="orc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\orc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tree" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tree.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,11 +211,14 @@
   <data name="LoadingBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LoadingBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="slime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CoinFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CoinFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pond1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pond1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Player1Character" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player1Character.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="house" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\house.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,13 +226,7 @@
   <data name="scorpion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\scorpion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fountain" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fountain2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="orc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\orc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="slime" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\slime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pond" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pond4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
