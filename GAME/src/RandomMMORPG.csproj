@@ -86,6 +86,7 @@
     <Compile Include="Monster\BaseBossMonster.cs" />
     <Compile Include="Monster\BaseMonster.cs" />
     <Compile Include="Monster\BossMonster.cs" />
+    <Compile Include="Monster\MonsterManager.cs" />
     <Compile Include="Monster\Monsters.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,12 +101,6 @@
     </Compile>
     <Compile Include="Story\StoryForm.Designer.cs">
       <DependentUpon>StoryForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TestMapForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestMapForm.Designer.cs">
-      <DependentUpon>TestMapForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Weapon\Weapon.cs" />
     <EmbeddedResource Include="Battle\CoinControl.resx">
@@ -130,9 +125,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Story\StoryForm.resx">
       <DependentUpon>StoryForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestMapForm.resx">
-      <DependentUpon>TestMapForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -187,9 +179,14 @@
     <None Include="Resources\Dice1.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\goblin1.png" />
     <Content Include="Resources\goblin2.png" />
     <None Include="Resources\orc.png" />
+    <None Include="Resources\rock.png" />
+    <None Include="Resources\luna_crab2.png" />
     <Content Include="Resources\scorpion.png" />
+    <None Include="Resources\tree.png" />
+    <None Include="Resources\well.png" />
     <None Include="Resources\slime.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>

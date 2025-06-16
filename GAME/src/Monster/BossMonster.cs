@@ -2,11 +2,10 @@
 using Game.BaseBossMonster;
 
 
-
+// 보스몹 리스트
 namespace Game.BossMonsters
 {
-    // 보스몹 리스트
-    // GoblinKing 
+    // 고블린킹
     public class GoblinKing : BossMonster
     {
         public GoblinKing()
@@ -19,7 +18,9 @@ namespace Game.BossMonsters
                 location: (4, 2),
                 hp: 2700,
                 attack: 55,
-                defense: 30)
+                defense: 30,
+                exp : 1000
+                  )
         { }
 
         public void BladeDance() { Console.WriteLine("고블린왕이 칼춤을 사용했다!"); }
@@ -32,7 +33,7 @@ namespace Game.BossMonsters
         }
     }
 
-    // LunaCrab 
+    // 루나크랩 
     public class LunaCrab : BossMonster
     {
         public LunaCrab()
@@ -45,7 +46,8 @@ namespace Game.BossMonsters
                 location: (4, 2),
                 hp: 2700,
                 attack: 55,
-                defense: 30)
+                defense: 30,
+                exp : 1000)
         { }
 
         public void ShellGuard() { Console.WriteLine("루나크랩이 껍질 방어를 사용했다!"); }
@@ -59,7 +61,7 @@ namespace Game.BossMonsters
     }
 
 
-    // DarkKnight
+    // 다크나잇
     public class DarkKnight : BossMonster
     {
         public DarkKnight()
@@ -72,7 +74,8 @@ namespace Game.BossMonsters
                 location: (4, 2),
                 hp: 2700,
                 attack: 55,
-                defense: 30)
+                defense: 30,
+                exp:1000)
         { }
 
         public void DarkSlash() { Console.WriteLine("다크나이트가 암흑 베기를 사용했다!"); }

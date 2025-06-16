@@ -134,7 +134,7 @@ namespace WindowsFormsApp1
 
             MessageBox.Show("공격 성공");
             int damage = myCharacter.GetCharacterAttack() * 2;
-            targetMonster.MonsterGetAttack(damage);
+            targetMonster.MonsterGetAttack(damage, myCharacter);
 
             setBattleStatus();
         }
@@ -147,7 +147,7 @@ namespace WindowsFormsApp1
 
             MessageBox.Show("공격 실패");
             int damage = myCharacter.GetCharacterAttack() / 2;
-            targetMonster.MonsterGetAttack(damage);
+            targetMonster.MonsterGetAttack(damage, myCharacter);
 
             setBattleStatus();
         }
