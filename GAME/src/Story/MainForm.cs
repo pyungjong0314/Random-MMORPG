@@ -31,8 +31,8 @@ namespace WindowsFormsApp1
             storyForm.FormClosed += (s, args) =>
             {
                 // storyForm 닫히면 MapForm 열기 
-                //TestMapForm testForm = new TestMapForm(newCharacter);
-                //testForm.Show();
+                TestMapForm testForm = new TestMapForm(newCharacter);
+                testForm.Show();
             };
         }
 

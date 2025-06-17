@@ -102,6 +102,12 @@
     <Compile Include="Story\StoryForm.Designer.cs">
       <DependentUpon>StoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestMapForm\TestMapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestMapForm\TestMapForm.Designer.cs">
+      <DependentUpon>TestMapForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Weapon\Weapon.cs" />
     <EmbeddedResource Include="Battle\CoinControl.resx">
       <DependentUpon>CoinControl.cs</DependentUpon>
