@@ -24,7 +24,7 @@ namespace Game.MapFactories
 
         private static Image CreateMapImage(List<Monster> monsters, List<Obstacle> obstacles)
         {
-            Bitmap bmp = new Bitmap(1000, 1000);
+            Bitmap bmp = new Bitmap(2000, 2000);
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
@@ -51,8 +51,6 @@ namespace Game.MapFactories
                 {
                     Image obstacleImg = ObstacleManager.CreateImageFromType(obstacle.GetType());
                     g.DrawImage(obstacleImg, obstacle.Location.x, obstacle.Location.y, obstacle.GetSize().Width, obstacle.GetSize().Height);
-                    g.DrawRectangle(Pens.Red, obstacle.Location.x, obstacle.Location.y, obstacle.GetSize().Width, obstacle.GetSize().Height);
-
                 }
             }
 
