@@ -172,6 +172,9 @@ namespace WindowsFormsApp1
         {
             foreach (var monster in firstMap.Monsters)
             {
+                if (monster.IsDead)
+                    continue;
+
                 Rectangle monsterRect = new Rectangle(monster.MonsterLocation.x, monster.MonsterLocation.y, 64, 64);
                 if (monsterRect.Contains(point))
                 {

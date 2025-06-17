@@ -135,6 +135,12 @@ namespace WindowsFormsApp1
             this.AttackButton.Enabled = false;
             MessageBox.Show("공격을 받았습니다.");
             myCharacter.Defense(targetMonster.MonsterAttackAbility);
+
+            if (myCharacter.GetCharacterHp() <= 0)
+            {
+                CharacterDie();
+            }
+
             this.AttackButton.Enabled = true;
         }
 
@@ -218,7 +224,6 @@ namespace WindowsFormsApp1
                 setBattleStatus();
             }
         }
-
 
         // 주사위 공격 성공
         public void DiceAttackButtonSuccess(Panel childPanel, int dice)
@@ -322,6 +327,7 @@ namespace WindowsFormsApp1
             else
             {
                 Deffense();
+                
                 setBattleStatus();
             }
         }
@@ -347,6 +353,7 @@ namespace WindowsFormsApp1
                 timer.Dispose();
 
                 monster.IsDead = false;
+                monster.SetHp(10);
 
                 // 몬스터 버퍼 다시 그리기
                 if (parentForm is FirstMap firstMapForm)
@@ -357,6 +364,13 @@ namespace WindowsFormsApp1
             };
 
             timer.Start();
+        }
+
+        public void CharacterDie()
+        {
+            MainForm main = new MainForm();
+            main.Show();
+            this.Close();
         }
     }
 }
