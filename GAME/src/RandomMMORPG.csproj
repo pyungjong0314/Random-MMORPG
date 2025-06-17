@@ -120,9 +120,6 @@
     <Compile Include="Shop.Designer.cs">
       <DependentUpon>Shop.cs</DependentUpon>
     </Compile>
-    <Compile Include="StoryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Story\StoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,9 +164,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Shop.resx">
       <DependentUpon>Shop.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StoryForm.resx">
-      <DependentUpon>StoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Story\StoryForm.resx">
       <DependentUpon>StoryForm.cs</DependentUpon>

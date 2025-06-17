@@ -86,6 +86,11 @@ namespace WindowsFormsApp1
             }
         }
 
-
+        private void portal1_Click(object sender, EventArgs e)
+        {
+            TestMapForm testMap = new TestMapForm(character);
+            testMap.Show();
+            this.Close();
+        }
     }
 }
