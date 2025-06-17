@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Game.Characters;
 using WindowsFormsApp1.MapControls;
 using Game.MonsterManagers;
+using System.Threading;
 
 namespace WindowsFormsApp1
 {
@@ -162,10 +163,26 @@ namespace WindowsFormsApp1
         private void FirstMap_MouseClick(object sender, MouseEventArgs e)
         {
             Monster clickedMonster = FindMonsterAtPoint(e.Location);
-            if (clickedMonster == null) return;
+            // 캐릭터 클릭
+            if (FindCharacterAtPoint(e.Location))
+                controller.ShowCharacterContextMenu(this, myCharacter, e.Location);
+                
 
-            lastClickedMonster = clickedMonster;
-            controller.ShowMonsterContextMenu(this, lastClickedMonster, e.Location);
+            // 몬스터 클릭
+            if (clickedMonster != null)
+            {
+                lastClickedMonster = clickedMonster;
+                controller.ShowMonsterContextMenu(this, lastClickedMonster, e.Location);
+            }
+        }
+
+        private bool FindCharacterAtPoint(Point point)
+        {
+            Rectangle characterRect = new Rectangle(myCharacter.GetCharacterLocation().x, myCharacter.GetCharacterLocation().y, 64, 64);
+            if(characterRect.Contains(point))
+                return true;
+            
+            return false;
         }
 
         private Monster FindMonsterAtPoint(Point point)

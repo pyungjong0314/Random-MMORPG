@@ -16,6 +16,7 @@ namespace WindowsFormsApp1.MapControls
         private readonly Game.Maps.Map map;
         private readonly Form form;
         // contextMenu
+        private readonly ContextMenuStrip CharacterContextMenu;
         private readonly ContextMenuStrip monsterContextMenu;
         private ToolStripMenuItem attackMenuItem;
         // 클릭 몬스터
@@ -28,7 +29,9 @@ namespace WindowsFormsApp1.MapControls
             this.form = form;
 
             monsterContextMenu = new ContextMenuStrip();
+            CharacterContextMenu = new ContextMenuStrip();
             InitializeMonsterContextMenu();
+            InitializeCharacterContextMenu();
         }
 
         // 캐릭터 이동 및 코인 습득 처리
@@ -49,20 +52,32 @@ namespace WindowsFormsApp1.MapControls
 
             character.MoveLocation(target.x - current.x, target.y - current.y);
 
-            var pickupResult = map.PickUpCoins(character.GetCharacterLocation());
-            if (pickupResult.totalAmount > 0)
-            {
-                character.AquireMoney(pickupResult.totalAmount);
-                Console.WriteLine($"Finally {character.GetCharacterName()} {character.GetCharacterLevel()}lvl has coin: {character.GetCharacterMoney()}, exp: {character.GetCharacterExp()}");
-            }
-
             form.Invalidate();
+        }
+
+        // 캐릭터 컨텍스트 메뉴 초기화
+        private void InitializeCharacterContextMenu()
+        {
+            CharacterContextMenu.Items.Add("정보 확인하기", null, OnInfoClickedCharacter);
+        }
+
+        // 캐릭터 클릭
+        public void ShowCharacterContextMenu(Control control, Character character, Point location)
+        {
+            CharacterContextMenu.Show(control, location);
+        }
+
+        // 캐릭터 정보 확인
+        private void OnInfoClickedCharacter(object sender, EventArgs e)
+        {
+            // 여기는 character 객체
+            MessageBox.Show($"{character.GetCharacterName()} - HP: {character.GetCharacterHp()}");
         }
 
         // 몬스터 컨텍스트 메뉴 초기화
         private void InitializeMonsterContextMenu()
         {
-            monsterContextMenu.Items.Add("정보 확인하기", null, OnInfoClicked);
+            monsterContextMenu.Items.Add("정보 확인하기", null, OnInfoClickedMonster);
 
             attackMenuItem = new ToolStripMenuItem("공격하기", null, OnAttackClicked);
             monsterContextMenu.Items.Add(attackMenuItem);
@@ -78,8 +93,9 @@ namespace WindowsFormsApp1.MapControls
         }
 
         // 몬스터 정보 확인
-        private void OnInfoClicked(object sender, EventArgs e)
+        private void OnInfoClickedMonster(object sender, EventArgs e)
         {
+            // 몬스터 
             MessageBox.Show($"{lastClickedMonster.MonsterName} - HP: {lastClickedMonster.MonsterHp}");
         }
 
