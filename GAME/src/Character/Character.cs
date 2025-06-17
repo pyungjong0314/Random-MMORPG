@@ -51,6 +51,9 @@ namespace Game.Characters
             {
                 characterExp -= characterLevel * 100;
                 characterLevel++;
+
+                characterHp += 100;
+                characterAttack += 30;
             }
         }
 

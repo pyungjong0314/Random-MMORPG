@@ -114,8 +114,6 @@ namespace Game.BaseMonster
 
             IsDead = true;
 
-            MessageBox.Show($"{MonsterName} has died.");
-
             this.IsDead = true;
 
             return MonsterCoinValue;
