@@ -34,6 +34,7 @@ namespace Game.BaseMonster
         public int MonsterAttackAbility;
         public int MonsterDefenseAbility;
         public int MonsterExperience;
+        public bool MonsterAlive = true;
 
 
         // 몬스터가 자신이 소속된 맵을 기억함

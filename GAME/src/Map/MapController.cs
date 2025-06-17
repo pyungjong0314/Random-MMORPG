@@ -9,13 +9,16 @@ namespace WindowsFormsApp1.MapControls
 {
     public class MapController
     {
+        // 캐릭터
         private readonly Character character;
+        private Image characterImage = Properties.Resources.Player1Character;
+        // 지도
         private readonly Game.Maps.Map map;
         private readonly Form form;
-
+        // contextMenu
         private readonly ContextMenuStrip monsterContextMenu;
         private ToolStripMenuItem attackMenuItem;
-
+        // 클릭 몬스터
         private Monster lastClickedMonster;
 
         public MapController(Character character, Game.Maps.Map map, Form form)
@@ -100,6 +103,17 @@ namespace WindowsFormsApp1.MapControls
                                         Math.Pow(monsterPosition.Y - characterPosition.Y, 2));
 
             attackMenuItem.Enabled = distance <= 60;
+        }
+
+        
+        // 캐릭터 그리기
+        public void DrawCharacter(Graphics g)
+        {
+            if (characterImage != null && character != null)
+            {
+                var loc = character.GetCharacterLocation();
+                g.DrawImage(characterImage, loc.x, loc.y, 64, 64);
+            }
         }
     }
 }

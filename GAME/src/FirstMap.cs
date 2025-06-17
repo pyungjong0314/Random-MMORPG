@@ -9,6 +9,7 @@ using Game.Obstacles;
 
 using System.Windows.Forms;
 using Game.Characters;
+using WindowsFormsApp1.MapControls;
 
 namespace WindowsFormsApp1
 {
@@ -17,12 +18,17 @@ namespace WindowsFormsApp1
         Map firstMap;
         Image firstMapImg;
         private Character myCharacter;
+        private MapController controller;
+        private Bitmap bufferBitmap;
+
+        // 이미지 생성
+        private Monster lastClickedMonster;
 
         public FirstMap(Character character)
         {
             InitializeComponent();
-            myCharacter = character;
-            this.ClientSize = new Size(2000, 2000); // 내부 그릴 수 있는 영역 크기
+            myCharacter = character; 
+            // 내부 그릴 수 있는 영역 크기
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             // 생성할 몬스터 리스트
@@ -79,11 +85,10 @@ namespace WindowsFormsApp1
                 new Rock { Location = (639, 107) },
                 new Rock { Location = (639, 42) },
                 new Rock { Location = (718, 42) },
-                new Rock { Location = (1009, 42) },
-                new Rock { Location = (1009, 114) },
-                new Rock { Location = (1009, 190) },
-                new Rock { Location = (1009, 256) },
-                new Rock { Location = (1009, 332) },
+                new Rock { Location = (950, 42) },
+                new Rock { Location = (950, 114) },
+                new Rock { Location = (950, 190) },
+                new Rock { Location = (950, 256) },
 
                 new Well { Location = (786, -2) }
             };
@@ -91,12 +96,62 @@ namespace WindowsFormsApp1
 
             (firstMap, firstMapImg) = Game.MapFactories.MapFactory.CreateMap(monsters, obstacles);
 
+            // 키보드 입력
+            controller = new MapController(character, firstMap, this);
+            this.KeyDown += TestForm_KeyDown;
+
+            this.MouseClick += FirstMap_MouseClick;
+            this.DoubleBuffered = true;
+
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.DrawImage(firstMapImg, 0, 0);
+            
+            if (bufferBitmap == null)
+            {
+                // bufferBitmap 생성 및 맵 이미지 한 번 그리기
+                bufferBitmap = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+                using (Graphics g = Graphics.FromImage(bufferBitmap))
+                {
+                    g.DrawImage(firstMapImg, 0, 0);
+                }
+            }
+
+            // 버퍼 비트맵을 화면에 그리기
+            e.Graphics.DrawImage(bufferBitmap, 0, 0);
+            controller.DrawCharacter(e.Graphics);
+        }
+
+
+        // 키보드 입력에 따라 캐릭터를 이동시키고 충돌 여부를 판단하는 메서드
+        private void TestForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            controller.HandleMovement(e.KeyCode);
+        }
+
+        // 몬스터 클릭
+        private void FirstMap_MouseClick(object sender, MouseEventArgs e)
+        {
+            Monster clickedMonster = FindMonsterAtPoint(e.Location);
+            if (clickedMonster == null) return;
+
+            lastClickedMonster = clickedMonster;
+            controller.ShowMonsterContextMenu(this, lastClickedMonster, e.Location);
+        }
+
+        private Monster FindMonsterAtPoint(Point point)
+        {
+            foreach (var monster in firstMap.Monsters)
+            {
+                Rectangle monsterRect = new Rectangle(monster.MonsterLocation.x, monster.MonsterLocation.y, 64, 64);
+                if (monsterRect.Contains(point))
+                {
+                    return monster;
+                }
+            }
+            return null;
         }
     }
 }
