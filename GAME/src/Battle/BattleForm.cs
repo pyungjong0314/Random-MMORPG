@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.Battle;
+using WindowsFormsApp1.Battle.BattlePanel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace WindowsFormsApp1
 {
@@ -137,11 +139,28 @@ namespace WindowsFormsApp1
         }
 
         // 코인 공격 성공 처리
-        public void CoinAttackButtonSuccess(Panel childPanel)
+        public void CoinAttackButtonSuccess(Panel childPanel, string coin)
         {
             this.Controls.Remove(childPanel);
 
-            MessageBox.Show("공격 성공");
+            SuccessFailure successFailure = new SuccessFailure();
+            successFailure.SuccessFailurePanel.Visible = true;
+            successFailure.SuccessFailurePanel.Location = new Point(200, 200);
+            successFailure.SuccessFailureLabel.Text = "공격 성공";
+
+            if (coin == "front")
+            {
+                successFailure.ResultImage.Image = Properties.Resources.CoinFront;
+            }
+            else if (coin == "back")
+            {
+                successFailure.ResultImage.Image = Properties.Resources.CoinBack;
+            }
+
+            this.Controls.Add(successFailure.SuccessFailurePanel);
+            successFailure.SuccessFailurePanel.BringToFront();
+
+
             int damage = myCharacter.GetCharacterAttack() * 2;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
@@ -160,11 +179,27 @@ namespace WindowsFormsApp1
         }
 
         // 코인 공격 실패 처리
-        public void CoinAttackButtonFail(Panel childPanel)
+        public void CoinAttackButtonFail(Panel childPanel, string coin)
         {
             this.Controls.Remove(childPanel);
 
-            MessageBox.Show("공격 실패");
+            SuccessFailure successFailure = new SuccessFailure();
+            successFailure.SuccessFailurePanel.Visible = true;
+            successFailure.SuccessFailurePanel.Location = new Point(200, 200);
+            successFailure.SuccessFailureLabel.Text = "공격 실패";
+
+            if (coin == "front")
+            {
+                successFailure.ResultImage.Image = Properties.Resources.CoinFront;
+            }
+            else if (coin == "back")
+            {
+                successFailure.ResultImage.Image = Properties.Resources.CoinBack;
+            }
+
+            this.Controls.Add(successFailure.SuccessFailurePanel);
+            successFailure.SuccessFailurePanel.BringToFront();
+
             int damage = myCharacter.GetCharacterAttack() / 2;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
@@ -186,11 +221,40 @@ namespace WindowsFormsApp1
 
 
         // 주사위 공격 성공
-        public void DiceAttackButtonSuccess(Panel childPanel)
+        public void DiceAttackButtonSuccess(Panel childPanel, int dice)
         {
             this.Controls.Remove(childPanel);
 
-            MessageBox.Show("공격 성공");
+            SuccessFailure successFailure = new SuccessFailure();
+            successFailure.SuccessFailurePanel.Visible = true;
+            successFailure.SuccessFailurePanel.Location = new Point(200, 200);
+            successFailure.SuccessFailureLabel.Text = "공격 성공";
+
+            switch (dice)
+            {
+                case 0:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice1;
+                    break;
+                case 1:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice2;
+                    break;
+                case 2:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice3;
+                    break;
+                case 3:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice4;
+                    break;
+                case 4:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice5;
+                    break;
+                case 5:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice6;
+                    break;
+            }
+
+            this.Controls.Add(successFailure.SuccessFailurePanel);
+            successFailure.SuccessFailurePanel.BringToFront();
+
             int damage = myCharacter.GetCharacterAttack() * 6;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
@@ -210,11 +274,40 @@ namespace WindowsFormsApp1
         }
 
         // 주사위 공격 실패
-        public void DiceAttackButtonFail(Panel childPanel)
+        public void DiceAttackButtonFail(Panel childPanel, int dice)
         {
             this.Controls.Remove(childPanel);
 
-            MessageBox.Show("공격 실패");
+            SuccessFailure successFailure = new SuccessFailure();
+            successFailure.SuccessFailurePanel.Visible = true;
+            successFailure.SuccessFailurePanel.Location = new Point(200, 200);
+            successFailure.SuccessFailureLabel.Text = "공격 실패";
+
+            switch (dice)
+            {
+                case 0:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice1;
+                    break;
+                case 1:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice2;
+                    break;
+                case 2:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice3;
+                    break;
+                case 3:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice4;
+                    break;
+                case 4:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice5;
+                    break;
+                case 5:
+                    successFailure.ResultImage.Image = Properties.Resources.Dice6;
+                    break;
+            }
+
+            this.Controls.Add(successFailure.SuccessFailurePanel);
+            successFailure.SuccessFailurePanel.BringToFront();
+
             int damage = myCharacter.GetCharacterAttack() / 6;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 

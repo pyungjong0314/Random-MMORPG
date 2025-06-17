@@ -67,6 +67,18 @@
     <Compile Include="Battle\BattlePanel\selectControl.Designer.cs">
       <DependentUpon>selectControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Battle\BattlePanel\SuccessFailure.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Battle\BattlePanel\SuccessFailure.Designer.cs">
+      <DependentUpon>SuccessFailure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Battle\BattlePanel\VictoryDefeat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Battle\BattlePanel\VictoryDefeat.Designer.cs">
+      <DependentUpon>VictoryDefeat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Character\Character.cs" />
     <Compile Include="FirstMap.cs">
       <SubType>Form</SubType>
@@ -145,6 +157,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Battle\BattlePanel\SuccessFailure.resx">
+      <DependentUpon>SuccessFailure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Battle\BattlePanel\VictoryDefeat.resx">
+      <DependentUpon>VictoryDefeat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FirstMap.resx">
       <DependentUpon>FirstMap.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,6 +260,11 @@
     <None Include="Resources\slime.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Dice2.png" />
+    <None Include="Resources\Dice3.png" />
+    <None Include="Resources\Dice4.png" />
+    <None Include="Resources\Dice5.png" />
+    <None Include="Resources\Dice6.png" />
     <Content Include="Resources\goblin2.png" />
     <Content Include="Resources\scorpion.png" />
     <Content Include="Resources\wizard.png" />

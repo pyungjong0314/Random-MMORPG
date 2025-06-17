@@ -25,13 +25,36 @@ namespace WindowsFormsApp1.Battle
 
         private void ThrowButton_Click(object sender, EventArgs e)
         {
-            if (DiceComboBox.SelectedIndex == rand.Next(6))
+            int diceResult = 0;
+            switch (rand.Next(6))
             {
-                parentForm.DiceAttackButtonSuccess(DicePanel);
+                case 0:
+                    diceResult = 0;
+                    break;
+                case 1:
+                    diceResult = 1;
+                    break;
+                case 2:
+                    diceResult = 2;
+                    break;
+                case 3:
+                    diceResult = 3;
+                    break;
+                case 4:
+                    diceResult = 4;
+                    break;
+                case 5:
+                    diceResult = 5;
+                    break;
+            }
+
+            if (DiceComboBox.SelectedIndex == diceResult)
+            {
+                parentForm.DiceAttackButtonSuccess(DicePanel, diceResult);
             }
             else
             {
-                parentForm.DiceAttackButtonFail(DicePanel);
+                parentForm.DiceAttackButtonFail(DicePanel, diceResult);
             }
         }
 

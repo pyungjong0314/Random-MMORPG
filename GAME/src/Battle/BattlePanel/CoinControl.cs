@@ -94,11 +94,11 @@ namespace WindowsFormsApp1.Battle
 
             if (selectedMethod.Equals(coinResult))
             {
-                parentForm.CoinAttackButtonSuccess(CoinPanel);
+                parentForm.CoinAttackButtonSuccess(CoinPanel, coinResult);
             }
             else
             {
-                parentForm.CoinAttackButtonFail(CoinPanel);
+                parentForm.CoinAttackButtonFail(CoinPanel, coinResult);
             }
         }
     }
