@@ -10,6 +10,7 @@ using Game.Obstacles;
 using System.Windows.Forms;
 using Game.Characters;
 using WindowsFormsApp1.MapControls;
+using Game.MonsterManagers;
 
 namespace WindowsFormsApp1
 {
@@ -108,19 +109,21 @@ namespace WindowsFormsApp1
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            
-            if (bufferBitmap == null)
-            {
-                // bufferBitmap 생성 및 맵 이미지 한 번 그리기
-                bufferBitmap = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
-                using (Graphics g = Graphics.FromImage(bufferBitmap))
-                {
-                    g.DrawImage(firstMapImg, 0, 0);
-                }
-            }
 
-            // 버퍼 비트맵을 화면에 그리기
-            e.Graphics.DrawImage(bufferBitmap, 0, 0);
+            // 1. 배경 + 장애물만 포함된 이미지 (firstMapImg)
+            e.Graphics.DrawImage(firstMapImg, 0, 0);
+
+            // 2. 살아있는 몬스터는 따로 다시 그림
+            /*foreach (var monster in firstMap.Monsters)
+            {
+                if (!monster.IsDead)
+                {
+                    Image monsterImg = MonsterManager.CreateImageFromType(monster.GetType());
+                    e.Graphics.DrawImage(monsterImg, monster.MonsterLocation.x, monster.MonsterLocation.y, 64, 64);
+                }
+            }*/
+
+            // 3. 캐릭터도 그리기
             controller.DrawCharacter(e.Graphics);
         }
 

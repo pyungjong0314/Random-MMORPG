@@ -18,14 +18,16 @@ namespace WindowsFormsApp1
         Character myCharacter;
         Character targetCharacter;
         Monster targetMonster;
+        Form parentForm;
 
-        public BattleForm(Character character, Object target)
+        public BattleForm(Character character, Object target, Form parentForm)
         {
             InitializeComponent();
 
             myCharacter = character;
             initBattle(target);
             setBattleStatus();
+            this.parentForm = parentForm;
         }
 
         public void setBattleStatus()
@@ -143,6 +145,7 @@ namespace WindowsFormsApp1
             int damage = myCharacter.GetCharacterAttack() * 2;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
+            parentForm.Invalidate();
             setBattleStatus();
             Deffense();
         }
@@ -156,6 +159,7 @@ namespace WindowsFormsApp1
             int damage = myCharacter.GetCharacterAttack() / 2;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
+            parentForm.Invalidate();
             setBattleStatus();
             Deffense();
         }

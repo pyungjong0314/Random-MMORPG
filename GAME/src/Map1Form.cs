@@ -81,16 +81,16 @@ namespace WindowsFormsApp1
 
             if (distance < 40)
             {
-                TestMapForm testMapForm = new TestMapForm(character);
-                testMapForm.Show();
+                FirstMap firstmap = new FirstMap(character);
+                firstmap.Show();
                 this.Close();
             }
         }
 
         private void portal1_Click(object sender, EventArgs e)
         {
-            TestMapForm testMap = new TestMapForm(character);
-            testMap.Show();
+            FirstMap firstmap = new FirstMap(character);
+            firstmap.Show();
             this.Close();
         }
     }

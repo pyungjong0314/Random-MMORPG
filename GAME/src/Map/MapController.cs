@@ -86,10 +86,9 @@ namespace WindowsFormsApp1.MapControls
         // 몬스터 공격 처리
         private void OnAttackClicked(object sender, EventArgs e)
         {
-            lastClickedMonster.MonsterGetAttack(100, character);
             form.Invalidate();
 
-            var battleForm = new BattleForm(character, lastClickedMonster);
+            var battleForm = new BattleForm(character, lastClickedMonster, form);
             battleForm.Show();
         }
 

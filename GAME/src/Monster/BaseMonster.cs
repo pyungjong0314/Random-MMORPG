@@ -7,8 +7,6 @@ using System.Windows.Forms;
 
 namespace Game.BaseMonster
 {
-
-
     // 일반몹 기본 클래스
     public class Monster
     {
@@ -16,8 +14,6 @@ namespace Game.BaseMonster
 
 
         private Form form; // 이 줄은 클래스 내에 이미 있을 수 있음
-
-
 
 
         public void SetForm(Form f) => form = f;
@@ -34,7 +30,6 @@ namespace Game.BaseMonster
         public int MonsterAttackAbility;
         public int MonsterDefenseAbility;
         public int MonsterExperience;
-        public bool MonsterAlive = true;
 
 
         // 몬스터가 자신이 소속된 맵을 기억함
@@ -119,15 +114,12 @@ namespace Game.BaseMonster
 
             IsDead = true;
 
-            Console.WriteLine($"{MonsterName} has died.");
+            MessageBox.Show($"{MonsterName} has died.");
 
-            MapRef?.RemoveMonster(this, form);
-            MapRef?.RequestRespawn(this.GetType(), MonsterLocation, 3);
+            this.IsDead = true;
 
             return MonsterCoinValue;
         }
-
-
 
 
         public virtual void MonsterDropWeapon() { }
