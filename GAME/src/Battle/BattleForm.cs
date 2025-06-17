@@ -145,9 +145,18 @@ namespace WindowsFormsApp1
             int damage = myCharacter.GetCharacterAttack() * 2;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
-            parentForm.Invalidate();
             setBattleStatus();
-            Deffense();
+
+            if (targetMonster.IsDead)
+            {
+                upDateImage();
+                Respawn(targetMonster);
+            }
+            else
+            {
+                Deffense();
+                setBattleStatus();
+            }
         }
 
         // 코인 공격 실패 처리
@@ -159,9 +168,20 @@ namespace WindowsFormsApp1
             int damage = myCharacter.GetCharacterAttack() / 2;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
-            parentForm.Invalidate();
+
             setBattleStatus();
-            Deffense();
+
+            if (targetMonster.IsDead)
+            {
+                upDateImage();
+                Respawn(targetMonster);
+
+            }
+            else
+            {
+                Deffense();
+                setBattleStatus();
+            }
         }
 
 
@@ -174,8 +194,19 @@ namespace WindowsFormsApp1
             int damage = myCharacter.GetCharacterAttack() * 6;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
+
             setBattleStatus();
-            Deffense();
+
+            if (targetMonster.IsDead)
+            {
+                upDateImage();
+                Respawn(targetMonster);
+            }
+            else
+            {
+                Deffense();
+                setBattleStatus();
+            }
         }
 
         // 주사위 공격 실패
@@ -187,8 +218,52 @@ namespace WindowsFormsApp1
             int damage = myCharacter.GetCharacterAttack() / 6;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
+
             setBattleStatus();
-            Deffense();
+
+            if (targetMonster.IsDead)
+            {
+                upDateImage();
+                Respawn(targetMonster);
+            }
+            else
+            {
+                Deffense();
+                setBattleStatus();
+            }
+        }
+
+        public void upDateImage()
+        {
+            if (parentForm is FirstMap firstMapForm)
+            {
+                firstMapForm.UpdateMonsterBuffer();
+                firstMapForm.Invalidate();
+                this.Close();
+            }
+        }
+
+        public void Respawn(Monster monster)
+        {
+            Timer timer = new Timer();
+            timer.Interval = 3000; // 3초
+
+            timer.Tick += (sender, e) =>
+            {
+                timer.Stop();
+                timer.Dispose();
+
+                monster.IsDead = false;
+
+                // 몬스터 버퍼 다시 그리기
+                if (parentForm is FirstMap firstMapForm)
+                {
+                    firstMapForm.UpdateMonsterBuffer();
+                    firstMapForm.Invalidate();
+                }
+            };
+
+            timer.Start();
         }
     }
 }

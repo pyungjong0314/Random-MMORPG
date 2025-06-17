@@ -20,7 +20,10 @@ namespace WindowsFormsApp1
         Image firstMapImg;
         private Character myCharacter;
         private MapController controller;
-        private Bitmap bufferBitmap;
+        
+        private Bitmap backgroundBufferBitmap;
+        private Bitmap monsterBuffer;
+
 
         // 이미지 생성
         private Monster lastClickedMonster;
@@ -97,31 +100,52 @@ namespace WindowsFormsApp1
 
             (firstMap, firstMapImg) = Game.MapFactories.MapFactory.CreateMap(monsters, obstacles);
 
+            // 배경 생성
+            backgroundBufferBitmap = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+            using (Graphics g = Graphics.FromImage(backgroundBufferBitmap))
+            {
+                g.DrawImage(firstMapImg, 0, 0);
+            }
+
+            // 몬스터 생성
+            monsterBuffer = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+            UpdateMonsterBuffer();
+            
+            this.DoubleBuffered = true;
+
             // 키보드 입력
             controller = new MapController(character, firstMap, this);
             this.KeyDown += TestForm_KeyDown;
 
             this.MouseClick += FirstMap_MouseClick;
-            this.DoubleBuffered = true;
-
         }
+
+        public void UpdateMonsterBuffer()
+        {
+            using (Graphics g = Graphics.FromImage(monsterBuffer))
+            {
+                g.Clear(Color.Transparent);
+                foreach (var monster in firstMap.Monsters)
+                {
+                    if (!monster.IsDead)
+                    {
+                        Image monsterImg = MonsterManager.CreateImageFromType(monster.GetType());
+                        g.DrawImage(monsterImg, monster.MonsterLocation.x, monster.MonsterLocation.y, 64, 64);
+                    }
+                }
+            }
+        }
+
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
             // 1. 배경 + 장애물만 포함된 이미지 (firstMapImg)
-            e.Graphics.DrawImage(firstMapImg, 0, 0);
+            e.Graphics.DrawImage(backgroundBufferBitmap, 0, 0);
 
             // 2. 살아있는 몬스터는 따로 다시 그림
-            /*foreach (var monster in firstMap.Monsters)
-            {
-                if (!monster.IsDead)
-                {
-                    Image monsterImg = MonsterManager.CreateImageFromType(monster.GetType());
-                    e.Graphics.DrawImage(monsterImg, monster.MonsterLocation.x, monster.MonsterLocation.y, 64, 64);
-                }
-            }*/
+            e.Graphics.DrawImage(monsterBuffer, 0, 0);
 
             // 3. 캐릭터도 그리기
             controller.DrawCharacter(e.Graphics);

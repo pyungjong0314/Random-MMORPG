@@ -64,7 +64,7 @@ namespace Game.BaseMonster
             MonsterExperience = exp;
         }
 
-        public bool IsDead { get; private set; } = false;
+        public bool IsDead { get; set; } = false;
 
         // 몬스터 Setter
         public void setName(string name) => MonsterName = name;
