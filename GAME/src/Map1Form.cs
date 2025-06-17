@@ -48,6 +48,7 @@ namespace WindowsFormsApp1
                 case Keys.D: target = (current.x + moveAmount, current.y); break;
             }
 
+
             character.MoveLocation(target.x - current.x, target.y - current.y);
             this.Invalidate();
 

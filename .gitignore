@@ -2,9 +2,4 @@
 bin/
 obj/
 *.exe
-<<<<<<< HEAD
 *.pdb
-=======
-*.pdb
-*.resources
->>>>>>> Design

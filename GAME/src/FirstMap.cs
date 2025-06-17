@@ -8,6 +8,7 @@ using Game.MapFactories;
 using Game.Obstacles;
 
 using System.Windows.Forms;
+using Game.Characters;
 
 namespace WindowsFormsApp1
 {
@@ -15,12 +16,12 @@ namespace WindowsFormsApp1
     {
         Map firstMap;
         Image firstMapImg;
+        private Character myCharacter;
 
-
-         
-        public FirstMap()
+        public FirstMap(Character character)
         {
             InitializeComponent();
+            myCharacter = character;
             this.ClientSize = new Size(2000, 2000); // 내부 그릴 수 있는 영역 크기
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 

@@ -107,12 +107,12 @@ namespace WindowsFormsApp1
 
             if(selectedItem == "dice")
             {
-                DiceControl diceControl = new DiceControl();
-                diceControl.AttackPanel.Visible = true;
-                diceControl.AttackPanel.Location = new Point(200, 200);
+                DiceControl diceControl = new DiceControl(this);
+                diceControl.DicePanel.Visible = true;
+                diceControl.DicePanel.Location = new Point(200, 200);
 
-                this.Controls.Add(diceControl.AttackPanel);
-                diceControl.AttackPanel.BringToFront();
+                this.Controls.Add(diceControl.DicePanel);
+                diceControl.DicePanel.BringToFront();
             }
             else if(selectedItem == "coin")
             {
@@ -125,31 +125,66 @@ namespace WindowsFormsApp1
             }
         }
 
+        // 방어
+        public void Deffense()
+        {
+            this.AttackButton.Enabled = false;
+            MessageBox.Show("공격을 받았습니다.");
+            myCharacter.Defense(targetMonster.MonsterAttackAbility);
+            this.AttackButton.Enabled = true;
+        }
 
-        // 공격 성공 처리
-        public void coinAttackButtonSuccess(Panel childPanel)
+        // 코인 공격 성공 처리
+        public void CoinAttackButtonSuccess(Panel childPanel)
         {
             this.Controls.Remove(childPanel);
-            childPanel.Dispose();
 
             MessageBox.Show("공격 성공");
             int damage = myCharacter.GetCharacterAttack() * 2;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
             setBattleStatus();
+            Deffense();
         }
 
-        // 공격 실패 처리
-        public void coinAttackButtonFail(Panel childPanel)
+        // 코인 공격 실패 처리
+        public void CoinAttackButtonFail(Panel childPanel)
         {
             this.Controls.Remove(childPanel);
-            childPanel.Dispose();
 
             MessageBox.Show("공격 실패");
             int damage = myCharacter.GetCharacterAttack() / 2;
             targetMonster.MonsterGetAttack(damage, myCharacter);
 
             setBattleStatus();
+            Deffense();
+        }
+
+
+        // 주사위 공격 성공
+        public void DiceAttackButtonSuccess(Panel childPanel)
+        {
+            this.Controls.Remove(childPanel);
+
+            MessageBox.Show("공격 성공");
+            int damage = myCharacter.GetCharacterAttack() * 6;
+            targetMonster.MonsterGetAttack(damage, myCharacter);
+
+            setBattleStatus();
+            Deffense();
+        }
+
+        // 주사위 공격 실패
+        public void DiceAttackButtonFail(Panel childPanel)
+        {
+            this.Controls.Remove(childPanel);
+
+            MessageBox.Show("공격 실패");
+            int damage = myCharacter.GetCharacterAttack() / 6;
+            targetMonster.MonsterGetAttack(damage, myCharacter);
+
+            setBattleStatus();
+            Deffense();
         }
     }
 }
