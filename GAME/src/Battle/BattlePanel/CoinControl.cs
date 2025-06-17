@@ -91,7 +91,6 @@ namespace WindowsFormsApp1.Battle
                     break;
             }
 
-
             if (selectedMethod.Equals(coinResult))
             {
                 parentForm.CoinAttackButtonSuccess(CoinPanel, coinResult);
