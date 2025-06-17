@@ -70,6 +70,12 @@
     </Compile>
     <Compile Include="Character\Character.cs" />
     <Compile Include="Story\FontManager.cs" />
+    <Compile Include="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Story\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,7 +88,19 @@
     <Compile Include="Battle\BattleForm.Designer.cs">
       <DependentUpon>BattleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Map1Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Map1Form.Designer.cs">
+      <DependentUpon>Map1Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Map\map.cs" />
+    <Compile Include="NameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NameForm.Designer.cs">
+      <DependentUpon>NameForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Monster\BaseBossMonster.cs" />
     <Compile Include="Monster\BaseMonster.cs" />
     <Compile Include="Monster\BossMonster.cs" />
@@ -96,6 +114,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Server\Server.cs" />
+    <Compile Include="Shop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shop.Designer.cs">
+      <DependentUpon>Shop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Story\StoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +136,9 @@
       <DependentUpon>TestMapForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Weapon\Weapon.cs" />
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Battle\CoinControl.resx">
       <DependentUpon>CoinControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,10 +154,22 @@
     <EmbeddedResource Include="Battle\BattleForm.resx">
       <DependentUpon>BattleForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Map1Form.resx">
+      <DependentUpon>Map1Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NameForm.resx">
+      <DependentUpon>NameForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shop.resx">
+      <DependentUpon>Shop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoryForm.resx">
+      <DependentUpon>StoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Story\StoryForm.resx">
       <DependentUpon>StoryForm.cs</DependentUpon>
@@ -186,13 +228,41 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\goblin1.png" />
+    <None Include="Resources\Background1.png" />
+    <None Include="Resources\Background11.png" />
+    <None Include="Resources\fountain.png" />
+    <None Include="Resources\fountain1.png" />
+    <None Include="Resources\board.png" />
+    <None Include="Resources\bench.png" />
+    <None Include="Resources\floor.png" />
+    <None Include="Resources\floor1.png" />
+    <None Include="Resources\fountain2.png" />
     <Content Include="Resources\goblin2.png" />
+    <None Include="Resources\LoadingBackground.png" />
+    <None Include="Resources\portal.png" />
+    <None Include="Resources\portal1.png" />
+    <None Include="Resources\image %286%29.png" />
+    <None Include="Resources\portal3.png" />
+    <None Include="Resources\portal2.png" />
+    <None Include="Resources\portal4.png" />
+    <None Include="Resources\portal5.png" />
+    <None Include="Resources\house.png" />
+    <None Include="Resources\lamp.png" />
+    <None Include="Resources\pond.png" />
+    <None Include="Resources\pond1.png" />
+    <None Include="Resources\Map1FormBackground.png" />
+    <None Include="Resources\Map1FormBackground1.png" />
+    <Content Include="Resources\scorpion.png" />
+    <None Include="Resources\shopkeeper.png" />
+    <None Include="Resources\shop.png" />
+    <None Include="Resources\stonefloor.png" />
+    <None Include="Resources\well.png" />
+    <None Include="Resources\stone.png" />
+    <None Include="Resources\tree.png" />
+    <None Include="Resources\well1.png" />
     <None Include="Resources\orc.png" />
     <None Include="Resources\rock.png" />
     <None Include="Resources\luna_crab2.png" />
-    <Content Include="Resources\scorpion.png" />
-    <None Include="Resources\tree.png" />
-    <None Include="Resources\well.png" />
     <None Include="Resources\slime.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
