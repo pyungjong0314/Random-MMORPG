@@ -28,18 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Shop));
+            this.AttackPanel = new System.Windows.Forms.Panel();
+            this.BuyButton = new System.Windows.Forms.Label();
+            this.AttackPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // AttackPanel
+            // 
+            this.AttackPanel.BackColor = System.Drawing.Color.Transparent;
+            this.AttackPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("AttackPanel.BackgroundImage")));
+            this.AttackPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.AttackPanel.Controls.Add(this.BuyButton);
+            this.AttackPanel.Location = new System.Drawing.Point(172, 92);
+            this.AttackPanel.Name = "AttackPanel";
+            this.AttackPanel.Size = new System.Drawing.Size(666, 611);
+            this.AttackPanel.TabIndex = 32;
+            this.AttackPanel.Visible = false;
+            // 
+            // BuyButton
+            // 
+            this.BuyButton.AutoSize = true;
+            this.BuyButton.BackColor = System.Drawing.Color.Transparent;
+            this.BuyButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BuyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BuyButton.ForeColor = System.Drawing.Color.Black;
+            this.BuyButton.Location = new System.Drawing.Point(292, 492);
+            this.BuyButton.Name = "BuyButton";
+            this.BuyButton.Size = new System.Drawing.Size(72, 25);
+            this.BuyButton.TabIndex = 32;
+            this.BuyButton.Text = "구매하기";
             // 
             // Shop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.AttackPanel);
             this.Name = "Shop";
-            this.Size = new System.Drawing.Size(551, 441);
+            this.Size = new System.Drawing.Size(1010, 795);
+            this.AttackPanel.ResumeLayout(false);
+            this.AttackPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        public System.Windows.Forms.Panel AttackPanel;
+        private System.Windows.Forms.Label BuyButton;
     }
 }

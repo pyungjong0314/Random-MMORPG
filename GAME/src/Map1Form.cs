@@ -48,6 +48,7 @@ namespace WindowsFormsApp1
                 case Keys.D: target = (current.x + moveAmount, current.y); break;
             }
 
+
             character.MoveLocation(target.x - current.x, target.y - current.y);
             this.Invalidate();
 
@@ -80,16 +81,16 @@ namespace WindowsFormsApp1
 
             if (distance < 40)
             {
-                TestMapForm testMapForm = new TestMapForm(character);
-                testMapForm.Show();
+                FirstMap firstmap = new FirstMap(character);
+                firstmap.Show();
                 this.Close();
             }
         }
 
         private void portal1_Click(object sender, EventArgs e)
         {
-            TestMapForm testMap = new TestMapForm(character);
-            testMap.Show();
+            FirstMap firstmap = new FirstMap(character);
+            firstmap.Show();
             this.Close();
         }
     }

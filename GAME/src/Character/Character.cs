@@ -51,6 +51,9 @@ namespace Game.Characters
             {
                 characterExp -= characterLevel * 100;
                 characterLevel++;
+
+                characterHp += 100;
+                characterAttack += 30;
             }
         }
 
@@ -83,7 +86,7 @@ namespace Game.Characters
         // 공격력이 방어력 보다 높은 경우 HP 감소, 방어력이 더 높으면 공격 무시
         public void Defense(int attack)
         {
-            if((characterShiled?.GetWeaponDefense() ?? 0) < attack)
+            //if((characterShiled?.GetWeaponDefense() ?? 0) < attack)
             {
                 characterHp -= attack;
             }

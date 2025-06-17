@@ -1,27 +1,37 @@
 ﻿using Game.BaseMonster;
-using Game.Maps;
 using Game.Monsters;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Game.MapFactories;
+
 using Game.Obstacles;
 
 using System.Windows.Forms;
+using Game.Characters;
+using WindowsFormsApp1.MapControls;
+using Game.MonsterManagers;
+
 
 namespace WindowsFormsApp1
 {
     public partial class FirstMap : Form
     {
-        Map firstMap;
+        Game.Maps.Map firstMap;
         Image firstMapImg;
+        private Character myCharacter;
+        private MapController controller;
+        
+        private Bitmap backgroundBufferBitmap;
+        private Bitmap monsterBuffer;
 
 
-         
-        public FirstMap()
+        // 이미지 생성
+        private Monster lastClickedMonster;
+
+        public FirstMap(Character character)
         {
             InitializeComponent();
-            this.ClientSize = new Size(2000, 2000); // 내부 그릴 수 있는 영역 크기
+            myCharacter = character; 
+            // 내부 그릴 수 있는 영역 크기
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             // 생성할 몬스터 리스트
@@ -78,11 +88,10 @@ namespace WindowsFormsApp1
                 new Rock { Location = (639, 107) },
                 new Rock { Location = (639, 42) },
                 new Rock { Location = (718, 42) },
-                new Rock { Location = (1009, 42) },
-                new Rock { Location = (1009, 114) },
-                new Rock { Location = (1009, 190) },
-                new Rock { Location = (1009, 256) },
-                new Rock { Location = (1009, 332) },
+                new Rock { Location = (950, 42) },
+                new Rock { Location = (950, 114) },
+                new Rock { Location = (950, 190) },
+                new Rock { Location = (950, 256) },
 
                 new Well { Location = (786, -2) }
             };
@@ -90,12 +99,104 @@ namespace WindowsFormsApp1
 
             (firstMap, firstMapImg) = Game.MapFactories.MapFactory.CreateMap(monsters, obstacles);
 
+            // 배경 생성
+            backgroundBufferBitmap = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+            using (Graphics g = Graphics.FromImage(backgroundBufferBitmap))
+            {
+                g.DrawImage(firstMapImg, 0, 0);
+            }
+
+            // 몬스터 생성
+            monsterBuffer = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+            UpdateMonsterBuffer();
+            
+            this.DoubleBuffered = true;
+
+            // 키보드 입력
+            controller = new MapController(character, firstMap, this);
+            this.KeyDown += TestForm_KeyDown;
+
+            this.MouseClick += FirstMap_MouseClick;
         }
+
+        public void UpdateMonsterBuffer()
+        {
+            using (Graphics g = Graphics.FromImage(monsterBuffer))
+            {
+                g.Clear(Color.Transparent);
+                foreach (var monster in firstMap.Monsters)
+                {
+                    if (!monster.IsDead)
+                    {
+                        Image monsterImg = MonsterManager.CreateImageFromType(monster.GetType());
+                        g.DrawImage(monsterImg, monster.MonsterLocation.x, monster.MonsterLocation.y, 64, 64);
+                    }
+                }
+            }
+        }
+
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.DrawImage(firstMapImg, 0, 0);
+
+            // 1. 배경 + 장애물만 포함된 이미지 (firstMapImg)
+            e.Graphics.DrawImage(backgroundBufferBitmap, 0, 0);
+
+            // 2. 살아있는 몬스터는 따로 다시 그림
+            e.Graphics.DrawImage(monsterBuffer, 0, 0);
+
+            // 3. 캐릭터도 그리기
+            controller.DrawCharacter(e.Graphics);
+        }
+
+
+        // 키보드 입력에 따라 캐릭터를 이동시키고 충돌 여부를 판단하는 메서드
+        private void TestForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            controller.HandleMovement(e.KeyCode);
+        }
+
+        // 몬스터 클릭
+        private void FirstMap_MouseClick(object sender, MouseEventArgs e)
+        {
+            Monster clickedMonster = FindMonsterAtPoint(e.Location);
+            // 캐릭터 클릭
+            if (FindCharacterAtPoint(e.Location))
+                controller.ShowCharacterContextMenu(this, myCharacter, e.Location);
+                
+
+            // 몬스터 클릭
+            if (clickedMonster != null)
+            {
+                lastClickedMonster = clickedMonster;
+                controller.ShowMonsterContextMenu(this, lastClickedMonster, e.Location);
+            }
+        }
+
+        private bool FindCharacterAtPoint(Point point)
+        {
+            Rectangle characterRect = new Rectangle(myCharacter.GetCharacterLocation().x, myCharacter.GetCharacterLocation().y, 64, 64);
+            if(characterRect.Contains(point))
+                return true;
+            
+            return false;
+        }
+
+        private Monster FindMonsterAtPoint(Point point)
+        {
+            foreach (var monster in firstMap.Monsters)
+            {
+                if (monster.IsDead)
+                    continue;
+
+                Rectangle monsterRect = new Rectangle(monster.MonsterLocation.x, monster.MonsterLocation.y, 64, 64);
+                if (monsterRect.Contains(point))
+                {
+                    return monster;
+                }
+            }
+            return null;
         }
     }
 }

@@ -7,8 +7,6 @@ using System.Windows.Forms;
 
 namespace Game.BaseMonster
 {
-
-
     // 일반몹 기본 클래스
     public class Monster
     {
@@ -16,8 +14,6 @@ namespace Game.BaseMonster
 
 
         private Form form; // 이 줄은 클래스 내에 이미 있을 수 있음
-
-
 
 
         public void SetForm(Form f) => form = f;
@@ -68,7 +64,7 @@ namespace Game.BaseMonster
             MonsterExperience = exp;
         }
 
-        public bool IsDead { get; private set; } = false;
+        public bool IsDead { get; set; } = false;
 
         // 몬스터 Setter
         public void setName(string name) => MonsterName = name;
@@ -80,6 +76,21 @@ namespace Game.BaseMonster
         public void SetHp(int hp) => MonsterHp = hp;
         public void SetAttack(int atk) => MonsterAttackAbility = atk;
         public void SetDefense(int def) => MonsterDefenseAbility = def;
+
+        
+        // 몬스터 Getter
+        public string GetName() => MonsterName;
+        public string GetId() => MonsterId;
+        public int GetLevel() => MonsterLevel;
+        public int GetCoinValue() => MonsterCoinValue;
+        public int GetMapId() => MonsterMapId;
+        public (int x, int y) GetLocation() => MonsterLocation;
+        public int GetHp() => MonsterHp;
+        public int GetAttack() => MonsterAttackAbility;
+        public int GetDefense() => MonsterDefenseAbility;
+
+
+
 
         public virtual void MonsterCreate() { }
         public virtual void MonsterSave() { }
@@ -118,15 +129,10 @@ namespace Game.BaseMonster
 
             IsDead = true;
 
-            Console.WriteLine($"{MonsterName} has died.");
-
-            MapRef?.RemoveMonster(this, form);
-            MapRef?.RequestRespawn(this.GetType(), MonsterLocation, 3);
+            this.IsDead = true;
 
             return MonsterCoinValue;
         }
-
-
 
 
         public virtual void MonsterDropWeapon() { }

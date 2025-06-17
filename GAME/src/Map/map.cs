@@ -104,20 +104,8 @@ namespace Game.Maps
         // 몬스터 맵에서 제거 및 코인 드랍
         public void RemoveMonster(Monster m, Form form)
         {
-            Monsters.Remove(m);
             DroppedCoins.Add((m.MonsterLocation.x, m.MonsterLocation.y, m.MonsterCoinValue));  // 코인 맵에 드랍하기
-            Console.WriteLine($"{m.MonsterName} has dropped  {m.MonsterCoinValue} coins  and {m.MonsterExperience} exp");
-
-            // PictureBox 제거
-            foreach (Control control in form.Controls)
-            {
-                if (control is PictureBox pb && pb.Tag == m)
-                {
-                    form.Controls.Remove(pb);
-                    pb.Dispose();
-                    break;
-                }
-            }
+            Console.WriteLine($"{m.MonsterName} has dropped  {m.MonsterCoinValue} coins  and {m.MonsterExperience} exp");  
         }
 
 
@@ -143,36 +131,4 @@ namespace Game.Maps
             return (total, count);
         } 
     }
-
-
-    public static class MapFactory
-    {
-        // 맵 ID에 따라 다양한 몬스터들이 배치된 맵 생성
-        public static Map CreateMap(int map_id)
-        {
-            Map map = new Map { map_id = map_id, map_width = 1000, map_height = 1000 };
-
-            var mapDefinitions = new Dictionary<int, List<(Type type, int count)>>
-            {
-                { 1, new List<(Type, int)> { (typeof(Goblin), 6), (typeof(Slime), 10) } },
-                { 2, new List<(Type, int)> { (typeof(Witch), 2), (typeof(Basilisk), 2), (typeof(LunaCrab), 1) } },
-                { 3, new List<(Type, int)> { (typeof(Scorpion), 2), (typeof(Orc), 2), (typeof(DarkKnight), 1) } }
-            };
-
-            if (!mapDefinitions.TryGetValue(map_id, out var monsterList))
-                throw new ArgumentException("Invalid map ID");
-
-            foreach (var (type, count) in monsterList)
-            {
-                for (int i = 0; i < count; i++)
-                {
-                    var monster = MonsterManager.CreateMonsterFromType(type);
-                    map.AddMonster(monster); // 랜덤 위치 부여됨
-                }
-            }
-
-            return map;
-        }
-    }
-
 }

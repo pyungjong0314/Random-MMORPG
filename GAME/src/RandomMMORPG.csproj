@@ -49,24 +49,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Battle\Battle.cs" />
-    <Compile Include="Battle\CoinControl.cs">
+    <Compile Include="Battle\BattlePanel\CoinControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Battle\CoinControl.Designer.cs">
+    <Compile Include="Battle\BattlePanel\CoinControl.Designer.cs">
       <DependentUpon>CoinControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Battle\DiceControl.cs">
+    <Compile Include="Battle\BattlePanel\DiceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Battle\DiceControl.Designer.cs">
+    <Compile Include="Battle\BattlePanel\DiceControl.Designer.cs">
       <DependentUpon>DiceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Battle\selectControl.cs">
+    <Compile Include="Battle\BattlePanel\selectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Battle\selectControl.Designer.cs">
+    <Compile Include="Battle\BattlePanel\selectControl.Designer.cs">
       <DependentUpon>selectControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Battle\BattlePanel\SuccessFailure.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Battle\BattlePanel\SuccessFailure.Designer.cs">
+      <DependentUpon>SuccessFailure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Battle\BattlePanel\VictoryDefeat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Battle\BattlePanel\VictoryDefeat.Designer.cs">
+      <DependentUpon>VictoryDefeat.cs</DependentUpon>
     </Compile>
     <Compile Include="Character\Character.cs" />
     <Compile Include="FirstMap.cs">
@@ -75,14 +86,21 @@
     <Compile Include="FirstMap.Designer.cs">
       <DependentUpon>FirstMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapFactory.cs" />
+    <Compile Include="Map\InfoController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Map\InfoController.Designer.cs">
+      <DependentUpon>InfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Map\MapFactory.cs" />
     <Compile Include="Obstacle\Obstacle.cs" />
     <Compile Include="Obstacle\ObstacleManager.cs" />
+    <Compile Include="Map\MapController.cs" />
     <Compile Include="Story\FontManager.cs" />
-    <Compile Include="LoadingForm.cs">
+    <Compile Include="Story\LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoadingForm.Designer.cs">
+    <Compile Include="Story\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Story\MainForm.cs">
@@ -104,10 +122,10 @@
       <DependentUpon>Map1Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Map\map.cs" />
-    <Compile Include="NameForm.cs">
+    <Compile Include="Story\NameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NameForm.Designer.cs">
+    <Compile Include="Story\NameForm.Designer.cs">
       <DependentUpon>NameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Monster\BaseBossMonster.cs" />
@@ -135,26 +153,38 @@
     <Compile Include="Story\StoryForm.Designer.cs">
       <DependentUpon>StoryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestMapForm\TestMapForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestMapForm\TestMapForm.Designer.cs">
-      <DependentUpon>TestMapForm.cs</DependentUpon>
-    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Weapon\Weapon.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Battle\BattlePanel\SuccessFailure.resx">
+      <DependentUpon>SuccessFailure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Battle\BattlePanel\VictoryDefeat.resx">
+      <DependentUpon>VictoryDefeat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FirstMap.resx">
       <DependentUpon>FirstMap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoadingForm.resx">
+    <EmbeddedResource Include="Map\InfoController.resx">
+      <DependentUpon>InfoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Story\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Battle\CoinControl.resx">
+    <EmbeddedResource Include="Battle\BattlePanel\CoinControl.resx">
       <DependentUpon>CoinControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Battle\selectControl.resx">
+    <EmbeddedResource Include="Battle\BattlePanel\selectControl.resx">
       <DependentUpon>selectControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Battle\DiceControl.resx">
+    <EmbeddedResource Include="Battle\BattlePanel\DiceControl.resx">
       <DependentUpon>DiceControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Story\MainForm.resx">
@@ -166,7 +196,7 @@
     <EmbeddedResource Include="Map1Form.resx">
       <DependentUpon>Map1Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NameForm.resx">
+    <EmbeddedResource Include="Story\NameForm.resx">
       <DependentUpon>NameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -180,59 +210,28 @@
     <EmbeddedResource Include="Story\StoryForm.resx">
       <DependentUpon>StoryForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TestMap.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\MainBackground.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Story1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Story2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Story3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Story4.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\BattleBackground.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\GameBox.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Player1Character.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Player2Character.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\CoinFront.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\CoinBack.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Dice1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\goblin1.png" />
     <None Include="Resources\Background1.png" />
     <None Include="Resources\Background11.png" />
@@ -243,7 +242,6 @@
     <None Include="Resources\floor.png" />
     <None Include="Resources\floor1.png" />
     <None Include="Resources\fountain2.png" />
-    <Content Include="Resources\goblin2.png" />
     <None Include="Resources\LoadingBackground.png" />
     <None Include="Resources\portal.png" />
     <None Include="Resources\portal1.png" />
@@ -258,7 +256,6 @@
     <None Include="Resources\pond1.png" />
     <None Include="Resources\Map1FormBackground.png" />
     <None Include="Resources\Map1FormBackground1.png" />
-    <Content Include="Resources\scorpion.png" />
     <None Include="Resources\shopkeeper.png" />
     <None Include="Resources\shop.png" />
     <None Include="Resources\stonefloor.png" />
@@ -270,6 +267,15 @@
     <None Include="Resources\rock.png" />
     <None Include="Resources\luna_crab2.png" />
     <None Include="Resources\slime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dice2.png" />
+    <None Include="Resources\Dice3.png" />
+    <None Include="Resources\Dice4.png" />
+    <None Include="Resources\Dice5.png" />
+    <None Include="Resources\Dice6.png" />
+    <Content Include="Resources\goblin2.png" />
+    <Content Include="Resources\scorpion.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

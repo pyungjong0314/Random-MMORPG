@@ -22,12 +22,14 @@ namespace Game.MapFactories
             return (map, mapImage);
         }
 
-        private static Image CreateMapImage(List<Monster> monsters, List<Obstacle> obstacles)
+        // 최초 1회만 호출되는 함수
+        public static Image CreateMapImage(List<Monster> monsters, List<Obstacle> obstacles)
         {
             Bitmap bmp = new Bitmap(1500, 1000);
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
+
                 // 1. 몬스터 그리기
                 foreach (var monster in monsters)
                 {
@@ -39,6 +41,7 @@ namespace Game.MapFactories
                 // 2. 장애물 그리기
                 if (obstacles != null)
                 {
+
                     foreach (var obstacle in obstacles)
                     {
                         Image obstacleImg = ObstacleManager.CreateImageFromType(obstacle.GetType());
