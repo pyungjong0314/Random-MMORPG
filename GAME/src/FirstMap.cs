@@ -65,6 +65,13 @@ namespace WindowsFormsApp1
                 new Tree { Location = (307, 163) },
                 new Tree { Location = (410, 170) },
                 new Tree { Location = (509, 170) },
+                new Tree { Location = (1077, 19) },
+                new Tree { Location = (1077, 107) },
+                new Tree { Location = (1077, 199) },
+                new Tree { Location = (1077, 304) },
+                new Tree { Location = (1077, 396) },
+                new Tree { Location = (1077, 485) },
+                new Tree { Location = (1077, 573) },
 
                 new Rock { Location = (540, 257) },
                 new Rock { Location = (639, 257) },
@@ -72,11 +79,11 @@ namespace WindowsFormsApp1
                 new Rock { Location = (639, 107) },
                 new Rock { Location = (639, 42) },
                 new Rock { Location = (718, 42) },
-                new Rock { Location = (990, 42) },
-                new Rock { Location = (990, 114) },
-                new Rock { Location = (990, 190) },
-                new Rock { Location = (990, 256) },
-                new Rock { Location = (990, 332) },
+                new Rock { Location = (1009, 42) },
+                new Rock { Location = (1009, 114) },
+                new Rock { Location = (1009, 190) },
+                new Rock { Location = (1009, 256) },
+                new Rock { Location = (1009, 332) },
 
                 new Well { Location = (786, -2) }
             };

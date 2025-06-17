@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Runtime.CompilerServices;
 
 namespace Game.Obstacles
 {
@@ -7,41 +6,27 @@ namespace Game.Obstacles
     {
         public (int x, int y) Location { get; set; }
 
-        private Size size = new Size(64, 64); // 기본 크기
-
-        public void SetSize(int width, int height)
-        {
-            size = new Size(width, height);
-        }
-
-        public virtual Size GetSize() => size;
+        protected virtual Size DefaultSize => new Size(64, 64); // 기본값
+        public virtual Size GetSize() => DefaultSize;
 
         public abstract Image GetImage();
     }
 
     public class Rock : Obstacle
     {
-        public override Image GetImage()
-        {
-            return WindowsFormsApp1.Properties.Resources.rock;
-        }
-        
-      
+        protected override Size DefaultSize => new Size(62, 50);
+        public override Image GetImage() => WindowsFormsApp1.Properties.Resources.rock;
     }
 
     public class Tree : Obstacle
     {
-        public override Image GetImage()
-        {
-            return WindowsFormsApp1.Properties.Resources.tree;
-        }
+        protected override Size DefaultSize => new Size(93, 73);
+        public override Image GetImage() => WindowsFormsApp1.Properties.Resources.tree;
     }
 
     public class Well : Obstacle
     {
-        public override Image GetImage()
-        {
-            return WindowsFormsApp1.Properties.Resources.well;
-        }
+        protected override Size DefaultSize => new Size(142, 142);
+        public override Image GetImage() => WindowsFormsApp1.Properties.Resources.well;
     }
 }
