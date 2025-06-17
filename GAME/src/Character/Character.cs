@@ -10,20 +10,20 @@ namespace Game.Characters
     {
         Random rand = new Random();
 
-        private int characterId;
-        private string characterName;
-        private int characterLevel;
-        private int characterExp;
-        private int characterMoney;
-        private int characterMapId;
-        private (int x, int y) characterLocation;
-        private int characterHp;
-        private int characterAttack;
-        private Weapon characterSword;
-        private Weapon characterShiled;
-        private List<Weapon> characterWeapons;
+        public int characterId;
+        public string characterName;
+        public int characterLevel;
+        public int characterExp;
+        public int characterMoney;
+        public int characterMapId;
+        public (int x, int y) characterLocation;
+        public int characterHp;
+        public int characterAttack;
+        public Weapon characterSword;
+        public Weapon characterShiled;
+        public List<Weapon> characterWeapons;
 
-        private Character() { }
+        public Character() { }
 
         public int GetCharacterId() => characterId;
         public string GetCharacterName() => characterName;

@@ -32,7 +32,7 @@ namespace WindowsFormsApp1
             storyForm.FormClosed += (s, args) =>
             {
                 // storyForm 닫히면 Map1Form 열기 
-                FirstMap map1Form = new FirstMap(newCharacter);
+                StartingForm map1Form = new StartingForm(newCharacter);
                 map1Form.Show();
             };
         }

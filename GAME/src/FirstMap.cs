@@ -15,14 +15,13 @@ namespace WindowsFormsApp1
 {
     public partial class FirstMap : Form
     {
-        Game.Maps.Map firstMap;
         Image firstMapImg;
         private Character myCharacter;
         private MapController controller;
-        
+        private Game.Maps.Map firstMap;
+
         private Bitmap backgroundBufferBitmap;
         private Bitmap monsterBuffer;
-
 
         // 이미지 생성
         private Monster lastClickedMonster;

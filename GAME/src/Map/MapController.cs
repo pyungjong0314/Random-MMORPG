@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel;
 using WindowsFormsApp1.Map;
 using WindowsFormsApp1.Battle;
+using WindowsFormsApp1.Characters;
 
 namespace WindowsFormsApp1.MapControls
 {
@@ -18,10 +19,14 @@ namespace WindowsFormsApp1.MapControls
         // 지도
         private readonly Game.Maps.Map map;
         private readonly Form form;
-        // contextMenu
+
+        // contextMenu(캐릭터)
         private readonly ContextMenuStrip CharacterContextMenu;
+        private ToolStripMenuItem SaveContextMunu;
+        // contextMenu(캐릭터)
         private readonly ContextMenuStrip monsterContextMenu;
         private ToolStripMenuItem attackMenuItem;
+
         // 클릭 몬스터
         private Monster lastClickedMonster;
 
@@ -37,7 +42,7 @@ namespace WindowsFormsApp1.MapControls
             InitializeCharacterContextMenu();
         }
 
-        // 캐릭터 이동 및 코인 습득 처리
+        // 캐릭터 이동
         public void HandleMovement(Keys key)
         {
             int moveAmount = 20;
@@ -62,6 +67,9 @@ namespace WindowsFormsApp1.MapControls
         private void InitializeCharacterContextMenu()
         {
             CharacterContextMenu.Items.Add("정보 확인하기", null, OnInfoClickedCharacter);
+
+            SaveContextMunu = new ToolStripMenuItem("저장하기", null, OnSaveClicked);
+            CharacterContextMenu.Items.Add(SaveContextMunu);
         }
 
         // 캐릭터 클릭
@@ -82,6 +90,12 @@ namespace WindowsFormsApp1.MapControls
             infoController.InfoPanel.Visible = true;
             form.Controls.Add(infoController.InfoPanel);             // 폼에 직접 컨트롤 추가
             infoController.BringToFront();
+        }
+
+        private void OnSaveClicked(object sender, EventArgs e)
+        {
+            CharacterStorage.SaveCharacter(character);
+            MessageBox.Show("캐릭터 저장 완료!");
         }
 
         // 몬스터 컨텍스트 메뉴 초기화
