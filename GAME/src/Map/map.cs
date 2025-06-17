@@ -11,6 +11,15 @@ namespace Game.Maps
 {
     public class Map
     {
+        public void Initialize(List<Monster> monsters)
+        {
+            Monsters = monsters;
+            foreach (var monster in Monsters)
+            {
+                monster.MapRef = this;
+            }
+        }
+
 
         public string map_name;
         public int map_id;
@@ -135,6 +144,7 @@ namespace Game.Maps
         } 
     }
 
+
     public static class MapFactory
     {
         // 맵 ID에 따라 다양한 몬스터들이 배치된 맵 생성
@@ -164,4 +174,5 @@ namespace Game.Maps
             return map;
         }
     }
+
 }
