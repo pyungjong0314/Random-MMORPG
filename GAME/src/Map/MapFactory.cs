@@ -24,37 +24,31 @@ namespace Game.MapFactories
 
         private static Image CreateMapImage(List<Monster> monsters, List<Obstacle> obstacles)
         {
-            Bitmap bmp = new Bitmap(2000, 2000);
+            Bitmap bmp = new Bitmap(1500, 1000);
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
-      /*          // 1. 배경 그리기
-                g.Clear(Color.LightGreen);
-                for (int x = 0; x < 1000; x += 100)
-                {
-                    for (int y = 0; y < 1000; y += 100)
-                    {
-                        g.DrawRectangle(Pens.Gray, x, y, 100, 100);
-                    }
-                }*/
-
                 // 1. 몬스터 그리기
                 foreach (var monster in monsters)
                 {
                     Image monsterImg = MonsterManager.CreateImageFromType(monster.GetType());
-                    g.DrawImage(monsterImg, monster.MonsterLocation.x, monster.MonsterLocation.y, 64, 64);
+                    Size monster_size = MonsterManager.GetMonsterSize(monster.GetType());
+                    g.DrawImage(monsterImg, monster.MonsterLocation.x, monster.MonsterLocation.y, monster_size.Width, monster_size.Height);
                 }
 
-
                 // 2. 장애물 그리기
-                foreach (var obstacle in obstacles)
+                if (obstacles != null)
                 {
-                    Image obstacleImg = ObstacleManager.CreateImageFromType(obstacle.GetType());
-                    g.DrawImage(obstacleImg, obstacle.Location.x, obstacle.Location.y, obstacle.GetSize().Width, obstacle.GetSize().Height);
+                    foreach (var obstacle in obstacles)
+                    {
+                        Image obstacleImg = ObstacleManager.CreateImageFromType(obstacle.GetType());
+                        g.DrawImage(obstacleImg, obstacle.Location.x, obstacle.Location.y, obstacle.GetSize().Width, obstacle.GetSize().Height);
+                    }
                 }
             }
 
             return bmp;
         }
+
     }
 }

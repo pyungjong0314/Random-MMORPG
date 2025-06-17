@@ -30,6 +30,10 @@ namespace Game.MonsterManagers
         {
             if (monsterType == typeof(Goblin)) return new Size(82, 73);
             if (monsterType == typeof(Slime)) return new Size(68, 73);
+            if (monsterType == typeof(Orc)) return new Size(123, 119);
+            if (monsterType == typeof(Scorpion)) return new Size(131, 119);
+            if (monsterType == typeof(Witch)) return new Size(140,140);
+
             return new Size(64, 64); // default size
         }
 
@@ -76,6 +80,8 @@ namespace Game.MonsterManagers
                 imagePath = Path.Combine(basePath, "..", "..", "Resources", "scorpion.png");
             else if (monsterType == typeof(Witch))
                 imagePath = Path.Combine(basePath, "..", "..", "Resources", "wizard.png");
+            else if (monsterType  == typeof(Orc))
+                imagePath = Path.Combine(basePath, "..", "..", "Resources", "orc.png");
 
             // 몬스터 이미지 반환하기
             return Image.FromFile(Path.GetFullPath(imagePath));
