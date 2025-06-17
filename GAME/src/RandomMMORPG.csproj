@@ -68,6 +68,12 @@
     <Compile Include="Battle\selectControl.Designer.cs">
       <DependentUpon>selectControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Battle\SuccessFailure.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Battle\SuccessFailure.Designer.cs">
+      <DependentUpon>SuccessFailure.cs</DependentUpon>
+    </Compile>
     <Compile Include="Character\Character.cs" />
     <Compile Include="Story\FontManager.cs" />
     <Compile Include="LoadingForm.cs">
@@ -132,6 +138,9 @@
       <DependentUpon>TestMapForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Weapon\Weapon.cs" />
+    <EmbeddedResource Include="Battle\SuccessFailure.resx">
+      <DependentUpon>SuccessFailure.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +242,13 @@
     <None Include="Resources\floor1.png" />
     <None Include="Resources\fountain2.png" />
     <None Include="Resources\Background12.png" />
+    <None Include="Resources\berry.png" />
+    <None Include="Resources\berry1.png" />
+    <None Include="Resources\Dice2.png" />
+    <None Include="Resources\Dice3.png" />
+    <None Include="Resources\Dice4.png" />
+    <None Include="Resources\Dice5.png" />
+    <None Include="Resources\Dice6.png" />
     <Content Include="Resources\goblin2.png" />
     <None Include="Resources\LoadingBackground.png" />
     <None Include="Resources\portal.png" />
@@ -249,6 +265,9 @@
     <None Include="Resources\Map1FormBackground.png" />
     <None Include="Resources\Map1FormBackground1.png" />
     <None Include="Resources\Map1FormBackground2.png" />
+    <None Include="Resources\pond2.png" />
+    <None Include="Resources\pond3.png" />
+    <None Include="Resources\pond4.png" />
     <Content Include="Resources\scorpion.png" />
     <None Include="Resources\shopkeeper.png" />
     <None Include="Resources\shop.png" />
