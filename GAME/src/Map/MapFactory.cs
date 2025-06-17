@@ -17,27 +17,41 @@ namespace Game.MapFactories
             map.Initialize(monsters);
 
             // 2. 몬스터까지 그려진 이미지 생성
-            Image mapImage = CreateMapImage(obstacles);
+            Image mapImage = CreateMapImage(monsters, obstacles);
 
             return (map, mapImage);
         }
 
         // 최초 1회만 호출되는 함수
-        public static Image CreateMapImage(List<Obstacle> obstacles)
+        public static Image CreateMapImage(List<Monster> monsters, List<Obstacle> obstacles)
         {
             Bitmap bmp = new Bitmap(1500, 1000);
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                // 장애물만 그리기
-                foreach (var obstacle in obstacles)
+
+                // 1. 몬스터 그리기
+                foreach (var monster in monsters)
                 {
-                    Image obstacleImg = ObstacleManager.CreateImageFromType(obstacle.GetType());
-                    g.DrawImage(obstacleImg, obstacle.Location.x, obstacle.Location.y, obstacle.GetSize().Width, obstacle.GetSize().Height);
+                    Image monsterImg = MonsterManager.CreateImageFromType(monster.GetType());
+                    Size monster_size = MonsterManager.GetMonsterSize(monster.GetType());
+                    g.DrawImage(monsterImg, monster.MonsterLocation.x, monster.MonsterLocation.y, monster_size.Width, monster_size.Height);
+                }
+
+                // 2. 장애물 그리기
+                if (obstacles != null)
+                {
+
+                    foreach (var obstacle in obstacles)
+                    {
+                        Image obstacleImg = ObstacleManager.CreateImageFromType(obstacle.GetType());
+                        g.DrawImage(obstacleImg, obstacle.Location.x, obstacle.Location.y, obstacle.GetSize().Width, obstacle.GetSize().Height);
+                    }
                 }
             }
 
             return bmp;
         }
+
     }
 }

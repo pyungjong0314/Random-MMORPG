@@ -77,6 +77,21 @@ namespace Game.BaseMonster
         public void SetAttack(int atk) => MonsterAttackAbility = atk;
         public void SetDefense(int def) => MonsterDefenseAbility = def;
 
+        
+        // 몬스터 Getter
+        public string GetName() => MonsterName;
+        public string GetId() => MonsterId;
+        public int GetLevel() => MonsterLevel;
+        public int GetCoinValue() => MonsterCoinValue;
+        public int GetMapId() => MonsterMapId;
+        public (int x, int y) GetLocation() => MonsterLocation;
+        public int GetHp() => MonsterHp;
+        public int GetAttack() => MonsterAttackAbility;
+        public int GetDefense() => MonsterDefenseAbility;
+
+
+
+
         public virtual void MonsterCreate() { }
         public virtual void MonsterSave() { }
         public virtual void MonsterLoad() { }

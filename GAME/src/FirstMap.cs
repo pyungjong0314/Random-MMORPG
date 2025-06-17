@@ -1,10 +1,8 @@
 ﻿using Game.BaseMonster;
-using Game.Maps;
 using Game.Monsters;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Game.MapFactories;
+
 using Game.Obstacles;
 
 using System.Windows.Forms;
@@ -12,11 +10,12 @@ using Game.Characters;
 using WindowsFormsApp1.MapControls;
 using Game.MonsterManagers;
 
+
 namespace WindowsFormsApp1
 {
     public partial class FirstMap : Form
     {
-        Map firstMap;
+        Game.Maps.Map firstMap;
         Image firstMapImg;
         private Character myCharacter;
         private MapController controller;
@@ -162,10 +161,26 @@ namespace WindowsFormsApp1
         private void FirstMap_MouseClick(object sender, MouseEventArgs e)
         {
             Monster clickedMonster = FindMonsterAtPoint(e.Location);
-            if (clickedMonster == null) return;
+            // 캐릭터 클릭
+            if (FindCharacterAtPoint(e.Location))
+                controller.ShowCharacterContextMenu(this, myCharacter, e.Location);
+                
 
-            lastClickedMonster = clickedMonster;
-            controller.ShowMonsterContextMenu(this, lastClickedMonster, e.Location);
+            // 몬스터 클릭
+            if (clickedMonster != null)
+            {
+                lastClickedMonster = clickedMonster;
+                controller.ShowMonsterContextMenu(this, lastClickedMonster, e.Location);
+            }
+        }
+
+        private bool FindCharacterAtPoint(Point point)
+        {
+            Rectangle characterRect = new Rectangle(myCharacter.GetCharacterLocation().x, myCharacter.GetCharacterLocation().y, 64, 64);
+            if(characterRect.Contains(point))
+                return true;
+            
+            return false;
         }
 
         private Monster FindMonsterAtPoint(Point point)

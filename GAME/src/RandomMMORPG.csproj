@@ -92,6 +92,12 @@
     <Compile Include="FirstMap.Designer.cs">
       <DependentUpon>FirstMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="Map\InfoController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Map\InfoController.Designer.cs">
+      <DependentUpon>InfoController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Map\MapFactory.cs" />
     <Compile Include="Obstacle\Obstacle.cs" />
     <Compile Include="Obstacle\ObstacleManager.cs" />
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FirstMap.resx">
       <DependentUpon>FirstMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Map\InfoController.resx">
+      <DependentUpon>InfoController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Story\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>

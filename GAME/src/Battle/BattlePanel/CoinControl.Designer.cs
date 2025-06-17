@@ -51,10 +51,9 @@
             this.CoinPanel.Controls.Add(this.DiceLabel);
             this.CoinPanel.Controls.Add(this.CoinBack);
             this.CoinPanel.Controls.Add(this.CoinLabel);
-            this.CoinPanel.Location = new System.Drawing.Point(107, 63);
-            this.CoinPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.CoinPanel.Location = new System.Drawing.Point(86, 52);
             this.CoinPanel.Name = "CoinPanel";
-            this.CoinPanel.Size = new System.Drawing.Size(412, 301);
+            this.CoinPanel.Size = new System.Drawing.Size(330, 251);
             this.CoinPanel.TabIndex = 31;
             this.CoinPanel.Visible = false;
             // 
@@ -64,10 +63,9 @@
             this.Label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Label1.ForeColor = System.Drawing.Color.White;
-            this.Label1.Location = new System.Drawing.Point(65, 34);
-            this.Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Label1.Location = new System.Drawing.Point(52, 28);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(227, 29);
+            this.Label1.Size = new System.Drawing.Size(182, 25);
             this.Label1.TabIndex = 21;
             this.Label1.Text = "동전 앞, 뒤를 선택하세요";
             // 
@@ -78,10 +76,9 @@
             this.ThrowButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ThrowButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ThrowButton.ForeColor = System.Drawing.Color.White;
-            this.ThrowButton.Location = new System.Drawing.Point(164, 228);
-            this.ThrowButton.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ThrowButton.Location = new System.Drawing.Point(131, 190);
             this.ThrowButton.Name = "ThrowButton";
-            this.ThrowButton.Size = new System.Drawing.Size(70, 29);
+            this.ThrowButton.Size = new System.Drawing.Size(57, 25);
             this.ThrowButton.TabIndex = 26;
             this.ThrowButton.Text = "던지기";
             this.ThrowButton.Click += new System.EventHandler(this.ThrowButton_Click);
@@ -91,10 +88,9 @@
             this.CoinFront.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.CoinFront.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CoinFront.Image = global::WindowsFormsApp1.Properties.Resources.CoinFront;
-            this.CoinFront.Location = new System.Drawing.Point(56, 70);
-            this.CoinFront.Margin = new System.Windows.Forms.Padding(4);
+            this.CoinFront.Location = new System.Drawing.Point(45, 58);
             this.CoinFront.Name = "CoinFront";
-            this.CoinFront.Size = new System.Drawing.Size(125, 113);
+            this.CoinFront.Size = new System.Drawing.Size(100, 94);
             this.CoinFront.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.CoinFront.TabIndex = 22;
             this.CoinFront.TabStop = false;
@@ -105,10 +101,9 @@
             this.DiceLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.DiceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.DiceLabel.ForeColor = System.Drawing.Color.White;
-            this.DiceLabel.Location = new System.Drawing.Point(274, 181);
-            this.DiceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DiceLabel.Location = new System.Drawing.Point(219, 151);
             this.DiceLabel.Name = "DiceLabel";
-            this.DiceLabel.Size = new System.Drawing.Size(28, 25);
+            this.DiceLabel.Size = new System.Drawing.Size(21, 20);
             this.DiceLabel.TabIndex = 25;
             this.DiceLabel.Text = "뒤";
             // 
@@ -117,10 +112,9 @@
             this.CoinBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.CoinBack.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CoinBack.Image = global::WindowsFormsApp1.Properties.Resources.CoinBack;
-            this.CoinBack.Location = new System.Drawing.Point(228, 73);
-            this.CoinBack.Margin = new System.Windows.Forms.Padding(4);
+            this.CoinBack.Location = new System.Drawing.Point(182, 61);
             this.CoinBack.Name = "CoinBack";
-            this.CoinBack.Size = new System.Drawing.Size(114, 104);
+            this.CoinBack.Size = new System.Drawing.Size(91, 87);
             this.CoinBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.CoinBack.TabIndex = 23;
             this.CoinBack.TabStop = false;
@@ -131,20 +125,20 @@
             this.CoinLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.CoinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.CoinLabel.ForeColor = System.Drawing.Color.White;
-            this.CoinLabel.Location = new System.Drawing.Point(104, 187);
-            this.CoinLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CoinLabel.Location = new System.Drawing.Point(83, 156);
             this.CoinLabel.Name = "CoinLabel";
-            this.CoinLabel.Size = new System.Drawing.Size(28, 25);
+            this.CoinLabel.Size = new System.Drawing.Size(21, 20);
             this.CoinLabel.TabIndex = 24;
             this.CoinLabel.Text = "앞";
             // 
             // CoinControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.CoinPanel);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CoinControl";
-            this.Size = new System.Drawing.Size(627, 426);
+            this.Size = new System.Drawing.Size(502, 355);
             this.CoinPanel.ResumeLayout(false);
             this.CoinPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CoinFront)).EndInit();
