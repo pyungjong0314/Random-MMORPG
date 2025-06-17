@@ -82,6 +82,12 @@
     <Compile Include="Battle\BattlePanel\VictoryDefeat.Designer.cs">
       <DependentUpon>VictoryDefeat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Battle\DieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Battle\DieForm.Designer.cs">
+      <DependentUpon>DieForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Character\Character.cs" />
     <Compile Include="Character\CharacterSave.cs" />
     <Compile Include="FirstMap.cs">
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Battle\BattlePanel\VictoryDefeat.resx">
       <DependentUpon>VictoryDefeat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Battle\DieForm.resx">
+      <DependentUpon>DieForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FirstMap.resx">
       <DependentUpon>FirstMap.cs</DependentUpon>
@@ -279,9 +288,12 @@
     <None Include="Resources\Dice4.png" />
     <None Include="Resources\Dice5.png" />
     <None Include="Resources\Dice6.png" />
+    <None Include="Resources\AttackPlayer.png" />
     <Content Include="Resources\goblin2.png" />
     <Content Include="Resources\scorpion.png" />
     <None Include="Resources\StartForm.png" />
+    <None Include="Resources\tombstone.png" />
+    <None Include="Resources\trophy.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

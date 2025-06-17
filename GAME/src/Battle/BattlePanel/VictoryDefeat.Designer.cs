@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.AttackPanel = new System.Windows.Forms.Panel();
+            this.VictoryDefeatPanel = new System.Windows.Forms.Panel();
             this.CloseButton = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.VictoryDefeatLabel = new System.Windows.Forms.Label();
             this.PlayerImage = new System.Windows.Forms.PictureBox();
-            this.AttackPanel.SuspendLayout();
+            this.VictoryDefeatPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // AttackPanel
+            // VictoryDefeatPanel
             // 
-            this.AttackPanel.BackColor = System.Drawing.Color.Transparent;
-            this.AttackPanel.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.GameBox;
-            this.AttackPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.AttackPanel.Controls.Add(this.CloseButton);
-            this.AttackPanel.Controls.Add(this.NameLabel);
-            this.AttackPanel.Controls.Add(this.VictoryDefeatLabel);
-            this.AttackPanel.Controls.Add(this.PlayerImage);
-            this.AttackPanel.Location = new System.Drawing.Point(97, 90);
-            this.AttackPanel.Name = "AttackPanel";
-            this.AttackPanel.Size = new System.Drawing.Size(330, 251);
-            this.AttackPanel.TabIndex = 34;
-            this.AttackPanel.Visible = false;
+            this.VictoryDefeatPanel.BackColor = System.Drawing.Color.Transparent;
+            this.VictoryDefeatPanel.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.GameBox;
+            this.VictoryDefeatPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.VictoryDefeatPanel.Controls.Add(this.CloseButton);
+            this.VictoryDefeatPanel.Controls.Add(this.NameLabel);
+            this.VictoryDefeatPanel.Controls.Add(this.VictoryDefeatLabel);
+            this.VictoryDefeatPanel.Controls.Add(this.PlayerImage);
+            this.VictoryDefeatPanel.Location = new System.Drawing.Point(97, 90);
+            this.VictoryDefeatPanel.Name = "VictoryDefeatPanel";
+            this.VictoryDefeatPanel.Size = new System.Drawing.Size(330, 251);
+            this.VictoryDefeatPanel.TabIndex = 34;
+            this.VictoryDefeatPanel.Visible = false;
             // 
             // CloseButton
             // 
@@ -64,6 +64,7 @@
             this.CloseButton.Size = new System.Drawing.Size(42, 25);
             this.CloseButton.TabIndex = 27;
             this.CloseButton.Text = "확인";
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // NameLabel
             // 
@@ -104,11 +105,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.AttackPanel);
+            this.Controls.Add(this.VictoryDefeatPanel);
             this.Name = "VictoryDefeat";
             this.Size = new System.Drawing.Size(525, 430);
-            this.AttackPanel.ResumeLayout(false);
-            this.AttackPanel.PerformLayout();
+            this.VictoryDefeatPanel.ResumeLayout(false);
+            this.VictoryDefeatPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerImage)).EndInit();
             this.ResumeLayout(false);
 
@@ -116,10 +117,10 @@
 
         #endregion
 
-        public System.Windows.Forms.Panel AttackPanel;
+        public System.Windows.Forms.Panel VictoryDefeatPanel;
         private System.Windows.Forms.Label CloseButton;
-        private System.Windows.Forms.Label NameLabel;
-        private System.Windows.Forms.Label VictoryDefeatLabel;
-        private System.Windows.Forms.PictureBox PlayerImage;
+        public System.Windows.Forms.Label NameLabel;
+        public System.Windows.Forms.Label VictoryDefeatLabel;
+        public System.Windows.Forms.PictureBox PlayerImage;
     }
 }

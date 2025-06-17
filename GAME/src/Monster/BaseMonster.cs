@@ -106,6 +106,7 @@ namespace Game.BaseMonster
             // 몬스터 hp가 0으로 감소될떄
             if (MonsterHp <= 0)
             {
+                IsDead = true;
                 character.AquireExp(this.MonsterExperience);  // 경험치 반환
                 return MonsterDie();  // 몬스터 사망
             }
