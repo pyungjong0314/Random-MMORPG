@@ -6,26 +6,20 @@ using Game.BaseMonster;
 
 namespace Game.Monsters
 {
-    // 일반 몬스터 리스트
-    // Goblin 
-
-
     public class Goblin : Monster
     {
-        private static int goblinCount = 0;
-
         public Goblin()
             : base(
                 name: "Goblin",
-                id: (100 + goblinCount++).ToString(),
-                level: 5,
-                coinValue: 100,
-                mapId: 10,
+                id: (100).ToString(),
+                level: 4,
+                coinValue: new Random().Next(10, 20),
+                mapId: 1,
                 location: (4, 2),
-                hp: 500,
-                attack:10,
+                hp: new Random().Next(55, 70),
+                attack: new Random().Next(15, 30),
                 defense: 30,
-                exp:15)
+                exp: new Random().Next(15, 30))
         { }
 
         public void Slash() { Console.WriteLine("고블린이 베기를 사용했다!"); }
@@ -40,14 +34,14 @@ namespace Game.Monsters
             : base(
                 name: "Slime",
                 id: (200 + slimeCount++).ToString(),
-                level: 5,
-                coinValue: 90,
+                level: 1,
+                coinValue: new Random().Next(5, 10),
                 mapId: 10,
                 location: (4, 2),
-                hp: 10,
-                attack: 10,
+                hp: new Random().Next(40, 60),
+                attack: new Random().Next(5, 10),
                 defense: 30,
-                exp: 100)
+                exp: new Random().Next(10, 20))
         { }
 
         public void Spit() { Console.WriteLine("슬라임이 침 뱉기를 사용했다!"); }
@@ -88,7 +82,7 @@ namespace Game.Monsters
                 coinValue: 150,
                 mapId: 10,
                 location: (4, 2),
-                hp: 100,
+                hp: 10,
                 attack: 55,
                 defense: 30,
                 exp:5)

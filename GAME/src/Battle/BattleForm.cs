@@ -332,9 +332,21 @@ namespace WindowsFormsApp1
                 }
             }
         }
+        public void AttackMonster(int damage)
+        {
+            targetMonster.MonsterGetAttack(damage, myCharacter);
+            setBattleStatus();
 
-
-
+            if (targetMonster.IsDead)
+            {
+                ShowExpLabel(targetMonster); // 경험치 라벨 표시
+                DropCoin(targetMonster); // ← 코인 드랍
+                //PlayerVictory();
+                this.Close();
+                upDateImage();
+                Respawn(targetMonster);
+            }
+        }
 
         public void DropCoin(Monster monster)
         {
@@ -349,71 +361,103 @@ namespace WindowsFormsApp1
             coinBox.Click += (s, e) =>
             {
                 int coinValue = monster.MonsterCoinValue;
-                myCharacter.AquireMoney(coinValue);  // 캐릭터에 코인 추가 (메서드는 Character 클래스에 구현 필요)
+                myCharacter.AquireMoney(coinValue);
 
-                // 화면에서 코인 제거
-                parentForm.Controls.Remove(coinBox);
-                coinBox.Dispose();
-
-                // 해당 코인 위치에 라벨 생성 +코인값 (노란색)
-                Label coinLabel = new Label();
-                coinLabel.Text = $"+{coinValue}";
-                coinLabel.Font = new Font("Arial", 14, FontStyle.Bold);
-                
-                coinLabel.Visible = true;
-                coinLabel.AutoSize = true;
-                coinLabel.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y - 20);
-
-                Controls.Add(coinLabel);
-                coinLabel.BringToFront();
-            };
-
-            // 폼에 추가
-            if (parentForm != null)
-            {
                 parentForm.Invoke(new Action(() =>
                 {
-                    parentForm.Controls.Add(coinBox);
-                    coinBox.BringToFront();
-                }));
-            }
+                    // 코인 제거
+                    parentForm.Controls.Remove(coinBox);
+                    coinBox.Dispose();
 
-            // 일정 시간 후 자동 제거 (안 주운 경우)
+                    // 라벨 생성
+                    Label coinLabel = new Label();
+                    coinLabel.Text = $"+{coinValue}";
+                    coinLabel.Font = new Font("Arial", 14, FontStyle.Bold);
+                    coinLabel.ForeColor = Color.Gold;
+                    coinLabel.BackColor = Color.Transparent;
+                    coinLabel.AutoSize = true;
+                    coinLabel.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y - 20);
+
+                    parentForm.Controls.Add(coinLabel);
+                    coinLabel.BringToFront();
+
+                    // 1초 후 라벨 제거
+                    Timer labelTimer = new Timer();
+                    labelTimer.Interval = 1000;
+                    labelTimer.Tick += (sender2, e2) =>
+                    {
+                        labelTimer.Stop();
+                        labelTimer.Dispose();
+
+                        parentForm.Invoke(new Action(() =>
+                        {
+                            parentForm.Controls.Remove(coinLabel);
+                            coinLabel.Dispose();
+                        }));
+                    };
+                    labelTimer.Start();
+                }));
+            };
+
+            // 폼에 코인 추가
+            parentForm?.Invoke(new Action(() =>
+            {
+                parentForm.Controls.Add(coinBox);
+                coinBox.BringToFront();
+            }));
+
+            // 자동 제거 타이머
             Timer removeTimer = new Timer();
-            removeTimer.Interval = 10000; // 10초 후 제거
+            removeTimer.Interval = 10000;
             removeTimer.Tick += (s, e) =>
             {
                 removeTimer.Stop();
                 removeTimer.Dispose();
 
-                if (parentForm != null && coinBox.Parent != null)
+                parentForm?.Invoke(new Action(() =>
                 {
-                    parentForm.Invoke(new Action(() =>
+                    if (coinBox?.IsDisposed == false && coinBox.Parent != null)
                     {
                         parentForm.Controls.Remove(coinBox);
                         coinBox.Dispose();
-                    }));
-                }
+                    }
+                }));
             };
             removeTimer.Start();
         }
 
-
-
-        public void AttackMonster(int damage)
+        public void ShowExpLabel(Monster monster)
         {
-            targetMonster.MonsterGetAttack(damage, myCharacter);
-            setBattleStatus();
+            int expValue = monster.MonsterExperience;
+            Label expLabel = new Label();
+            expLabel.Text = $"+{expValue} XP";
+            expLabel.Font = new Font("Arial", 14, FontStyle.Bold);
+            expLabel.ForeColor = Color.Blue;
+            expLabel.BackColor = Color.Transparent;
+            expLabel.AutoSize = true;
+            expLabel.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y - 40);
 
-            if (targetMonster.IsDead)
+            parentForm.Invoke(new Action(() =>
             {
-                DropCoin(targetMonster); // ← 코인 드랍
-                PlayerVictory();
-                upDateImage();
-                Respawn(targetMonster);
-            }
-        }
+                parentForm.Controls.Add(expLabel);
+                expLabel.BringToFront();
+            }));
 
+            Timer expTimer = new Timer();
+            expTimer.Interval = 3000;
+            expTimer.Tick += (s, e) =>
+            {
+                expTimer.Stop();
+                expTimer.Dispose();
+
+                parentForm.Invoke(new Action(() =>
+                {
+                    parentForm.Controls.Remove(expLabel);
+                    expLabel.Dispose();
+                }));
+            };
+            expTimer.Start();
+        }
 
         // 방어
         public int Deffense()
@@ -477,9 +521,8 @@ namespace WindowsFormsApp1
             }
             else if (typeof(Game.Characters.Character).IsAssignableFrom(type))
             {
-                
-
-                Player2Character.Image = Properties.Resources.goblin_attack;
+                // @ 캐릭터 이미지 수정할 것
+                Player2Character.Image = Properties.Resources.AttackPlayer2;
             }
 
             Timer timer = new Timer();

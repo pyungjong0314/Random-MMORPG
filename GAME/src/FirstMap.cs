@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Game.Characters;
 using WindowsFormsApp1.MapControls;
 using Game.MonsterManagers;
+using Game.BossMonsters;
 
 
 namespace WindowsFormsApp1
@@ -57,7 +58,8 @@ namespace WindowsFormsApp1
                 new Goblin { MonsterLocation = (931, 474) },
                 new Goblin { MonsterLocation = (708, 332) },
                 new Goblin { MonsterLocation = (828, 382) },
-                new Goblin { MonsterLocation = (933, 332) }
+                new Goblin { MonsterLocation = (933, 332) },
+                new Goblin { MonsterLocation = (933, 332) },
             };
 
             // 생성할 장애물 리스트
@@ -115,14 +117,8 @@ namespace WindowsFormsApp1
 
             // 다른 캐릭터 테스트
             Character c1 = CharacterFactory.CharacterCreate("적1");
-            c1.MoveLocation(200, 200);
-            Character c2 = CharacterFactory.CharacterCreate("적2");
-            c2.MoveLocation(400, 400);
-            Character c3 = CharacterFactory.CharacterCreate("적3");
-            c3.MoveLocation(600, 600);
+            c1.MoveLocation(800, 200);
             firstMap.opponentCharacters.Add(c1);
-            firstMap.opponentCharacters.Add(c2);
-            firstMap.opponentCharacters.Add(c3);
 
             this.DoubleBuffered = true;
 
