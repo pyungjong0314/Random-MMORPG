@@ -313,6 +313,16 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap noWeapon {
+            get {
+                object obj = ResourceManager.GetObject("noWeapon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap orc {
             get {
                 object obj = ResourceManager.GetObject("orc", resourceCulture);
@@ -386,6 +396,16 @@ namespace WindowsFormsApp1.Properties {
         internal static System.Drawing.Bitmap scorpion {
             get {
                 object obj = ResourceManager.GetObject("scorpion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap shield {
+            get {
+                object obj = ResourceManager.GetObject("shield", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -493,6 +513,16 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap sword {
+            get {
+                object obj = ResourceManager.GetObject("sword", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap TestMap {
             get {
                 object obj = ResourceManager.GetObject("TestMap", resourceCulture);
@@ -526,6 +556,26 @@ namespace WindowsFormsApp1.Properties {
         internal static System.Drawing.Bitmap trophy {
             get {
                 object obj = ResourceManager.GetObject("trophy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap WeaponUpgradeFail {
+            get {
+                object obj = ResourceManager.GetObject("WeaponUpgradeFail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap WeaponUpgradeSuccess {
+            get {
+                object obj = ResourceManager.GetObject("WeaponUpgradeSuccess", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

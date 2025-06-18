@@ -163,9 +163,21 @@
     <Compile Include="Story\StoryForm.Designer.cs">
       <DependentUpon>StoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Weapons\WeaponControl\WeaponControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Weapons\WeaponControl\WeaponControl.Designer.cs">
+      <DependentUpon>WeaponControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Weapons\WeaponControl\WeaponUpgradeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Weapons\WeaponControl\WeaponUpgradeControl.Designer.cs">
+      <DependentUpon>WeaponUpgradeControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Weapon\Weapon.cs" />
+    <Compile Include="Weapons\Weapon.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -223,6 +235,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Story\StoryForm.resx">
       <DependentUpon>StoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Weapons\WeaponControl\WeaponControl.resx">
+      <DependentUpon>WeaponControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Weapons\WeaponControl\WeaponUpgradeControl.resx">
+      <DependentUpon>WeaponUpgradeControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -292,10 +310,15 @@
     <None Include="Resources\AttackPlayer.png" />
     <Content Include="Resources\goblin2.png" />
     <None Include="Resources\Player1Character_left.png" />
+    <None Include="Resources\noWeapon.png" />
     <Content Include="Resources\scorpion.png" />
     <None Include="Resources\StartForm.png" />
     <None Include="Resources\tombstone.png" />
     <None Include="Resources\trophy.png" />
+    <None Include="Resources\sword.png" />
+    <None Include="Resources\shield.png" />
+    <None Include="Resources\WeaponUpgradeFail.png" />
+    <None Include="Resources\WeaponUpgradeSuccess.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

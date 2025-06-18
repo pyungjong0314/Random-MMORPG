@@ -328,11 +328,12 @@ namespace WindowsFormsApp1
             {
                 PlayerVictory();
                 upDateImage();
-            }
-            // 캐릭터 죽은 로직
-            if (parentForm is FirstMap firstMapForm)
-            {
-                firstMapForm.firstMap.opponentCharacters.Remove(targetCharacter);
+                
+                // 캐릭터 죽은 로직
+                if (parentForm is FirstMap firstMapForm)
+                {
+                    firstMapForm.firstMap.opponentCharacters.Remove(targetCharacter);
+                }
             }
         }
 
@@ -386,6 +387,7 @@ namespace WindowsFormsApp1
 
         public int DeffenseCharacter()
         {
+            // 상대 캐릭터로 이미지 변경
             myCharacter.Defense(targetCharacter.Attack());
 
             return targetCharacter.GetCharacterAttack();
@@ -394,6 +396,7 @@ namespace WindowsFormsApp1
 
         public int DeffenseMonster()
         {
+            // 여기서 이미지 변경해
             myCharacter.Defense(targetMonster.MonsterAttackAbility);
 
             return targetMonster.MonsterAttackAbility;

@@ -1,4 +1,5 @@
 ﻿using Game.Characters;
+using Game.Weapons;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.Characters;
+using WindowsFormsApp1.WeaponControls;
+using WindowsFormsApp1.Weapons.WeaponControl;
 
 namespace WindowsFormsApp1
 {

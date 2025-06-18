@@ -27,12 +27,13 @@ namespace WindowsFormsApp1.MapControls
         private Character lastClickedOpponent;
         private Image opponentImage = Properties.Resources.Player2Character;
         private ContextMenuStrip OpponentContextMenu;
+        private ToolStripMenuItem opponentAttackMenuItem;
 
 
         // contextMenu(몬스터)
         private Monster lastClickedMonster;
         private readonly ContextMenuStrip monsterContextMenu;
-        private ToolStripMenuItem attackMenuItem;
+        private ToolStripMenuItem monsterAttackMenuItem;
 
         
 
@@ -45,6 +46,7 @@ namespace WindowsFormsApp1.MapControls
             monsterContextMenu = new ContextMenuStrip();
             CharacterContextMenu = new ContextMenuStrip();
             OpponentContextMenu = new ContextMenuStrip();
+
             InitializeMonsterContextMenu();
             InitializeCharacterContextMenu();
             InitializeOpponentContextMenu();
@@ -136,20 +138,20 @@ namespace WindowsFormsApp1.MapControls
         private void InitializeOpponentContextMenu()
         {
             OpponentContextMenu.Items.Add("정보 확인하기", null, OnInfoClickedOpponent);
-            attackMenuItem = new ToolStripMenuItem("공격하기", null, OnAttackOpponentClicked);
-            OpponentContextMenu.Items.Add(attackMenuItem);
+            opponentAttackMenuItem = new ToolStripMenuItem("공격하기", null, OnAttackOpponentClicked);
+            OpponentContextMenu.Items.Add(opponentAttackMenuItem);
         }
 
         public void ShowOpponentContextMenu(Control control, Character character, Point location)
         {
             lastClickedOpponent = character;
             OpponentContextMenu.Show(control, location);
+            OpponentContextMenu.Opening += OpponentContextMenu_Opening;
         }
 
         // 캐릭터 정보 확인
         private void OnInfoClickedOpponent(object sender, EventArgs e)
         {
-
             form.Invalidate();
 
             var infoController = new InfoController(form);     // InfoController 인스턴스 생성
@@ -169,13 +171,25 @@ namespace WindowsFormsApp1.MapControls
             battleForm.Show();
         }
 
+        // 컨텍스트 메뉴 열릴 때 거리 기반 공격 메뉴 활성화
+        private void OpponentContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            Point characterPosition = new Point(character.GetCharacterLocation().x, character.GetCharacterLocation().y);
+            Point opponentPosition = new Point(lastClickedOpponent.GetCharacterLocation().x, lastClickedOpponent.GetCharacterLocation().y);
+
+            double distance = Math.Sqrt(Math.Pow(opponentPosition.X - characterPosition.X, 2) +
+                                        Math.Pow(opponentPosition.Y - characterPosition.Y, 2));
+
+            opponentAttackMenuItem.Enabled = distance <= 60;
+        }
+
         // 몬스터 컨텍스트 메뉴 초기화
         private void InitializeMonsterContextMenu()
         {
             monsterContextMenu.Items.Add("정보 확인하기", null, OnInfoClickedMonster);
 
-            attackMenuItem = new ToolStripMenuItem("공격하기", null, OnAttackClicked);
-            monsterContextMenu.Items.Add(attackMenuItem);
+            monsterAttackMenuItem = new ToolStripMenuItem("공격하기", null, OnAttackClicked);
+            monsterContextMenu.Items.Add(monsterAttackMenuItem);
 
             monsterContextMenu.Opening += MonsterContextMenu_Opening;
         }
@@ -222,7 +236,7 @@ namespace WindowsFormsApp1.MapControls
             double distance = Math.Sqrt(Math.Pow(monsterPosition.X - characterPosition.X, 2) +
                                         Math.Pow(monsterPosition.Y - characterPosition.Y, 2));
 
-            attackMenuItem.Enabled = distance <= 60;
+            monsterContextMenu.Enabled = distance <= 60;
         }
     }
 }

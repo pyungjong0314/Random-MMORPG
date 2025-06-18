@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Game.Characters
+namespace Game.Weapons
 {
     public class Weapon
     {
@@ -46,6 +46,9 @@ namespace Game.Characters
 
         public Weapon UpgradeSuccess()
         {
+            if (weaponLevel == 0)
+                return this;
+
             weaponLevel++;
             weaponAttack *= 2;
             weaponDefense *= 2;

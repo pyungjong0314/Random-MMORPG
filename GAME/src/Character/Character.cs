@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Weapons;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Game.Characters
         public int characterAttack;
         public Weapon characterSword;
         public Weapon characterShiled;
-        public List<Weapon> characterWeapons;
+        public List<Weapon> characterWeapons = new List<Weapon>();
 
         public Character() { }
 
