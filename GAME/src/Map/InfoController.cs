@@ -39,7 +39,7 @@ namespace WindowsFormsApp1.Map
             lbName.Text = myCharacter.GetCharacterName();
             lbLevel.Text = "Lv. " + myCharacter.GetCharacterLevel().ToString();
             lbHealth.Text = "HP: " + myCharacter.GetCharacterHp().ToString();
-            lbAttack.Text = "ATK: " + myCharacter.GetCharacterAttack().ToString();
+            lbAttack.Text = "ATK: " + myCharacter.Attack().ToString();
             lbCoin.Text = "Gold: " + myCharacter.GetCharacterMoney().ToString();
         }
 
@@ -60,7 +60,7 @@ namespace WindowsFormsApp1.Map
             lbName.Text = opponent.GetCharacterName();
             lbLevel.Text = "Lv. " + opponent.GetCharacterLevel().ToString();
             lbHealth.Text = "HP: " + opponent.GetCharacterHp().ToString();
-            lbAttack.Text = "ATK: " + opponent.GetCharacterAttack().ToString();
+            lbAttack.Text = "ATK: " + opponent.Attack().ToString();
             lbCoin.Text = "Gold: " + opponent.GetCharacterMoney().ToString();
         }
 

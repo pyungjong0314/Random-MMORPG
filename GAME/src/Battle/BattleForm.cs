@@ -34,7 +34,7 @@ namespace WindowsFormsApp1
             Player1Name.Text = myCharacter.GetCharacterName();
             Player1Level.Text = myCharacter.GetCharacterLevel().ToString();
             Player1Hp.Text = myCharacter.GetCharacterHp().ToString();
-            Player1Attack.Text = myCharacter.GetCharacterAttack().ToString();
+            Player1Attack.Text = myCharacter.Attack().ToString();
 
 
             // 상대 정보 업데이트
@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
                 Player2Name.Text = targetCharacter.GetCharacterName();
                 Player2Level.Text = targetCharacter.GetCharacterLevel().ToString();
                 Player2Hp.Text = targetCharacter.GetCharacterHp().ToString();
-                Player2Attack.Text = targetCharacter.GetCharacterAttack().ToString();
+                Player2Attack.Text = targetCharacter.Attack().ToString();
             }
 
             if (targetMonster != null)
@@ -147,7 +147,7 @@ namespace WindowsFormsApp1
         public void CoinAttackButtonSuccess(Panel childPanel, string coin)
         {
             this.Controls.Remove(childPanel);
-            int damage = myCharacter.GetCharacterAttack() * 2;
+            int damage = myCharacter.Attack() * 2;
 
             SuccessFailure successFailure = new SuccessFailure(this, damage);
             successFailure.SuccessFailurePanel.Visible = true;
@@ -171,7 +171,7 @@ namespace WindowsFormsApp1
         public void CoinAttackButtonFail(Panel childPanel, string coin)
         {
             this.Controls.Remove(childPanel);
-            int damage = myCharacter.GetCharacterAttack() / 2;
+            int damage = myCharacter.Attack() / 2;
 
             SuccessFailure successFailure = new SuccessFailure(this, damage);
             successFailure.SuccessFailurePanel.Visible = true;
@@ -195,7 +195,7 @@ namespace WindowsFormsApp1
         public void DiceAttackButtonSuccess(Panel childPanel, int dice)
         {
             this.Controls.Remove(childPanel);
-            int damage = myCharacter.GetCharacterAttack() * 6;
+            int damage = myCharacter.Attack() * 6;
 
             SuccessFailure successFailure = new SuccessFailure(this, damage);
             successFailure.SuccessFailurePanel.Visible = true;
@@ -233,7 +233,7 @@ namespace WindowsFormsApp1
         {
             this.Controls.Remove(childPanel);
 
-            int damage = myCharacter.GetCharacterAttack() / 6;
+            int damage = myCharacter.Attack() / 6;
 
             SuccessFailure successFailure = new SuccessFailure(this, damage);
             successFailure.SuccessFailurePanel.Visible = true;

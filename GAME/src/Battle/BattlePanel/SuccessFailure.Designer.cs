@@ -44,9 +44,10 @@
             this.SuccessFailurePanel.Controls.Add(this.SuccessFailureLabel);
             this.SuccessFailurePanel.Controls.Add(this.CloseButton);
             this.SuccessFailurePanel.Controls.Add(this.ResultImage);
-            this.SuccessFailurePanel.Location = new System.Drawing.Point(86, 74);
+            this.SuccessFailurePanel.Location = new System.Drawing.Point(108, 89);
+            this.SuccessFailurePanel.Margin = new System.Windows.Forms.Padding(4);
             this.SuccessFailurePanel.Name = "SuccessFailurePanel";
-            this.SuccessFailurePanel.Size = new System.Drawing.Size(330, 251);
+            this.SuccessFailurePanel.Size = new System.Drawing.Size(412, 301);
             this.SuccessFailurePanel.TabIndex = 33;
             this.SuccessFailurePanel.Visible = false;
             // 
@@ -56,9 +57,10 @@
             this.SuccessFailureLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.SuccessFailureLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.SuccessFailureLabel.ForeColor = System.Drawing.Color.White;
-            this.SuccessFailureLabel.Location = new System.Drawing.Point(141, 32);
+            this.SuccessFailureLabel.Location = new System.Drawing.Point(176, 38);
+            this.SuccessFailureLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SuccessFailureLabel.Name = "SuccessFailureLabel";
-            this.SuccessFailureLabel.Size = new System.Drawing.Size(42, 25);
+            this.SuccessFailureLabel.Size = new System.Drawing.Size(51, 29);
             this.SuccessFailureLabel.TabIndex = 21;
             this.SuccessFailureLabel.Text = "성공";
             // 
@@ -69,9 +71,10 @@
             this.CloseButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.CloseButton.ForeColor = System.Drawing.Color.White;
-            this.CloseButton.Location = new System.Drawing.Point(141, 185);
+            this.CloseButton.Location = new System.Drawing.Point(176, 222);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(42, 25);
+            this.CloseButton.Size = new System.Drawing.Size(51, 29);
             this.CloseButton.TabIndex = 26;
             this.CloseButton.Text = "확인";
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
@@ -80,20 +83,22 @@
             // 
             this.ResultImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.ResultImage.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ResultImage.Location = new System.Drawing.Point(119, 73);
+            this.ResultImage.Location = new System.Drawing.Point(149, 88);
+            this.ResultImage.Margin = new System.Windows.Forms.Padding(4);
             this.ResultImage.Name = "ResultImage";
-            this.ResultImage.Size = new System.Drawing.Size(91, 87);
+            this.ResultImage.Size = new System.Drawing.Size(114, 104);
             this.ResultImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ResultImage.TabIndex = 23;
             this.ResultImage.TabStop = false;
             // 
             // SuccessFailure
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.SuccessFailurePanel);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SuccessFailure";
-            this.Size = new System.Drawing.Size(503, 398);
+            this.Size = new System.Drawing.Size(629, 478);
             this.SuccessFailurePanel.ResumeLayout(false);
             this.SuccessFailurePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResultImage)).EndInit();

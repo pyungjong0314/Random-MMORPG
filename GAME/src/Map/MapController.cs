@@ -249,7 +249,7 @@ namespace WindowsFormsApp1.MapControls
             double distance = Math.Sqrt(Math.Pow(monsterPosition.X - characterPosition.X, 2) +
                                         Math.Pow(monsterPosition.Y - characterPosition.Y, 2));
 
-            monsterContextMenu.Enabled = distance <= 60;
+            monsterAttackMenuItem.Enabled = distance <= 60;
         }
     }
 }

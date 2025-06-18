@@ -18,12 +18,14 @@ namespace Game.Weapons
         protected int weaponLevel;
         protected int weaponAttack;
         protected int weaponDefense;
+        protected int weaponValue;
 
         public void setWeaponId(int id) {  weaponId = id; }
         public void setWeaponName(string name) { weaponName = name; }
         public void setWeaponLevel(int level) { weaponLevel = level; }
         public void setWeaponAttack(int attack) { weaponAttack = attack; }
         public void setWeaponDefense(int defense) { weaponDefense = defense; }
+        public void setWeaponValue(int value) { weaponValue = value; }
 
         public int GetWeaponId() { return weaponId; }
         public string GetWeaponName() { return weaponName; }
@@ -101,7 +103,7 @@ namespace Game.Weapons
             InitWeaponBase(sword);
             
             sword.setWeaponName("용사의 검");
-            sword.setWeaponAttack(random.Next(1, 10));
+            sword.setWeaponAttack(random.Next(1, 30));
             sword.setWeaponDefense(0);
 
             return sword;
@@ -115,7 +117,7 @@ namespace Game.Weapons
 
             shield.setWeaponName("방패");
             shield.setWeaponAttack(0);
-            shield.setWeaponDefense(random.Next(1, 10));
+            shield.setWeaponDefense(random.Next(1, 100));
 
             return shield;
         }

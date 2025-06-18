@@ -68,6 +68,7 @@
             this.EquipedSword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.EquipedSword.TabIndex = 31;
             this.EquipedSword.TabStop = false;
+            this.EquipedSword.Click += new System.EventHandler(this.EquipedSword_Click);
             // 
             // EquipedShield
             // 
@@ -78,6 +79,7 @@
             this.EquipedShield.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.EquipedShield.TabIndex = 30;
             this.EquipedShield.TabStop = false;
+            this.EquipedShield.Click += new System.EventHandler(this.EquipedShield_Click);
             // 
             // pictureBox1
             // 

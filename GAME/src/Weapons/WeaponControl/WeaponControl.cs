@@ -56,14 +56,14 @@ namespace WindowsFormsApp1.WeaponControls
                         // 선택 불가능 표시
                         weaponPictureBox[i, j].Image = Properties.Resources.noWeapon;
                         weaponPictureBox[i, j].Tag = null;
-                        weaponPictureBox[i, j].BackColor = Color.Transparent; // 연한 노란색 배경
+                        weaponPictureBox[i, j].BackColor = Color.White;
                         continue;
                     }
                     else
                     {
                         weaponPictureBox[i, j].Image = GetImageForWeapon(weaponList[index]);
                         weaponPictureBox[i, j].Tag = weaponList[index]; // 선택 가능한 무기
-                        weaponPictureBox[i, j].BackColor = Color.Transparent; // 기본 배경
+                        weaponPictureBox[i, j].BackColor = Color.White; // 기본 배경
                     }
 
                     index++;
@@ -81,10 +81,10 @@ namespace WindowsFormsApp1.WeaponControls
 
             // 이전 선택 해제
             if (selectedPictureBox != null)
-                selectedPictureBox.BackColor = Color.Transparent;
+                selectedPictureBox.BackColor = Color.White;
 
             // 현재 선택 적용
-            clicked.BackColor = Color.LightYellow;
+            clicked.BackColor = Color.FromArgb(255, 255, 128);
             selectedPictureBox = clicked;
         }
 
@@ -97,8 +97,6 @@ namespace WindowsFormsApp1.WeaponControls
             // 공격 레벨에 따른 검 반환
             if (name.Contains("용사의 검"))
             {
-                weapon.setWeaponAttack(level * 100 + 10);  // 10, 110, 210, ..., 510
-
                 if (level == 0) return Properties.Resources.sword_0;
                 else if (level == 1) return Properties.Resources.sword_1;
                 else if (level == 2) return Properties.Resources.sword_2;
@@ -110,8 +108,6 @@ namespace WindowsFormsApp1.WeaponControls
             // 방패 레벨에 방패 반환
             else if (name.Contains("방패"))
             {
-                weapon.setWeaponDefense(level * 100 + 10);  // 10, 110, 210, ..., 510
-
                 if (level == 0) return Properties.Resources.shield_0;
                 else if (level == 1) return Properties.Resources.shield_1;
                 else if (level == 2) return Properties.Resources.shield_2;
