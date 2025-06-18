@@ -336,6 +336,7 @@ namespace WindowsFormsApp1
 
 
 
+
         public void DropCoin(Monster monster)
         {
             PictureBox coinBox = new PictureBox();
@@ -349,51 +350,67 @@ namespace WindowsFormsApp1
             coinBox.Click += (s, e) =>
             {
                 int coinValue = monster.MonsterCoinValue;
-                myCharacter.AquireMoney(coinValue);  // 캐릭터에 코인 추가 (메서드는 Character 클래스에 구현 필요)
+                myCharacter.AquireMoney(coinValue);
 
-                // 화면에서 코인 제거
-                parentForm.Controls.Remove(coinBox);
-                coinBox.Dispose();
-
-                // 해당 코인 위치에 라벨 생성 +코인값 (노란색)
-                Label coinLabel = new Label();
-                coinLabel.Text = $"+{coinValue}";
-                coinLabel.Font = new Font("Arial", 14, FontStyle.Bold);
-                
-                coinLabel.Visible = true;
-                coinLabel.AutoSize = true;
-                coinLabel.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y - 20);
-
-                Controls.Add(coinLabel);
-                coinLabel.BringToFront();
-            };
-
-            // 폼에 추가
-            if (parentForm != null)
-            {
                 parentForm.Invoke(new Action(() =>
                 {
-                    parentForm.Controls.Add(coinBox);
-                    coinBox.BringToFront();
-                }));
-            }
+                    // 코인 제거
+                    parentForm.Controls.Remove(coinBox);
+                    coinBox.Dispose();
 
-            // 일정 시간 후 자동 제거 (안 주운 경우)
+                    // 라벨 생성
+                    Label coinLabel = new Label();
+                    coinLabel.Text = $"+{coinValue}";
+                    coinLabel.Font = new Font("Arial", 14, FontStyle.Bold);
+                    coinLabel.ForeColor = Color.Gold;
+                    coinLabel.BackColor = Color.Transparent;
+                    coinLabel.AutoSize = true;
+                    coinLabel.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y - 20);
+
+                    parentForm.Controls.Add(coinLabel);
+                    coinLabel.BringToFront();
+
+                    // 1초 후 라벨 제거
+                    Timer labelTimer = new Timer();
+                    labelTimer.Interval = 1000;
+                    labelTimer.Tick += (sender2, e2) =>
+                    {
+                        labelTimer.Stop();
+                        labelTimer.Dispose();
+
+                        parentForm.Invoke(new Action(() =>
+                        {
+                            parentForm.Controls.Remove(coinLabel);
+                            coinLabel.Dispose();
+                        }));
+                    };
+                    labelTimer.Start();
+                }));
+            };
+
+            // 폼에 코인 추가
+            parentForm?.Invoke(new Action(() =>
+            {
+                parentForm.Controls.Add(coinBox);
+                coinBox.BringToFront();
+            }));
+
+            // 자동 제거 타이머
             Timer removeTimer = new Timer();
-            removeTimer.Interval = 10000; // 10초 후 제거
+            removeTimer.Interval = 10000;
             removeTimer.Tick += (s, e) =>
             {
                 removeTimer.Stop();
                 removeTimer.Dispose();
 
-                if (parentForm != null && coinBox.Parent != null)
+                parentForm?.Invoke(new Action(() =>
                 {
-                    parentForm.Invoke(new Action(() =>
+                    if (coinBox.Parent != null)
                     {
                         parentForm.Controls.Remove(coinBox);
                         coinBox.Dispose();
-                    }));
-                }
+                    }
+                }));
             };
             removeTimer.Start();
         }

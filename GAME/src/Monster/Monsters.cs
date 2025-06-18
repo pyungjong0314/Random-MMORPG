@@ -22,7 +22,7 @@ namespace Game.Monsters
                 coinValue: 100,
                 mapId: 10,
                 location: (4, 2),
-                hp: 500,
+                hp: 10,
                 attack:10,
                 defense: 30,
                 exp:15)
@@ -88,7 +88,7 @@ namespace Game.Monsters
                 coinValue: 150,
                 mapId: 10,
                 location: (4, 2),
-                hp: 100,
+                hp: 10,
                 attack: 55,
                 defense: 30,
                 exp:5)
