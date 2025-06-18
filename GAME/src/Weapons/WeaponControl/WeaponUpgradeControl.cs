@@ -2,12 +2,7 @@
 using Game.Weapons;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1.Weapons.WeaponControl
@@ -97,8 +92,6 @@ namespace WindowsFormsApp1.Weapons.WeaponControl
             // 공격 레벨에 따른 검 반환
             if (name.Contains("용사의 검"))
             {
-                weapon.setWeaponAttack(level * 100 + 10);  // 10, 110, 210, ..., 510
-
                 if (level == 0) return Properties.Resources.sword_0;
                 else if (level == 1) return Properties.Resources.sword_1;
                 else if (level == 2) return Properties.Resources.sword_2;
@@ -110,7 +103,6 @@ namespace WindowsFormsApp1.Weapons.WeaponControl
             // 방패 레벨에 방패 반환
             else if (name.Contains("방패"))
             {
-                weapon.setWeaponDefense(level * 100 + 10);  // 10, 110, 210, ..., 510
 
                 if (level == 0) return Properties.Resources.shield_0;
                 else if (level == 1) return Properties.Resources.shield_1;

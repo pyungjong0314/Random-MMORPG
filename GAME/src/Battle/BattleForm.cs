@@ -277,6 +277,7 @@ namespace WindowsFormsApp1
 
         public void Respawn(Monster monster)
         {
+            
             Timer timer = new Timer();
             timer.Interval = 10000; // 10초
 
@@ -290,7 +291,7 @@ namespace WindowsFormsApp1
 
                 // 몬스터 버퍼 다시 그리기
                 if (parentForm is FirstMap firstMapForm)
-                {
+                { 
                     firstMapForm.UpdateMonsterBuffer();
                     firstMapForm.Invalidate();
                 }
@@ -332,6 +333,73 @@ namespace WindowsFormsApp1
             }
         }
 
+
+
+
+        public void DropCoin(Monster monster)
+        {
+            PictureBox coinBox = new PictureBox();
+            coinBox.Image = Properties.Resources.CoinFront;
+            coinBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            coinBox.Size = new Size(32, 32);
+            coinBox.BackColor = Color.Transparent;
+            coinBox.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y);
+
+            // 클릭 이벤트 추가: 코인을 주움
+            coinBox.Click += (s, e) =>
+            {
+                int coinValue = monster.MonsterCoinValue;
+                myCharacter.AquireMoney(coinValue);  // 캐릭터에 코인 추가 (메서드는 Character 클래스에 구현 필요)
+
+                // 화면에서 코인 제거
+                parentForm.Controls.Remove(coinBox);
+                coinBox.Dispose();
+
+                // 해당 코인 위치에 라벨 생성 +코인값 (노란색)
+                Label coinLabel = new Label();
+                coinLabel.Text = $"+{coinValue}";
+                coinLabel.Font = new Font("Arial", 14, FontStyle.Bold);
+                
+                coinLabel.Visible = true;
+                coinLabel.AutoSize = true;
+                coinLabel.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y - 20);
+
+                Controls.Add(coinLabel);
+                coinLabel.BringToFront();
+            };
+
+            // 폼에 추가
+            if (parentForm != null)
+            {
+                parentForm.Invoke(new Action(() =>
+                {
+                    parentForm.Controls.Add(coinBox);
+                    coinBox.BringToFront();
+                }));
+            }
+
+            // 일정 시간 후 자동 제거 (안 주운 경우)
+            Timer removeTimer = new Timer();
+            removeTimer.Interval = 10000; // 10초 후 제거
+            removeTimer.Tick += (s, e) =>
+            {
+                removeTimer.Stop();
+                removeTimer.Dispose();
+
+                if (parentForm != null && coinBox.Parent != null)
+                {
+                    parentForm.Invoke(new Action(() =>
+                    {
+                        parentForm.Controls.Remove(coinBox);
+                        coinBox.Dispose();
+                    }));
+                }
+            };
+            removeTimer.Start();
+        }
+
+
+
         public void AttackMonster(int damage)
         {
             targetMonster.MonsterGetAttack(damage, myCharacter);
@@ -339,6 +407,7 @@ namespace WindowsFormsApp1
 
             if (targetMonster.IsDead)
             {
+                DropCoin(targetMonster); // ← 코인 드랍
                 PlayerVictory();
                 upDateImage();
                 Respawn(targetMonster);
