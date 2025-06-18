@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.CharacterWeaponPanel = new System.Windows.Forms.Panel();
+            this.EquipedSword = new System.Windows.Forms.PictureBox();
+            this.EquipedShield = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.CloseLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.equipWeapon = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.CharacterWeaponPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EquipedSword)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EquipedShield)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // CharacterWeaponPanel
@@ -46,8 +46,8 @@
             this.CharacterWeaponPanel.BackColor = System.Drawing.Color.Transparent;
             this.CharacterWeaponPanel.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.GameBox;
             this.CharacterWeaponPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.CharacterWeaponPanel.Controls.Add(this.pictureBox3);
-            this.CharacterWeaponPanel.Controls.Add(this.pictureBox2);
+            this.CharacterWeaponPanel.Controls.Add(this.EquipedSword);
+            this.CharacterWeaponPanel.Controls.Add(this.EquipedShield);
             this.CharacterWeaponPanel.Controls.Add(this.pictureBox1);
             this.CharacterWeaponPanel.Controls.Add(this.CloseLabel);
             this.CharacterWeaponPanel.Controls.Add(this.label1);
@@ -59,9 +59,30 @@
             this.CharacterWeaponPanel.TabIndex = 34;
             this.CharacterWeaponPanel.Visible = false;
             // 
+            // EquipedSword
+            // 
+            this.EquipedSword.BackColor = System.Drawing.Color.White;
+            this.EquipedSword.Location = new System.Drawing.Point(111, 129);
+            this.EquipedSword.Name = "EquipedSword";
+            this.EquipedSword.Size = new System.Drawing.Size(80, 80);
+            this.EquipedSword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.EquipedSword.TabIndex = 31;
+            this.EquipedSword.TabStop = false;
+            // 
+            // EquipedShield
+            // 
+            this.EquipedShield.BackColor = System.Drawing.Color.White;
+            this.EquipedShield.Location = new System.Drawing.Point(389, 129);
+            this.EquipedShield.Name = "EquipedShield";
+            this.EquipedShield.Size = new System.Drawing.Size(80, 80);
+            this.EquipedShield.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.EquipedShield.TabIndex = 30;
+            this.EquipedShield.TabStop = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = global::WindowsFormsApp1.Properties.Resources.Player1Character_left;
             this.pictureBox1.Location = new System.Drawing.Point(218, 100);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(141, 138);
@@ -103,26 +124,6 @@
             this.equipWeapon.UseVisualStyleBackColor = false;
             this.equipWeapon.Click += new System.EventHandler(this.equipWeapon_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.White;
-            this.pictureBox2.Location = new System.Drawing.Point(397, 120);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(83, 89);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 30;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.White;
-            this.pictureBox3.Location = new System.Drawing.Point(97, 120);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(83, 89);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 31;
-            this.pictureBox3.TabStop = false;
-            // 
             // CharacterWeapon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -132,9 +133,9 @@
             this.Size = new System.Drawing.Size(1105, 700);
             this.CharacterWeaponPanel.ResumeLayout(false);
             this.CharacterWeaponPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EquipedSword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EquipedShield)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -146,7 +147,7 @@
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button equipWeapon;
         public System.Windows.Forms.PictureBox pictureBox1;
-        public System.Windows.Forms.PictureBox pictureBox3;
-        public System.Windows.Forms.PictureBox pictureBox2;
+        public System.Windows.Forms.PictureBox EquipedSword;
+        public System.Windows.Forms.PictureBox EquipedShield;
     }
 }

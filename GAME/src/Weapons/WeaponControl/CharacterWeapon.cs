@@ -43,6 +43,7 @@ namespace WindowsFormsApp1.Weapons.WeaponControl
             }
 
             setPictureBox(myCharacter.characterWeapons);
+            setEquipedWeapon();
         }
 
         public void setPictureBox(List<Weapon> weaponList)
@@ -87,6 +88,18 @@ namespace WindowsFormsApp1.Weapons.WeaponControl
             selectedPictureBox = clicked;
         }
 
+        public void setEquipedWeapon()
+        {
+            if(myCharacter.characterSword != null)
+            {
+                EquipedSword.Image = GetImageForWeapon(myCharacter.characterSword);
+            }
+            if (myCharacter.characterShiled != null)
+            {
+                EquipedShield.Image = GetImageForWeapon(myCharacter.characterShiled);
+            }
+        }
+
         private Image GetImageForWeapon(Weapon weapon)
         {
             string name = weapon.GetWeaponName();
@@ -106,7 +119,8 @@ namespace WindowsFormsApp1.Weapons.WeaponControl
 
         private void equipWeapon_Click(object sender, EventArgs e)
         {
-
+            myCharacter.EquipWeapon((Weapon)selectedPictureBox.Tag);
+            setEquipedWeapon();
         }
     }
 }

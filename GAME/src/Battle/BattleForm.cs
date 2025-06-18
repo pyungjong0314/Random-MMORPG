@@ -350,6 +350,8 @@ namespace WindowsFormsApp1
         public int Deffense()
         {
             int damage = 0;
+            // 여기에 소켓 통신
+
             if(targetCharacter != null)
             {
                 damage = DefenseCharacter();
