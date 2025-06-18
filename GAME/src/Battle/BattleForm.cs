@@ -1,13 +1,8 @@
 ﻿using Game.BaseMonster;
 using Game.Characters;
+using Game.Monsters;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.Battle;
 using WindowsFormsApp1.Battle.BattlePanel;
@@ -356,12 +351,12 @@ namespace WindowsFormsApp1
             int damage = 0;
             if(targetCharacter != null)
             {
-                damage = DeffenseCharacter();
+                damage = DefenseCharacter();
             }
 
             if (targetMonster != null)
             {
-                damage = DeffenseMonster();
+                damage = DefenseMonster();
             }
 
             // 여기가 캐릭터 뒤짐
@@ -384,16 +379,51 @@ namespace WindowsFormsApp1
             return damage;
         }
 
-        public int DeffenseCharacter()
+        public int DefenseCharacter()
         {
             myCharacter.Defense(targetCharacter.Attack());
+            GetMotionImage(targetMonster);
 
             return targetCharacter.GetCharacterAttack();
         }
 
 
-        public int DeffenseMonster()
+        public void GetMotionImage(object target)
         {
+            Type type = target.GetType();
+
+            if (typeof(Game.BaseMonster.Monster).IsAssignableFrom(type))
+            {
+                Player2Character.BackColor = Color.Transparent;
+
+                if (type == typeof(Goblin)) Player2Character.Image = Properties.Resources.goblin_attack;
+                else if (type == typeof(Slime))  Player2Character.Image = Properties.Resources.slime_attack;
+                else if (type == typeof(Scorpion)) Player2Character.Image = Properties.Resources.scorpion_attack;
+                else if (type == typeof(Witch)) Player2Character.Image = Properties.Resources.wizard_attack;
+                else if (type == typeof(Orc)) Player2Character.Image =  Properties.Resources.orc_attack;
+            }
+            else if (typeof(Game.Characters.Character).IsAssignableFrom(type))
+            {
+                
+
+                Player2Character.Image = Properties.Resources.goblin_attack;
+            }
+
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += (s, e2) =>
+            {
+                initBattle(target);
+                timer.Stop();
+                timer.Dispose();
+            };
+            timer.Start();
+        }
+
+
+        public int DefenseMonster()
+        {
+            GetMotionImage(targetMonster);
             myCharacter.Defense(targetMonster.MonsterAttackAbility);
 
             return targetMonster.MonsterAttackAbility;
@@ -409,6 +439,11 @@ namespace WindowsFormsApp1
 
             this.Controls.Add(victoryDefeat.VictoryDefeatPanel);
             victoryDefeat.VictoryDefeatPanel.BringToFront();
+        }
+
+        private void Player2Character_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

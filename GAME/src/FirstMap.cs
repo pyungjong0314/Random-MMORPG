@@ -41,7 +41,7 @@ namespace WindowsFormsApp1
             {
                 // Slime 10마리
                 new Slime { MonsterLocation = (135, 199) },
-                new Slime { MonsterLocation = (53, 281) },
+                new Slime { MonsterLocation = (53, 281)  },
                 new Slime { MonsterLocation = (160, 320) },
                 new Slime { MonsterLocation = (302, 281) },
                 new Slime { MonsterLocation = (157, 461) },
@@ -57,7 +57,11 @@ namespace WindowsFormsApp1
                 new Goblin { MonsterLocation = (931, 474) },
                 new Goblin { MonsterLocation = (708, 332) },
                 new Goblin { MonsterLocation = (828, 382) },
-                new Goblin { MonsterLocation = (933, 332) }
+                new Goblin { MonsterLocation = (933, 332) },
+
+                // === 오크랑 마녀 테스트 === 
+                new Orc { MonsterLocation = (933, 532) },               
+                new Witch { MonsterLocation = (933, 400) }                
             };
 
             // 생성할 장애물 리스트

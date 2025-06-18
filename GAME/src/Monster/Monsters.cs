@@ -23,7 +23,7 @@ namespace Game.Monsters
                 mapId: 10,
                 location: (4, 2),
                 hp: 500,
-                attack: 55000,
+                attack:10,
                 defense: 30,
                 exp:15)
         { }
@@ -45,7 +45,7 @@ namespace Game.Monsters
                 mapId: 10,
                 location: (4, 2),
                 hp: 10,
-                attack: 55,
+                attack: 10,
                 defense: 30,
                 exp: 100)
         { }

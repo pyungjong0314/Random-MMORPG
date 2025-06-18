@@ -268,6 +268,7 @@
             this.Player2Character.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Player2Character.TabIndex = 17;
             this.Player2Character.TabStop = false;
+            this.Player2Character.Click += new System.EventHandler(this.Player2Character_Click);
             // 
             // AttackBox
             // 
