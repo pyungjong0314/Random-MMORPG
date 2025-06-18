@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.WeaponPanel = new System.Windows.Forms.Panel();
+            this.CloseLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.CloseLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.WeaponValue = new System.Windows.Forms.Label();
             this.WeaponPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,6 +42,8 @@
             this.WeaponPanel.BackColor = System.Drawing.Color.Transparent;
             this.WeaponPanel.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.GameBox;
             this.WeaponPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.WeaponPanel.Controls.Add(this.WeaponValue);
+            this.WeaponPanel.Controls.Add(this.label2);
             this.WeaponPanel.Controls.Add(this.CloseLabel);
             this.WeaponPanel.Controls.Add(this.label1);
             this.WeaponPanel.Controls.Add(this.button1);
@@ -49,6 +53,18 @@
             this.WeaponPanel.Size = new System.Drawing.Size(600, 550);
             this.WeaponPanel.TabIndex = 32;
             this.WeaponPanel.Visible = false;
+            // 
+            // CloseLabel
+            // 
+            this.CloseLabel.AutoSize = true;
+            this.CloseLabel.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.CloseLabel.Location = new System.Drawing.Point(530, 40);
+            this.CloseLabel.Name = "CloseLabel";
+            this.CloseLabel.Size = new System.Drawing.Size(31, 28);
+            this.CloseLabel.TabIndex = 29;
+            this.CloseLabel.Text = "X";
+            this.CloseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CloseLabel.Click += new System.EventHandler(this.CloseLabel_Click);
             // 
             // label1
             // 
@@ -64,7 +80,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Font = new System.Drawing.Font("휴먼매직체", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(228, 485);
+            this.button1.Location = new System.Drawing.Point(390, 485);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(156, 42);
             this.button1.TabIndex = 22;
@@ -72,17 +88,25 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // CloseLabel
+            // label2
             // 
-            this.CloseLabel.AutoSize = true;
-            this.CloseLabel.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.CloseLabel.Location = new System.Drawing.Point(530, 40);
-            this.CloseLabel.Name = "CloseLabel";
-            this.CloseLabel.Size = new System.Drawing.Size(31, 28);
-            this.CloseLabel.TabIndex = 29;
-            this.CloseLabel.Text = "X";
-            this.CloseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.CloseLabel.Click += new System.EventHandler(this.CloseLabel_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("휴먼매직체", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(58, 492);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 28);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "COIN: ";
+            // 
+            // WeaponValue
+            // 
+            this.WeaponValue.AutoSize = true;
+            this.WeaponValue.Font = new System.Drawing.Font("휴먼매직체", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.WeaponValue.ForeColor = System.Drawing.Color.Gold;
+            this.WeaponValue.Location = new System.Drawing.Point(147, 492);
+            this.WeaponValue.Name = "WeaponValue";
+            this.WeaponValue.Size = new System.Drawing.Size(0, 28);
+            this.WeaponValue.TabIndex = 31;
             // 
             // WeaponControl
             // 
@@ -103,5 +127,7 @@
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label CloseLabel;
+        public System.Windows.Forms.Label WeaponValue;
+        public System.Windows.Forms.Label label2;
     }
 }

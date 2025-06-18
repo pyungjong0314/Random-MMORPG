@@ -163,5 +163,25 @@ namespace WindowsFormsApp1.Weapons.WeaponControl
             myCharacter.characterSword = null;
             setEquipedWeapon();
         }
+
+        private void deleteWeapon_Click(object sender, EventArgs e)
+        {
+            if (selectedPictureBox == null)
+                return;
+
+            if((Weapon)selectedPictureBox.Tag == myCharacter.characterSword)
+            {
+                myCharacter.characterSword = null;
+            }
+            if ((Weapon)selectedPictureBox.Tag == myCharacter.characterShiled)
+            {
+                myCharacter.characterShiled = null;
+            }
+            myCharacter.DropWeapon((Weapon)selectedPictureBox.Tag);
+
+
+            setEquipedWeapon();
+            setPictureBox(myCharacter.characterWeapons);
+        }
     }
 }

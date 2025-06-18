@@ -35,6 +35,7 @@
             this.CloseLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.equipWeapon = new System.Windows.Forms.Button();
+            this.deleteWeapon = new System.Windows.Forms.Button();
             this.CharacterWeaponPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EquipedSword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EquipedShield)).BeginInit();
@@ -46,6 +47,7 @@
             this.CharacterWeaponPanel.BackColor = System.Drawing.Color.Transparent;
             this.CharacterWeaponPanel.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.GameBox;
             this.CharacterWeaponPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CharacterWeaponPanel.Controls.Add(this.deleteWeapon);
             this.CharacterWeaponPanel.Controls.Add(this.EquipedSword);
             this.CharacterWeaponPanel.Controls.Add(this.EquipedShield);
             this.CharacterWeaponPanel.Controls.Add(this.pictureBox1);
@@ -118,13 +120,25 @@
             // 
             this.equipWeapon.BackColor = System.Drawing.Color.White;
             this.equipWeapon.Font = new System.Drawing.Font("휴먼매직체", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.equipWeapon.Location = new System.Drawing.Point(228, 474);
+            this.equipWeapon.Location = new System.Drawing.Point(337, 474);
             this.equipWeapon.Name = "equipWeapon";
             this.equipWeapon.Size = new System.Drawing.Size(149, 53);
             this.equipWeapon.TabIndex = 22;
             this.equipWeapon.Text = "장착하기";
             this.equipWeapon.UseVisualStyleBackColor = false;
             this.equipWeapon.Click += new System.EventHandler(this.equipWeapon_Click);
+            // 
+            // deleteWeapon
+            // 
+            this.deleteWeapon.BackColor = System.Drawing.Color.White;
+            this.deleteWeapon.Font = new System.Drawing.Font("휴먼매직체", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.deleteWeapon.Location = new System.Drawing.Point(111, 474);
+            this.deleteWeapon.Name = "deleteWeapon";
+            this.deleteWeapon.Size = new System.Drawing.Size(149, 53);
+            this.deleteWeapon.TabIndex = 32;
+            this.deleteWeapon.Text = "삭제하기";
+            this.deleteWeapon.UseVisualStyleBackColor = false;
+            this.deleteWeapon.Click += new System.EventHandler(this.deleteWeapon_Click);
             // 
             // CharacterWeapon
             // 
@@ -151,5 +165,6 @@
         public System.Windows.Forms.PictureBox pictureBox1;
         public System.Windows.Forms.PictureBox EquipedSword;
         public System.Windows.Forms.PictureBox EquipedShield;
+        public System.Windows.Forms.Button deleteWeapon;
     }
 }

@@ -139,7 +139,7 @@ namespace WindowsFormsApp1
 
         private void OnClickedBuyWeapon(object sender, EventArgs e)
         {
-            WeaponControl weaponBuyPanel = new WeaponControl(this, storeWeaponList);
+            WeaponControl weaponBuyPanel = new WeaponControl(this, myCharacter, storeWeaponList);
             weaponBuyPanel.WeaponPanel.Location = new Point(300, 100);
             weaponBuyPanel.WeaponPanel.Size = new Size(420, 380);
 

@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Game.Characters;
 using Game.Weapons;
 
 namespace WindowsFormsApp1.WeaponControls
@@ -17,11 +18,13 @@ namespace WindowsFormsApp1.WeaponControls
         StartingForm startingForm;
         PictureBox[,] weaponPictureBox = new PictureBox[4, 5];
         PictureBox selectedPictureBox = null;
+        Character character = new Character();
 
-        public WeaponControl(StartingForm sform, List<Weapon> weaponList)
+        public WeaponControl(StartingForm sform, Character c, List<Weapon> weaponList)
         {
             InitializeComponent();
             startingForm = sform;
+            character = c;
 
             for (int i = 0; i < 4; i++)
             {
@@ -86,6 +89,11 @@ namespace WindowsFormsApp1.WeaponControls
             // 현재 선택 적용
             clicked.BackColor = Color.FromArgb(255, 255, 128);
             selectedPictureBox = clicked;
+
+            if (selectedPictureBox != null)
+            {
+                WeaponValue.Text = ((Weapon)selectedPictureBox.Tag).GetWeaponValue().ToString();
+            }
         }
 
         private Image GetImageForWeapon(Weapon weapon)
@@ -124,11 +132,21 @@ namespace WindowsFormsApp1.WeaponControls
             if (selectedPictureBox == null)
                 return;
 
-            Weapon selectedWeapon = (Weapon)selectedPictureBox.Tag;
-            startingForm.storeWeaponList.Remove(selectedWeapon);
-            startingForm.myCharacter.AquireWeapon(selectedWeapon);
+            if (character.GetCharacterMoney() >= ((Weapon)selectedPictureBox.Tag).GetWeaponValue())
+            {
+                // 돈 차감
+                character.characterMoney -= ((Weapon)selectedPictureBox.Tag).GetWeaponValue();
+                // 무기 추가
+                Weapon selectedWeapon = (Weapon)selectedPictureBox.Tag;
+                startingForm.storeWeaponList.Remove(selectedWeapon);
+                startingForm.myCharacter.AquireWeapon(selectedWeapon);
 
-            setPictureBox(startingForm.storeWeaponList);
+                setPictureBox(startingForm.storeWeaponList);
+            }
+            else
+            {
+                MessageBox.Show("돈이 부족합니다.");
+            }
         }
 
         private void CloseLabel_Click(object sender, EventArgs e)

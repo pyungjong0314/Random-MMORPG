@@ -189,7 +189,7 @@ namespace Game.Characters
             .SetCharacterName(name)
             .SetCharacterLevel(1)
             .SetCharacterExp(0)
-            .SetCharacterMoney(0)
+            .SetCharacterMoney(rand.Next(0, 1000))
             .SetCharacterMapId(0)
             .SetCharacterLocation(0, 0)
             // HP 100 ~ 200

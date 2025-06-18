@@ -13,12 +13,14 @@ namespace Game.Weapons
     {
         private static Random random = new Random();
 
-        protected int weaponId;
-        protected string weaponName;
-        protected int weaponLevel;
-        protected int weaponAttack;
-        protected int weaponDefense;
-        protected int weaponValue;
+        public int weaponId;
+        public string weaponName;
+        public int weaponLevel;
+        public int weaponAttack;
+        public int weaponDefense;
+        public int weaponValue;
+
+        public Weapon() { }
 
         public void setWeaponId(int id) {  weaponId = id; }
         public void setWeaponName(string name) { weaponName = name; }
@@ -32,6 +34,7 @@ namespace Game.Weapons
         public int GetWeaponLevel() { return weaponLevel; }
         public int GetWeaponAttack() { return weaponAttack; }
         public int GetWeaponDefense() { return weaponDefense; }
+        public int GetWeaponValue() { return weaponValue; }
 
         public Weapon UpgradeWeapon() {
             if(random.Next(0, 2) == 1)
@@ -105,6 +108,7 @@ namespace Game.Weapons
             sword.setWeaponName("용사의 검");
             sword.setWeaponAttack(random.Next(1, 30));
             sword.setWeaponDefense(0);
+            sword.setWeaponValue(100);
 
             return sword;
         }
@@ -118,6 +122,7 @@ namespace Game.Weapons
             shield.setWeaponName("방패");
             shield.setWeaponAttack(0);
             shield.setWeaponDefense(random.Next(1, 100));
+            shield.setWeaponValue(50);
 
             return shield;
         }

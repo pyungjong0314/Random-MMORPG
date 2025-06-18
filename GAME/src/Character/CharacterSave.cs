@@ -27,15 +27,18 @@ namespace WindowsFormsApp1.Characters
         }
     }
 
-        public static class CharacterStorage
+    public static class CharacterStorage
     {
-        static string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),"character.json");
+        static string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "character.json");
 
         public static void SaveCharacter(Character character)
         {
-            var settings = new JsonSerializerSettings();
-            settings.Formatting = Formatting.Indented;
-            settings.Converters.Add(new ValueTupleConverter());
+            var settings = new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                Converters = { new ValueTupleConverter() },
+                TypeNameHandling = TypeNameHandling.Auto // 🔥 핵심
+            };
 
             string json = JsonConvert.SerializeObject(character, settings);
             File.WriteAllText(filePath, json);
@@ -46,12 +49,14 @@ namespace WindowsFormsApp1.Characters
             if (!File.Exists(filePath))
                 throw new FileNotFoundException("저장된 캐릭터 파일을 찾을 수 없습니다.", filePath);
 
-            var settings = new JsonSerializerSettings();
-            settings.Converters.Add(new ValueTupleConverter());
+            var settings = new JsonSerializerSettings
+            {
+                Converters = { new ValueTupleConverter() },
+                TypeNameHandling = TypeNameHandling.Auto // 🔥 핵심
+            };
 
             string json = File.ReadAllText(filePath);
-            Character character = JsonConvert.DeserializeObject<Character>(json, settings);
-            return character;
+            return JsonConvert.DeserializeObject<Character>(json, settings);
         }
     }
 }
