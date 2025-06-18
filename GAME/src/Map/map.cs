@@ -5,7 +5,8 @@ using Game.BossMonsters;
 using Game.BaseMonster;
 using System.Drawing;
 using System.Windows.Forms;
-using Game.MonsterManagers; 
+using Game.MonsterManagers;
+using Game.Characters;
 
 namespace Game.Maps
 {
@@ -20,7 +21,6 @@ namespace Game.Maps
             }
         }
 
-
         public string map_name;
         public int map_id;
         public int map_width;
@@ -30,84 +30,13 @@ namespace Game.Maps
         // 맵에 존재하는 몬스터 리스트
         public List<Monster> Monsters { get; private set; } = new List<Monster>();
 
-
         // 맵에 드랍된 코인 리스트
         public List<(int x, int y, int amount)> DroppedCoins { get; private set; } = new List<(int x, int y, int amount)>();
 
-
-
-        // 리스폰 대기 큐 (몬스터 타입, 리스폰까지 남은 시간)
-        private List<(Type monsterType, (int x, int y) location, int countdown)> respawnQueue =
-            new List<(Type monsterType, (int x, int y) location, int countdown)>();
-
-
-        // 몬스터 리스폰 요청 (타입, 위치, 지연 시간 지정)
-        public void RequestRespawn(Type monsterType, (int x, int y) location, int delayInSeconds)
-        {
-            respawnQueue.Add((monsterType, location, delayInSeconds));
-            Console.WriteLine($"{monsterType} is respawning at ({location.x},{location.y}) after {delayInSeconds}s");
-        }
-
-
-
-
-
-        // 매 프레임마다 리스폰 큐 업데이트 및 처리
-        public PictureBox Update()
-        {
-
-            PictureBox pb = new PictureBox();
-
-            for (int i = respawnQueue.Count - 1; i >= 0; i--)
-            {
-                var item = respawnQueue[i];
-                if (item.countdown <= 1)
-                {
-                    // 몬스터 객체 생성
-                    Monster newMonster = MonsterManager.CreateMonsterFromType(item.monsterType);
-                    newMonster.MonsterLocation = item.location;
-                    AddMonster(newMonster);
-                    respawnQueue.RemoveAt(i);
-
-                    // 몬스터 PictureBox 생성함
-                    pb.Image = MonsterManager.CreateImageFromType(item.monsterType);
-                    pb.Size = MonsterManager.GetMonsterSize(item.monsterType); // 이미지 크기 설정
-                    pb.SizeMode = PictureBoxSizeMode.StretchImage;
-                    pb.BackColor = Color.Transparent;
-                    pb.Location = new Point(newMonster.MonsterLocation.x, newMonster.MonsterLocation.y);
-                    pb.Tag = newMonster;
-
-                    return pb;
-                    }
-                else
-                {
-                    respawnQueue[i] = (item.monsterType, item.location, item.countdown - 1);
-                }
-            }
-            return null;
-        }
-
+        // 맵에 존재하는 캐릭터 리스트
+        public List<Character> opponentCharacters { get; private set; } = new List<Character>();
 
         public Map() { }
-
-
-
-        // 몬스터를 맵에 추가하고 랜덤 좌표 지정
-        public void AddMonster(Monster m)
-        { 
-            m.MapRef = this;
-            Monsters.Add(m);
-        }
-
-
-
-        // 몬스터 맵에서 제거 및 코인 드랍
-        public void RemoveMonster(Monster m, Form form)
-        {
-            DroppedCoins.Add((m.MonsterLocation.x, m.MonsterLocation.y, m.MonsterCoinValue));  // 코인 맵에 드랍하기
-            Console.WriteLine($"{m.MonsterName} has dropped  {m.MonsterCoinValue} coins  and {m.MonsterExperience} exp");  
-        }
-
 
         // 떨어진 코인 줍는 로직
         public (int totalAmount, int count) PickUpCoins((int x, int y) location)

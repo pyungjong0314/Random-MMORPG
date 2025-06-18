@@ -39,7 +39,7 @@ namespace WindowsFormsApp1.Battle.BattlePanel
             timer.Interval = 1000;
             timer.Tick += (s, e2) =>
             {
-                parentForm.Player1Character.Image = Properties.Resources.Player1Character;
+                parentForm.Player1Character.Image = Properties.Resources.Player1Character_right;
                 parentForm.DamageLabel.Visible = false;
                 timer.Stop();
                 timer.Dispose();

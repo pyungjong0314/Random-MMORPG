@@ -18,18 +18,21 @@ namespace WindowsFormsApp1
         Image firstMapImg;
         private Character myCharacter;
         private MapController controller;
-        private Game.Maps.Map firstMap;
+        public Game.Maps.Map firstMap;
 
         private Bitmap backgroundBufferBitmap;
         private Bitmap monsterBuffer;
 
         // 이미지 생성
         private Monster lastClickedMonster;
+        private Character lastClickedOpponent;
 
         public FirstMap(Character character)
         {
             InitializeComponent();
-            myCharacter = character; 
+            myCharacter = character;
+            myCharacter.MoveLocation(-10, -50);
+
             // 내부 그릴 수 있는 영역 크기
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
@@ -108,7 +111,19 @@ namespace WindowsFormsApp1
             // 몬스터 생성
             monsterBuffer = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
             UpdateMonsterBuffer();
-            
+
+
+            // 다른 캐릭터 테스트
+            Character c1 = CharacterFactory.CharacterCreate("적1");
+            c1.MoveLocation(200, 200);
+            Character c2 = CharacterFactory.CharacterCreate("적2");
+            c2.MoveLocation(400, 400);
+            Character c3 = CharacterFactory.CharacterCreate("적3");
+            c3.MoveLocation(600, 600);
+            firstMap.opponentCharacters.Add(c1);
+            firstMap.opponentCharacters.Add(c2);
+            firstMap.opponentCharacters.Add(c3);
+
             this.DoubleBuffered = true;
 
             // 키보드 입력
@@ -147,10 +162,13 @@ namespace WindowsFormsApp1
 
             // 3. 캐릭터도 그리기
             controller.DrawCharacter(e.Graphics);
+
+            // 4. 상대 캐릭터
+            controller.DrawOpponentCharacter(e.Graphics);
         }
 
 
-        // 키보드 입력에 따라 캐릭터를 이동시키고 충돌 여부를 판단하는 메서드
+        // 키보드 입력에 따라 캐릭터를 이동 (충돌 여부를 판단)
         private void TestForm_KeyDown(object sender, KeyEventArgs e)
         {
             controller.HandleMovement(e.KeyCode);
@@ -160,6 +178,8 @@ namespace WindowsFormsApp1
         private void FirstMap_MouseClick(object sender, MouseEventArgs e)
         {
             Monster clickedMonster = FindMonsterAtPoint(e.Location);
+            Character clickedOpponent = FrindOpponentAtPoint(e.Location);
+
             // 캐릭터 클릭
             if (FindCharacterAtPoint(e.Location))
                 controller.ShowCharacterContextMenu(this, myCharacter, e.Location);
@@ -171,8 +191,15 @@ namespace WindowsFormsApp1
                 lastClickedMonster = clickedMonster;
                 controller.ShowMonsterContextMenu(this, lastClickedMonster, e.Location);
             }
+
+            if(clickedOpponent != null)
+            {
+                lastClickedOpponent = clickedOpponent;
+                controller.ShowOpponentContextMenu(this, lastClickedOpponent, e.Location);
+            }
         }
 
+        // 주인공 위치 찾기
         private bool FindCharacterAtPoint(Point point)
         {
             Rectangle characterRect = new Rectangle(myCharacter.GetCharacterLocation().x, myCharacter.GetCharacterLocation().y, 64, 64);
@@ -182,6 +209,21 @@ namespace WindowsFormsApp1
             return false;
         }
 
+        // 맵에 존재하는 몬스터 위치 찾기
+        private Character FrindOpponentAtPoint(Point point)
+        {
+            foreach (var opponent in firstMap.opponentCharacters)
+            {
+                Rectangle opponentRect = new Rectangle(opponent.GetCharacterLocation().x, opponent.GetCharacterLocation().y, 64, 64);
+                if (opponentRect.Contains(point))
+                {
+                    return opponent;
+                }
+            }
+            return null;
+        }
+
+        // 맵에 존재하는 몬스터 위치 찾기
         private Monster FindMonsterAtPoint(Point point)
         {
             foreach (var monster in firstMap.Monsters)
@@ -196,6 +238,27 @@ namespace WindowsFormsApp1
                 }
             }
             return null;
+        }
+
+        // 시작 마을 포탈
+        private void pictureBox1_Click(object sender, System.EventArgs e)
+        {
+            Rectangle charRect = new Rectangle(myCharacter.GetCharacterLocation().x, myCharacter.GetCharacterLocation().y, 64, 64);
+            Rectangle picRect = pictureBox1.Bounds;
+
+            bool isColliding = charRect.IntersectsWith(picRect);
+
+            if (isColliding)
+            {
+                StartingForm starttmap = new StartingForm(myCharacter);
+                starttmap.Show();
+                this.Close();
+            }
+        }
+
+        private void pictureBox2_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

@@ -29,19 +29,9 @@ namespace Game.MapFactories
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                /*
-                // 1. 몬스터 그리기
-                foreach (var monster in monsters)
-                {
-                    Image monsterImg = MonsterManager.CreateImageFromType(monster.GetType());
-                    Size monster_size = MonsterManager.GetMonsterSize(monster.GetType());
-                    g.DrawImage(monsterImg, monster.MonsterLocation.x, monster.MonsterLocation.y, monster_size.Width, monster_size.Height);
-                }*/
-
-                // 2. 장애물 그리기
+                // 장애물 그리기
                 if (obstacles != null)
                 {
-
                     foreach (var obstacle in obstacles)
                     {
                         Image obstacleImg = ObstacleManager.CreateImageFromType(obstacle.GetType());

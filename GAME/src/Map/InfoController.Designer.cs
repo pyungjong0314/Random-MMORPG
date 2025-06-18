@@ -188,7 +188,7 @@
             // pbInfo
             // 
             this.pbInfo.BackColor = System.Drawing.Color.Transparent;
-            this.pbInfo.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Player1Character;
+            this.pbInfo.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Player1Character_right;
             this.pbInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbInfo.Location = new System.Drawing.Point(15, 53);
             this.pbInfo.Name = "pbInfo";

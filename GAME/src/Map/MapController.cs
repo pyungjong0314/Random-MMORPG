@@ -12,23 +12,29 @@ namespace WindowsFormsApp1.MapControls
 {
     public class MapController
     {
-        // 캐릭터
-        private readonly Character character;
-        
-        private Image characterImage = Properties.Resources.Player1Character;
         // 지도
         private readonly Game.Maps.Map map;
         private readonly Form form;
 
+        // 캐릭터
+        private readonly Character character;
+        private Image characterImage = Properties.Resources.Player1Character_right;
         // contextMenu(캐릭터)
-        private readonly ContextMenuStrip CharacterContextMenu;
+        private ContextMenuStrip CharacterContextMenu;
         private ToolStripMenuItem SaveContextMunu;
-        // contextMenu(캐릭터)
+
+        // 다른 캐릭터
+        private Character lastClickedOpponent;
+        private Image opponentImage = Properties.Resources.Player2Character;
+        private ContextMenuStrip OpponentContextMenu;
+
+
+        // contextMenu(몬스터)
+        private Monster lastClickedMonster;
         private readonly ContextMenuStrip monsterContextMenu;
         private ToolStripMenuItem attackMenuItem;
 
-        // 클릭 몬스터
-        private Monster lastClickedMonster;
+        
 
         public MapController(Character character, Game.Maps.Map map, Form form)
         {
@@ -38,8 +44,10 @@ namespace WindowsFormsApp1.MapControls
 
             monsterContextMenu = new ContextMenuStrip();
             CharacterContextMenu = new ContextMenuStrip();
+            OpponentContextMenu = new ContextMenuStrip();
             InitializeMonsterContextMenu();
             InitializeCharacterContextMenu();
+            InitializeOpponentContextMenu();
         }
 
         // 캐릭터 이동
@@ -53,14 +61,39 @@ namespace WindowsFormsApp1.MapControls
             {
                 case Keys.W: target = (current.x, current.y - moveAmount); break;
                 case Keys.S: target = (current.x, current.y + moveAmount); break;
-                case Keys.A: target = (current.x - moveAmount, current.y); break;
-                case Keys.D: target = (current.x + moveAmount, current.y); break;
+                case Keys.A: 
+                    target = (current.x - moveAmount, current.y);
+                    characterImage = Properties.Resources.Player1Character_left;
+                    break;
+                case Keys.D: 
+                    target = (current.x + moveAmount, current.y);
+                    characterImage = Properties.Resources.Player1Character_right;
+                    break;
                 default: return;
             }
 
             character.MoveLocation(target.x - current.x, target.y - current.y);
 
             form.Invalidate();
+        }
+
+        // 캐릭터 그리기
+        public void DrawCharacter(Graphics g)
+        {
+            if (characterImage != null && character != null)
+            {
+                var loc = character.GetCharacterLocation();
+                g.DrawImage(characterImage, loc.x, loc.y, 64, 64);
+            }
+        }
+
+        public void DrawOpponentCharacter(Graphics g)
+        {
+            foreach(var opponent in map.opponentCharacters)
+            {
+                var loc = opponent.GetCharacterLocation();
+                g.DrawImage(opponentImage, loc.x, loc.y, 64, 64);
+            }
         }
 
         // 캐릭터 컨텍스트 메뉴 초기화
@@ -86,16 +119,54 @@ namespace WindowsFormsApp1.MapControls
 
             var infoController = new InfoController(form);     // InfoController 인스턴스 생성
             infoController.SetCharacter(character);        // 캐릭터 정보 전달
-            infoController.InfoPanel.Location = new Point(100, 100); // 위치 설정 (필요 시)
+            infoController.InfoPanel.Location = new Point(250, 50); // 위치 설정 (필요 시)
             infoController.InfoPanel.Visible = true;
             form.Controls.Add(infoController.InfoPanel);             // 폼에 직접 컨트롤 추가
             infoController.BringToFront();
         }
 
+        // 캐릭터 저장
         private void OnSaveClicked(object sender, EventArgs e)
         {
             CharacterStorage.SaveCharacter(character);
             MessageBox.Show("캐릭터 저장 완료!");
+        }
+
+        // 다른 캐릭터 컨텍스트 메뉴 초기화
+        private void InitializeOpponentContextMenu()
+        {
+            OpponentContextMenu.Items.Add("정보 확인하기", null, OnInfoClickedOpponent);
+            attackMenuItem = new ToolStripMenuItem("공격하기", null, OnAttackOpponentClicked);
+            OpponentContextMenu.Items.Add(attackMenuItem);
+        }
+
+        public void ShowOpponentContextMenu(Control control, Character character, Point location)
+        {
+            lastClickedOpponent = character;
+            OpponentContextMenu.Show(control, location);
+        }
+
+        // 캐릭터 정보 확인
+        private void OnInfoClickedOpponent(object sender, EventArgs e)
+        {
+
+            form.Invalidate();
+
+            var infoController = new InfoController(form);     // InfoController 인스턴스 생성
+            infoController.SetOpponenet(lastClickedOpponent);        // 캐릭터 정보 전달
+            infoController.InfoPanel.Location = new Point(250, 50); // 위치 설정 (필요 시)
+            infoController.InfoPanel.Visible = true;
+            form.Controls.Add(infoController.InfoPanel);             // 폼에 직접 컨트롤 추가
+            infoController.BringToFront();
+        }
+
+        // 캐릭터 공격 처리
+        private void OnAttackOpponentClicked(object sender, EventArgs e)
+        {
+            form.Invalidate();
+
+            var battleForm = new BattleForm(character, lastClickedOpponent, form);
+            battleForm.Show();
         }
 
         // 몬스터 컨텍스트 메뉴 초기화
@@ -126,7 +197,7 @@ namespace WindowsFormsApp1.MapControls
 
             var infoController = new InfoController(form);     
             infoController.SetMonster(lastClickedMonster);       
-            infoController.InfoPanel.Location = new Point(100, 100); 
+            infoController.InfoPanel.Location = new Point(250, 50); 
             infoController.InfoPanel.Visible = true;
             form.Controls.Add(infoController.InfoPanel);           
             infoController.BringToFront();
@@ -152,17 +223,6 @@ namespace WindowsFormsApp1.MapControls
                                         Math.Pow(monsterPosition.Y - characterPosition.Y, 2));
 
             attackMenuItem.Enabled = distance <= 60;
-        }
-
-        
-        // 캐릭터 그리기
-        public void DrawCharacter(Graphics g)
-        {
-            if (characterImage != null && character != null)
-            {
-                var loc = character.GetCharacterLocation();
-                g.DrawImage(characterImage, loc.x, loc.y, 64, 64);
-            }
         }
     }
 }

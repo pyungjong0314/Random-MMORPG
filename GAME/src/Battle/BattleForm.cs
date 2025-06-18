@@ -57,7 +57,6 @@ namespace WindowsFormsApp1
                 Player2Level.Text = targetMonster.MonsterLevel.ToString();
                 Player2Hp.Text = targetMonster.MonsterHp.ToString();
                 Player2Attack.Text = targetMonster.MonsterAttackAbility.ToString();
-
             }
         }
 
@@ -305,8 +304,39 @@ namespace WindowsFormsApp1
             timer.Start();
         }
 
+
         // 공격
         public void Attack(int damage)
+        {
+            if (targetCharacter != null)
+            {
+                AttackCharacter(damage);
+            }
+
+            if (targetMonster != null)
+            {
+                AttackMonster(damage);
+            }
+        }
+
+        public void AttackCharacter(int damage)
+        {
+            targetCharacter.Defense(damage);
+            setBattleStatus();
+
+            if(targetCharacter.GetCharacterHp() <= 0)
+            {
+                PlayerVictory();
+                upDateImage();
+            }
+            // 캐릭터 죽은 로직
+            if (parentForm is FirstMap firstMapForm)
+            {
+                firstMapForm.firstMap.opponentCharacters.Remove(targetCharacter);
+            }
+        }
+
+        public void AttackMonster(int damage)
         {
             targetMonster.MonsterGetAttack(damage, myCharacter);
             setBattleStatus();
@@ -319,27 +349,52 @@ namespace WindowsFormsApp1
             }
         }
 
+
         // 방어
         public int Deffense()
         {
-            VictoryDefeat victoryDefeat = new VictoryDefeat(this);
-            victoryDefeat.VictoryDefeatPanel.Visible = true;
-            victoryDefeat.VictoryDefeatPanel.Location = new Point(200, 200);
-            victoryDefeat.PlayerImage.Image = Properties.Resources.tombstone;
-            victoryDefeat.NameLabel.Text = myCharacter.GetCharacterName();
-            victoryDefeat.VictoryDefeatLabel.Text = "패배";
+            int damage = 0;
+            if(targetCharacter != null)
+            {
+                damage = DeffenseCharacter();
+            }
 
-            myCharacter.Defense(targetMonster.MonsterAttackAbility);
+            if (targetMonster != null)
+            {
+                damage = DeffenseMonster();
+            }
 
             // 여기가 캐릭터 뒤짐
             if (myCharacter.GetCharacterHp() <= 0)
             {
+                VictoryDefeat victoryDefeat = new VictoryDefeat(this);
+                victoryDefeat.VictoryDefeatPanel.Visible = true;
+                victoryDefeat.VictoryDefeatPanel.Location = new Point(200, 200);
+                victoryDefeat.PlayerImage.Image = Properties.Resources.tombstone;
+                victoryDefeat.NameLabel.Text = myCharacter.GetCharacterName();
+                victoryDefeat.VictoryDefeatLabel.Text = "패배";
+
                 this.Controls.Add(victoryDefeat.VictoryDefeatPanel);
                 victoryDefeat.VictoryDefeatPanel.BringToFront();
             }
 
             this.AttackButton.Enabled = true;
             this.DefenseButton.Enabled = false;
+
+            return damage;
+        }
+
+        public int DeffenseCharacter()
+        {
+            myCharacter.Defense(targetCharacter.Attack());
+
+            return targetCharacter.GetCharacterAttack();
+        }
+
+
+        public int DeffenseMonster()
+        {
+            myCharacter.Defense(targetMonster.MonsterAttackAbility);
 
             return targetMonster.MonsterAttackAbility;
         }

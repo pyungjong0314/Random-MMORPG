@@ -11,6 +11,7 @@ namespace WindowsFormsApp1.Map
     public partial class InfoController : UserControl
     {
         private Character myCharacter;
+        private Character opponent;
         private Monster myMonster; 
         private Form parentForm;
 
@@ -42,6 +43,27 @@ namespace WindowsFormsApp1.Map
             lbCoin.Text = "Gold: " + myCharacter.GetCharacterMoney().ToString();
         }
 
+        // 다른 캐릭터 정보
+        public void SetOpponenet(Character character)
+        {
+            opponent = character;
+            UpdateOpponentInfo();
+        }
+        // 화면에 상대 정보 출력
+        private void UpdateOpponentInfo()
+        {
+            if (opponent == null) return;
+
+            pbInfo.BackgroundImage = Properties.Resources.Player2Character;
+
+            // 예: 라벨이 있다고 가정 (디자이너에서 Label 컨트롤 추가 필요)
+            lbName.Text = opponent.GetCharacterName();
+            lbLevel.Text = "Lv. " + opponent.GetCharacterLevel().ToString();
+            lbHealth.Text = "HP: " + opponent.GetCharacterHp().ToString();
+            lbAttack.Text = "ATK: " + opponent.GetCharacterAttack().ToString();
+            lbCoin.Text = "Gold: " + opponent.GetCharacterMoney().ToString();
+        }
+
 
         // 캐릭터를 전달받아 내부에 저장하고 UI 갱신
         public void SetMonster(Monster monster)
@@ -67,8 +89,6 @@ namespace WindowsFormsApp1.Map
 
             InfoPanel.Visible = true;
         }
-
-
 
         private void lbClose_Click(object sender, EventArgs e)
         {
