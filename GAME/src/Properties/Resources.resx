@@ -268,19 +268,34 @@
   <data name="Player1Character_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Player1Character_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="shield" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shield.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sword" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sword.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="noWeapon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\noWeapon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="WeaponUpgradeFail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WeaponUpgradeFail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="WeaponUpgradeSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WeaponUpgradeSuccess.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+<data name="shield" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\shield.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+</data>
+<data name="sword" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\sword.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+</data>
+<data name="noWeapon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\noWeapon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+</data>
+<data name="WeaponUpgradeFail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\WeaponUpgradeFail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+</data>
+<data name="WeaponUpgradeSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\WeaponUpgradeSuccess.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+</data>
+<data name="goblin_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\goblin_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+</data>
+<data name="orc_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\orc_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+</data>
+<data name="scorpion_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\scorpion_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+</data>
+<data name="slime_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\slime_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+</data>
+<data name="wizard_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <value>..\Resources\wizard_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+</data>
 </root>

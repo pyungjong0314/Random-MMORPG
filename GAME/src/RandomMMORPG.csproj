@@ -302,6 +302,7 @@
     <None Include="Resources\slime.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\wizard_attack.png" />
     <None Include="Resources\Dice2.png" />
     <None Include="Resources\Dice3.png" />
     <None Include="Resources\Dice4.png" />
@@ -311,6 +312,8 @@
     <Content Include="Resources\goblin2.png" />
     <None Include="Resources\Player1Character_left.png" />
     <None Include="Resources\noWeapon.png" />
+    <None Include="Resources\goblin_attack.png" />
+    <None Include="Resources\orc_attack.png" />
     <Content Include="Resources\scorpion.png" />
     <None Include="Resources\StartForm.png" />
     <None Include="Resources\tombstone.png" />
@@ -319,6 +322,8 @@
     <None Include="Resources\shield.png" />
     <None Include="Resources\WeaponUpgradeFail.png" />
     <None Include="Resources\WeaponUpgradeSuccess.png" />
+    <None Include="Resources\slime_attack.png" />
+    <None Include="Resources\scorpion_attack.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
