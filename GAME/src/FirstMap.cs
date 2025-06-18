@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Game.Characters;
 using WindowsFormsApp1.MapControls;
 using Game.MonsterManagers;
+using Game.BossMonsters;
 
 
 namespace WindowsFormsApp1
@@ -58,10 +59,7 @@ namespace WindowsFormsApp1
                 new Goblin { MonsterLocation = (708, 332) },
                 new Goblin { MonsterLocation = (828, 382) },
                 new Goblin { MonsterLocation = (933, 332) },
-
-                // === 오크랑 마녀 테스트 === 
-                new Orc { MonsterLocation = (933, 532) },               
-                new Witch { MonsterLocation = (933, 400) }                
+                
             };
 
             // 생성할 장애물 리스트

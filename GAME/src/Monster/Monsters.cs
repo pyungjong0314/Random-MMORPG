@@ -20,10 +20,10 @@ namespace Game.Monsters
                 id: (100 + goblinCount++).ToString(),
                 level: 5,
                 coinValue: 100,
-                mapId: 10,
+                mapId: 1,
                 location: (4, 2),
-                hp: 10,
-                attack:10,
+                hp: 100,
+                attack:20,
                 defense: 30,
                 exp:15)
         { }
@@ -44,8 +44,8 @@ namespace Game.Monsters
                 coinValue: 90,
                 mapId: 10,
                 location: (4, 2),
-                hp: 10,
-                attack: 10,
+                hp: 20,
+                attack: 5,
                 defense: 30,
                 exp: 100)
         { }

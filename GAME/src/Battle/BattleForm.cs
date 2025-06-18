@@ -415,7 +415,38 @@ namespace WindowsFormsApp1
             removeTimer.Start();
         }
 
+        public void ShowExpLabel(Monster monster)
+        {
+            int expValue = monster.MonsterExperience;
+            Label expLabel = new Label();
+            expLabel.Text = $"+{expValue} XP";
+            expLabel.Font = new Font("Arial", 14, FontStyle.Bold);
+            expLabel.ForeColor = Color.DodgerBlue;
+            expLabel.BackColor = Color.Transparent;
+            expLabel.AutoSize = true;
+            expLabel.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y - 40);
 
+            parentForm.Invoke(new Action(() =>
+            {
+                parentForm.Controls.Add(expLabel);
+                expLabel.BringToFront();
+            }));
+
+            Timer expTimer = new Timer();
+            expTimer.Interval = 3000;
+            expTimer.Tick += (s, e) =>
+            {
+                expTimer.Stop();
+                expTimer.Dispose();
+
+                parentForm.Invoke(new Action(() =>
+                {
+                    parentForm.Controls.Remove(expLabel);
+                    expLabel.Dispose();
+                }));
+            };
+            expTimer.Start();
+        }
 
         public void AttackMonster(int damage)
         {
@@ -424,6 +455,7 @@ namespace WindowsFormsApp1
 
             if (targetMonster.IsDead)
             {
+                ShowExpLabel(targetMonster); // 경험치 라벨 표시
                 DropCoin(targetMonster); // ← 코인 드랍
                 PlayerVictory();
                 upDateImage();
@@ -492,9 +524,8 @@ namespace WindowsFormsApp1
             }
             else if (typeof(Game.Characters.Character).IsAssignableFrom(type))
             {
-                
-
-                Player2Character.Image = Properties.Resources.goblin_attack;
+                // @ 캐릭터 이미지 수정할 것
+                Player2Character.Image = Properties.Resources.AttackPlayer2;
             }
 
             Timer timer = new Timer();

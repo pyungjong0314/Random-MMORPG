@@ -318,6 +318,7 @@
     <None Include="Resources\Dice5.png" />
     <None Include="Resources\Dice6.png" />
     <None Include="Resources\AttackPlayer.png" />
+    <None Include="Resources\AttackPlayer2.png" />
     <Content Include="Resources\goblin2.png" />
     <None Include="Resources\Player1Character_left.png" />
     <None Include="Resources\noWeapon.png" />
