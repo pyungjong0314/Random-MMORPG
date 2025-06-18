@@ -7,6 +7,7 @@ using System.ComponentModel;
 using WindowsFormsApp1.Map;
 using WindowsFormsApp1.Battle;
 using WindowsFormsApp1.Characters;
+using WindowsFormsApp1.Weapons.WeaponControl;
 
 namespace WindowsFormsApp1.MapControls
 {
@@ -21,6 +22,7 @@ namespace WindowsFormsApp1.MapControls
         private Image characterImage = Properties.Resources.Player1Character_right;
         // contextMenu(캐릭터)
         private ContextMenuStrip CharacterContextMenu;
+        private ToolStripMenuItem WeaponContextMunu;
         private ToolStripMenuItem SaveContextMunu;
 
         // 다른 캐릭터
@@ -102,8 +104,9 @@ namespace WindowsFormsApp1.MapControls
         private void InitializeCharacterContextMenu()
         {
             CharacterContextMenu.Items.Add("정보 확인하기", null, OnInfoClickedCharacter);
-
+            WeaponContextMunu = new ToolStripMenuItem("무기 확인하기", null, OnWeaponClicked);
             SaveContextMunu = new ToolStripMenuItem("저장하기", null, OnSaveClicked);
+            CharacterContextMenu.Items.Add(WeaponContextMunu);
             CharacterContextMenu.Items.Add(SaveContextMunu);
         }
 
@@ -125,6 +128,16 @@ namespace WindowsFormsApp1.MapControls
             infoController.InfoPanel.Visible = true;
             form.Controls.Add(infoController.InfoPanel);             // 폼에 직접 컨트롤 추가
             infoController.BringToFront();
+        }
+        private void OnWeaponClicked(object sender, EventArgs e)
+        {
+            var characterWeapon  = new CharacterWeapon(form, character);
+            characterWeapon.CharacterWeaponPanel.Location = new Point(300, 100);
+            characterWeapon.CharacterWeaponPanel.Size = new Size(420, 380);
+            characterWeapon.CharacterWeaponPanel.Visible = true;
+
+            form.Controls.Add(characterWeapon.CharacterWeaponPanel  );
+            characterWeapon.CharacterWeaponPanel.BringToFront();
         }
 
         // 캐릭터 저장

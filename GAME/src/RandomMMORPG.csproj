@@ -163,6 +163,12 @@
     <Compile Include="Story\StoryForm.Designer.cs">
       <DependentUpon>StoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Weapons\WeaponControl\CharacterWeapon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Weapons\WeaponControl\CharacterWeapon.Designer.cs">
+      <DependentUpon>CharacterWeapon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Weapons\WeaponControl\WeaponControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Story\StoryForm.resx">
       <DependentUpon>StoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Weapons\WeaponControl\CharacterWeapon.resx">
+      <DependentUpon>CharacterWeapon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Weapons\WeaponControl\WeaponControl.resx">
       <DependentUpon>WeaponControl.cs</DependentUpon>
@@ -324,6 +333,18 @@
     <None Include="Resources\WeaponUpgradeSuccess.png" />
     <None Include="Resources\slime_attack.png" />
     <None Include="Resources\scorpion_attack.png" />
+    <None Include="Resources\sword_0.png" />
+    <None Include="Resources\sword_5.png" />
+    <None Include="Resources\sword_4.png" />
+    <None Include="Resources\sword_3.png" />
+    <None Include="Resources\sword_2.png" />
+    <None Include="Resources\sword_1.png" />
+    <None Include="Resources\shield_5.png" />
+    <None Include="Resources\shield_4.png" />
+    <None Include="Resources\shield_3.png" />
+    <None Include="Resources\shield_2.png" />
+    <None Include="Resources\shield_1.png" />
+    <None Include="Resources\shield_0.png" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

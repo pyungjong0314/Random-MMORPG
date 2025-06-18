@@ -268,34 +268,70 @@
   <data name="Player1Character_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Player1Character_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-<data name="shield" type="System.Resources.ResXFileRef, System.Windows.Forms">
-  <value>..\Resources\shield.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
-<data name="sword" type="System.Resources.ResXFileRef, System.Windows.Forms">
-  <value>..\Resources\sword.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
-<data name="noWeapon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-  <value>..\Resources\noWeapon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
-<data name="WeaponUpgradeFail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-  <value>..\Resources\WeaponUpgradeFail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
-<data name="WeaponUpgradeSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
-  <value>..\Resources\WeaponUpgradeSuccess.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
-<data name="goblin_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-  <value>..\Resources\goblin_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
-<data name="orc_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-  <value>..\Resources\orc_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
-<data name="scorpion_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-  <value>..\Resources\scorpion_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
-<data name="slime_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-  <value>..\Resources\slime_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
-<data name="wizard_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-  <value>..\Resources\wizard_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-</data>
+  <data name="shield" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shield.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sword" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sword.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="noWeapon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\noWeapon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WeaponUpgradeFail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WeaponUpgradeFail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WeaponUpgradeSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WeaponUpgradeSuccess.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="goblin_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goblin_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="orc_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\orc_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scorpion_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scorpion_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slime_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slime_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wizard_attack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wizard_attack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shield_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shield_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shield_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shield_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shield_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shield_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shield_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shield_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shield_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shield_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shield_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shield_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sword_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sword_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sword_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sword_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sword_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sword_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sword_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sword_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sword_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sword_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sword_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sword_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
