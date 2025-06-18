@@ -103,9 +103,34 @@ namespace WindowsFormsApp1.Weapons.WeaponControl
         private Image GetImageForWeapon(Weapon weapon)
         {
             string name = weapon.GetWeaponName();
+            int level = weapon.GetWeaponLevel();
 
-            if (name.Contains("용사의 검")) return Properties.Resources.sword;
-            if (name.Contains("방패")) return Properties.Resources.shield;
+
+            // 공격 레벨에 따른 검 반환
+            if (name.Contains("용사의 검"))
+            {
+                weapon.setWeaponAttack(level * 100 + 10);  // 10, 110, 210, ..., 510
+
+                if (level == 0) return Properties.Resources.sword_0;
+                else if (level == 1) return Properties.Resources.sword_1;
+                else if (level == 2) return Properties.Resources.sword_2;
+                else if (level == 3) return Properties.Resources.sword_3;
+                else if (level == 4) return Properties.Resources.sword_4;
+                else if (level == 5) return Properties.Resources.sword_5;
+            }
+
+            // 방패 레벨에 방패 반환
+            else if (name.Contains("방패"))
+            {
+                weapon.setWeaponDefense(level * 100 + 10);  // 10, 110, 210, ..., 510
+
+                if (level == 0) return Properties.Resources.shield_0;
+                else if (level == 1) return Properties.Resources.shield_1;
+                else if (level == 2) return Properties.Resources.shield_2;
+                else if (level == 3) return Properties.Resources.shield_3;
+                else if (level == 4) return Properties.Resources.shield_4;
+                else if (level == 5) return Properties.Resources.shield_5;
+            }
 
             return Properties.Resources.sword;
         }
