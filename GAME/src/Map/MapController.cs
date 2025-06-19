@@ -172,7 +172,15 @@ namespace WindowsFormsApp1.MapControls
             if(form is FirstMap firstMap)
             {
                 Console.WriteLine("전투 요청");
-                firstMap.StartBattle(lastClickedOpponent);
+                try
+                {
+                    await firstMap.StartBattle(lastClickedOpponent);
+                    Console.WriteLine("StartBattle completed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("StartBattle error: " + ex.Message);
+                }
             }
         }
 

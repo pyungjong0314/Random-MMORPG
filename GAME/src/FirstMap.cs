@@ -155,8 +155,15 @@ namespace WindowsFormsApp1
 
         private async void FirstMap_Load(object sender, EventArgs e)
         {
-            // 다른 행동
-            await InitializeClients();
+            try
+            {
+                await InitializeClients();
+                Console.WriteLine("Clients initialized");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Init error: " + ex.Message);
+            }
         }
 
         public async Task InitializeClients()
@@ -166,7 +173,7 @@ namespace WindowsFormsApp1
             await clientBattle.ConnectAsync();
             // 대기 클라이언트
             clientStatus = new GameWebSocketClient();
-            clientStatus.ConnectAsync();
+            await clientStatus.ConnectAsync();
 
             StartListening();
         }
@@ -230,14 +237,17 @@ namespace WindowsFormsApp1
         {
             if (clientBattle == null) throw new InvalidOperationException("Battle client is not initialized");
 
-            // 전투 요청 예시 (PvP 요청)
-            await clientBattle.CmdPvPRequest("myUid", battleOpponent.GetCharacterId().ToString());
+            string myUid = myCharacter.GetCharacterId().ToString();
+            string targetUid = battleOpponent.GetCharacterId().ToString();
 
-            // 전투 수락 대기 예시 (cmd 115 대기)
+            await clientBattle.CmdPvPRequest(myUid, targetUid);
+            Console.WriteLine($"Sending PvPRequest: {myUid} vs {targetUid}");
+
+            Console.WriteLine("Waiting for PvP accept (cmd 115)...");
             var acceptMsg = await clientBattle.WaitForCmd(115);
             Console.WriteLine("PvP accepted: " + acceptMsg);
 
-            // 이후 전투 명령 수행 가능
+            // 이후 전투 진행 로직 추가 가능
         }
 
 
