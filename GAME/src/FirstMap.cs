@@ -197,7 +197,8 @@ namespace WindowsFormsApp1
                     while (!listenCts.Token.IsCancellationRequested)
                     {
                         var msg = await clientStatus.ReceiveOnce();
-                        ProcessMessage(msg);
+                        var response = JsonConvert.DeserializeObject<CombatResponse>(msg);
+                        Console.WriteLine($"Received cmd: {response.cmd}, status: {response.status}, message: {response.message}");
                     }
                 }
                 catch (OperationCanceledException)
@@ -225,14 +226,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void ProcessMessage(string msg)
-        {
-            // 메시지 파싱 및 처리 예시
-            var response = JsonConvert.DeserializeObject<CombatResponse>(msg);
-            Console.WriteLine($"Received cmd: {response.cmd}, status: {response.status}, message: {response.message}");
-            // 추가 로직 삽입 가능
-        }
-
         public async Task StartBattle(Character battleOpponent)
         {
             if (clientBattle == null) throw new InvalidOperationException("Battle client is not initialized");
@@ -240,6 +233,7 @@ namespace WindowsFormsApp1
             string myUid = myCharacter.GetCharacterId().ToString();
             string targetUid = battleOpponent.GetCharacterId().ToString();
 
+            Console.WriteLine("Start PvPRequest");
             await clientBattle.CmdPvPRequest(myUid, targetUid);
             Console.WriteLine($"Sending PvPRequest: {myUid} vs {targetUid}");
 

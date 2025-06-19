@@ -159,7 +159,7 @@ namespace GameClientLib
 
         public async Task CmdPvPRequest(string uid1, string uid2)
         {
-            await SendAndReceive(new { cmd = 106, uid1, uid2 });
+            await SendOnly(new { cmd = 106, uid1, uid2 });
         }
 
         public async Task CmdPvPAccept(string uid1, string uid2)
@@ -197,6 +197,12 @@ namespace GameClientLib
                     if (res.status == s)
                         return;
             }
+        }
+        public async Task SendOnly(object message)
+        {
+            var json = JsonConvert.SerializeObject(message);
+            var bytes = Encoding.UTF8.GetBytes(json);
+            await ws.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
         private async Task<string> SendAndReceive(object message)
