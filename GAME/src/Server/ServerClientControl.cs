@@ -177,13 +177,46 @@ namespace GameClientLib
             await SendAndReceive(new { cmd = 109, modifier, target_uid = targetUid });
         }
 
-        public async Task<string> WaitForCmd(int expectedCmd)
+
+        private readonly SemaphoreSlim _recvLock = new SemaphoreSlim(1, 1);
+        public async Task<string> WaitForCmd(int expectedCmd, CancellationToken token)
         {
-            while (true)
+            while (!token.IsCancellationRequested)
             {
-                var msg = await ReceiveOnce();
-                var res = JsonConvert.DeserializeObject<CombatResponse>(msg);
-                if (res.cmd == expectedCmd) return msg;
+                try
+                {
+                    var msg = await ReceiveOnceWithTimeout(token);  // 아래 새로 정의
+                    var res = JsonConvert.DeserializeObject<CombatResponse>(msg);
+
+                    if (res.cmd == expectedCmd)
+                        return msg;
+                }
+                catch (OperationCanceledException)
+                {
+                    Console.WriteLine("[WaitForCmd] 취소됨");
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[WaitForCmd] 예외: {ex.Message}");
+                }
+            }
+
+            throw new OperationCanceledException();
+        }
+
+        private async Task<string> ReceiveOnceWithTimeout(CancellationToken token)
+        {
+            await _recvLock.WaitAsync(token);
+            try
+            {
+                var buffer = new ArraySegment<byte>(new byte[8192]);
+                var result = await ws.ReceiveAsync(buffer, token);
+                return Encoding.UTF8.GetString(buffer.Array, 0, result.Count);
+            }
+            finally
+            {
+                _recvLock.Release();
             }
         }
 
