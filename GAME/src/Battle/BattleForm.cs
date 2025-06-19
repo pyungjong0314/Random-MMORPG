@@ -338,7 +338,10 @@ namespace WindowsFormsApp1
                 // 캐릭터 죽은 로직
                 if (parentForm is FirstMap firstMapForm)
                 {
-                    firstMapForm.firstMap.opponentCharacters.Remove(targetCharacter);
+                    lock (firstMapForm._opponentLock)
+                    {
+                        firstMapForm.firstMap.opponentCharacters.Remove(targetCharacter);
+                    }
                 }
             }
         }

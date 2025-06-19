@@ -27,7 +27,6 @@ namespace WindowsFormsApp1.MapControls
 
         // 다른 캐릭터
         private Character lastClickedOpponent;
-        private Image opponentImage = Properties.Resources.Player2Character;
         private ContextMenuStrip OpponentContextMenu;
         private ToolStripMenuItem opponentAttackMenuItem;
 
@@ -88,15 +87,6 @@ namespace WindowsFormsApp1.MapControls
             {
                 var loc = character.GetCharacterLocation();
                 g.DrawImage(characterImage, loc.x, loc.y, 64, 64);
-            }
-        }
-
-        public void DrawOpponentCharacter(Graphics g)
-        {
-            foreach(var opponent in map.opponentCharacters)
-            {
-                var loc = opponent.GetCharacterLocation();
-                g.DrawImage(opponentImage, loc.x, loc.y, 64, 64);
             }
         }
 

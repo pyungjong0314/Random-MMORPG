@@ -16,6 +16,7 @@ using System;
 using GameClientLib;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using Game.Maps;
 
 
 namespace WindowsFormsApp1
@@ -40,6 +41,7 @@ namespace WindowsFormsApp1
         // 이미지 생성
         private Monster lastClickedMonster;
         private Character lastClickedOpponent;
+        private Image opponentImage = Properties.Resources.Player2Character;
         bool shouldUpdateMonsterBufferServer = false;
 
         public FirstMap(GameWebSocketClient c, Character character)
@@ -177,7 +179,7 @@ namespace WindowsFormsApp1
                     Console.WriteLine($"[CmdAll] 유저 수: {response.body.players?.Count}");
 
 
-                    if(frame % 10 == 0)
+                    //if(frame % 10 == 0)
                     {
                         if (response.body.monsters != null)
                         {
@@ -250,6 +252,17 @@ namespace WindowsFormsApp1
             this.Invalidate();
         }
 
+        public void DrawOpponentCharacter(Graphics g)
+        {
+            lock (_opponentLock)
+            {
+                foreach (var opponent in firstMap.opponentCharacters)
+                {
+                    var loc = opponent.GetCharacterLocation();
+                    g.DrawImage(opponentImage, loc.x, loc.y, 64, 64);
+                }
+            }
+        }
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -270,7 +283,7 @@ namespace WindowsFormsApp1
             controller.DrawCharacter(e.Graphics);
 
             // 4. 상대 캐릭터
-            controller.DrawOpponentCharacter(e.Graphics);
+            DrawOpponentCharacter(e.Graphics);
         }
 
 
