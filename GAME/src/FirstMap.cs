@@ -9,33 +9,13 @@ using System.Windows.Forms;
 using Game.Characters;
 using WindowsFormsApp1.MapControls;
 using Game.MonsterManagers;
-using Game.BossMonsters;
-using System.Threading.Tasks;
-using System.Threading;
-using System;
-using GameClientLib;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using Game.Maps;
-using Newtonsoft.Json;
+using Game.Audio;
 
 
 namespace WindowsFormsApp1
 {
     public partial class FirstMap : Form
     {
-        // 통신
-        private GameWebSocketClient client;
-        public GameWebSocketClient clientStatus;
-        public GameWebSocketClient clientBattle;
-        private Thread _networkThread;
-        private bool _isRunningNetwork = false;
-        public readonly object _opponentLock = new object();
-        // 전투
-        private CancellationTokenSource _listenCancelTokenSource;
-        private Task _listenTask;
-
-        // Map
         Image firstMapImg;
         private Character myCharacter;
         private MapController controller;
@@ -47,14 +27,17 @@ namespace WindowsFormsApp1
         // 이미지 생성
         private Monster lastClickedMonster;
         private Character lastClickedOpponent;
-        private Image opponentImage = Properties.Resources.Player2Character;
-        bool shouldUpdateMonsterBufferServer = false;
 
-        public FirstMap(GameWebSocketClient c, Character character)
+
+
+
+        public FirstMap(Character character)
         {
             InitializeComponent();
+            SoundManager.PlayBgmLoop("firstmap_bgm.wav");
             myCharacter = character;
             myCharacter.MoveLocation(-10, -50);
+
 
             // 내부 그릴 수 있는 영역 크기
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -63,25 +46,27 @@ namespace WindowsFormsApp1
             List<Monster> monsters = new List<Monster>
             {
                 // Slime 10마리
-                new Slime { MonsterId = 0, MonsterLocation = (135, 199) },
-                new Slime { MonsterId = 1, MonsterLocation = (53, 281)  },
-                new Slime { MonsterId = 2, MonsterLocation = (160, 320) },
-                new Slime { MonsterId = 3, MonsterLocation = (302, 281) },
-                new Slime { MonsterId = 4, MonsterLocation = (157, 461) },
-                new Slime { MonsterId = 5, MonsterLocation = (290, 462) },
-                new Slime { MonsterId = 6, MonsterLocation = (388, 382) },
-                new Slime { MonsterId = 7, MonsterLocation = (461, 485) },
-                new Slime { MonsterId = 8, MonsterLocation = (507, 332) },
-                new Slime { MonsterId = 9, MonsterLocation = (550, 411) },
+                new Slime { MonsterLocation = (135, 199) },
+                new Slime { MonsterLocation = (53, 281)  },
+                new Slime { MonsterLocation = (160, 320) },
+                new Slime { MonsterLocation = (302, 281) },
+                new Slime { MonsterLocation = (157, 461) },
+                new Slime { MonsterLocation = (290, 462) },
+                new Slime { MonsterLocation = (388, 382) },
+                new Slime { MonsterLocation = (461, 485) },
+                new Slime { MonsterLocation = (507, 332) },
+                new Slime { MonsterLocation = (550, 411) },
 
-                // Goblin 7마리
-                new Goblin { MonsterId = 10, MonsterLocation = (779, 499) },
-                new Goblin { MonsterId = 11, MonsterLocation = (643, 433) },
-                new Goblin { MonsterId = 12, MonsterLocation = (931, 474) },
-                new Goblin { MonsterId = 13, MonsterLocation = (708, 332) },
-                new Goblin { MonsterId = 14, MonsterLocation = (828, 382) },
-                new Goblin { MonsterId = 15, MonsterLocation = (933, 332) },
-                new Goblin { MonsterId = 16, MonsterLocation = (933, 332) },
+                // Goblin 6마리
+                new Goblin { MonsterLocation = (643, 433) },
+                new Goblin { MonsterLocation = (779, 499) },
+                new Goblin { MonsterLocation = (931, 474) },
+                new Goblin { MonsterLocation = (708, 332) },
+                new Goblin { MonsterLocation = (828, 382) },
+                new Goblin { MonsterLocation = (933, 332) },
+                new Goblin { MonsterLocation = (933, 332) },
+
+
             };
 
             // 생성할 장애물 리스트
@@ -138,17 +123,17 @@ namespace WindowsFormsApp1
 
 
             // 다른 캐릭터 테스트
+            Character c1 = CharacterFactory.CharacterCreate("적1");
+            c1.MoveLocation(800, 200);
+            firstMap.opponentCharacters.Add(c1);
 
             this.DoubleBuffered = true;
 
             // 키보드 입력
             controller = new MapController(character, firstMap, this);
             this.KeyDown += TestForm_KeyDown;
-            this.MouseClick += FirstMap_MouseClick;
 
-            // 이동
-            client = c;
-            StartNetwork();
+            this.MouseClick += FirstMap_MouseClick;
         }
 
 
@@ -346,20 +331,8 @@ namespace WindowsFormsApp1
                     }
                 }
             }
-            this.Invalidate();
         }
 
-        public void DrawOpponentCharacter(Graphics g)
-        {
-            lock (_opponentLock)
-            {
-                foreach (var opponent in firstMap.opponentCharacters)
-                {
-                    var loc = opponent.GetCharacterLocation();
-                    g.DrawImage(opponentImage, loc.x, loc.y, 64, 64);
-                }
-            }
-        }
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -369,18 +342,13 @@ namespace WindowsFormsApp1
             e.Graphics.DrawImage(backgroundBufferBitmap, 0, 0);
 
             // 2. 살아있는 몬스터는 따로 다시 그림
-            if (shouldUpdateMonsterBufferServer)
-            {
-                UpdateMonsterBuffer();
-                shouldUpdateMonsterBufferServer = false;
-            }
             e.Graphics.DrawImage(monsterBuffer, 0, 0);
 
             // 3. 캐릭터도 그리기
             controller.DrawCharacter(e.Graphics);
 
             // 4. 상대 캐릭터
-            DrawOpponentCharacter(e.Graphics);
+            controller.DrawOpponentCharacter(e.Graphics);
         }
 
 
@@ -395,6 +363,7 @@ namespace WindowsFormsApp1
         {
             Monster clickedMonster = FindMonsterAtPoint(e.Location);
             Character clickedOpponent = FrindOpponentAtPoint(e.Location);
+
 
             // 캐릭터 클릭
             if (FindCharacterAtPoint(e.Location))
@@ -428,15 +397,12 @@ namespace WindowsFormsApp1
         // 맵에 존재하는 몬스터 위치 찾기
         private Character FrindOpponentAtPoint(Point point)
         {
-            lock (_opponentLock)
+            foreach (var opponent in firstMap.opponentCharacters)
             {
-                foreach (var opponent in firstMap.opponentCharacters)
+                Rectangle opponentRect = new Rectangle(opponent.GetCharacterLocation().x, opponent.GetCharacterLocation().y, 64, 64);
+                if (opponentRect.Contains(point))
                 {
-                    Rectangle opponentRect = new Rectangle(opponent.GetCharacterLocation().x, opponent.GetCharacterLocation().y, 64, 64);
-                    if (opponentRect.Contains(point))
-                    {
-                        return opponent;
-                    }
+                    return opponent;
                 }
             }
             return null;
@@ -469,11 +435,8 @@ namespace WindowsFormsApp1
 
             if (isColliding)
             {
-                // 통신 종료
-                clientBattle.CmdRemoveAsync(myCharacter.GetCharacterId().ToString());
-                StopNetwork();
-
-                StartingForm starttmap = new StartingForm(client, myCharacter);
+                SoundManager.StopBgm();
+                StartingForm starttmap = new StartingForm(myCharacter);
                 starttmap.Show();
                 this.Close();
             }
@@ -481,8 +444,17 @@ namespace WindowsFormsApp1
 
         private void pictureBox2_Click(object sender, System.EventArgs e)
         {
+            Rectangle charRect = new Rectangle(myCharacter.GetCharacterLocation().x, myCharacter.GetCharacterLocation().y, 64, 64);
+            Rectangle picRect = pictureBox2.Bounds;
 
+            bool isColliding = charRect.IntersectsWith(picRect);
+
+            if (isColliding)
+            {
+                SecondMap thirdMap = new SecondMap(myCharacter);
+                thirdMap.Show();
+                this.Close();
+            }
         }
-
     }
 }

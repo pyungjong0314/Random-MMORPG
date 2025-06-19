@@ -30,7 +30,7 @@ namespace WindowsFormsApp1.Battle.BattlePanel
             parentForm.Controls.Remove(this.SuccessFailurePanel);
 
             parentForm.Player1Character.Image = Properties.Resources.AttackPlayer;
-            parentForm.DamageLabel.Text = damage.ToString();
+            parentForm.DamageLabel.Text = "-" + damage.ToString();
             parentForm.DamageLabel.Visible = true;
             parentForm.DefenseButton.Enabled = true;
             parentForm.AttackButton.Enabled = false;

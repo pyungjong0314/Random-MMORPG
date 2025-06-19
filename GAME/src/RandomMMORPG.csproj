@@ -108,6 +108,7 @@
     <Compile Include="Map\MapController.cs" />
     <Compile Include="Server\ServerBattle.cs" />
     <Compile Include="Server\ServerClientControl.cs" />
+    <Compile Include="SoundEffectPlayer.cs" />
     <Compile Include="StartingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +165,12 @@
     </Compile>
     <Compile Include="Story\StoryForm.Designer.cs">
       <DependentUpon>StoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SecondMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SecondMap.Designer.cs">
+      <DependentUpon>SecondMap.cs</DependentUpon>
     </Compile>
     <Compile Include="Weapons\WeaponControl\CharacterWeapon.cs">
       <SubType>UserControl</SubType>
@@ -244,6 +251,9 @@
     <EmbeddedResource Include="Story\StoryForm.resx">
       <DependentUpon>StoryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SecondMap.resx">
+      <DependentUpon>SecondMap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Weapons\WeaponControl\CharacterWeapon.resx">
       <DependentUpon>CharacterWeapon.cs</DependentUpon>
     </EmbeddedResource>
@@ -313,19 +323,25 @@
     <None Include="Resources\slime.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\wizard_dead.png" />
     <None Include="Resources\wizard_attack.png" />
     <None Include="Resources\Dice2.png" />
     <None Include="Resources\Dice3.png" />
     <None Include="Resources\Dice4.png" />
     <None Include="Resources\Dice5.png" />
     <None Include="Resources\Dice6.png" />
+    <None Include="Resources\character_dead.png" />
+    <None Include="Resources\character2_defend.png" />
     <None Include="Resources\AttackPlayer.png" />
     <None Include="Resources\AttackPlayer2.png" />
+    <None Include="Resources\cave.png" />
     <Content Include="Resources\goblin2.png" />
     <None Include="Resources\Player1Character_left.png" />
     <None Include="Resources\noWeapon.png" />
     <None Include="Resources\goblin_attack.png" />
     <None Include="Resources\orc_attack.png" />
+    <None Include="Resources\goblin_dead.png" />
+    <None Include="Resources\orc_dead.png" />
     <Content Include="Resources\scorpion.png" />
     <None Include="Resources\StartForm.png" />
     <None Include="Resources\tombstone.png" />
@@ -348,6 +364,13 @@
     <None Include="Resources\shield_2.png" />
     <None Include="Resources\shield_1.png" />
     <None Include="Resources\shield_0.png" />
+    <None Include="Resources\slime_dead.png" />
+    <None Include="Resources\scorpion_dead.png" />
+    <Content Include="Resources\soundeffects\dead_bgm.wav" />
+    <Content Include="Resources\soundeffects\mainscreen_bgm.wav" />
+    <Content Include="Resources\soundeffects\secondmap_bgm.wav" />
+    <Content Include="Resources\soundeffects\startingmap_bgm.wav" />
+    <Content Include="Resources\soundeffects\firstmap_bgm.wav" />
     <Content Include="Resources\wizard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

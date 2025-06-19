@@ -256,9 +256,6 @@
   <data name="StartForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StartForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AttackPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AttackPlayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="tombstone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tombstone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -334,7 +331,34 @@
   <data name="sword_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sword_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AttackPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AttackPlayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AttackPlayer2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AttackPlayer2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="character2_defend" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\character2_defend.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="character_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\character_dead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="goblin_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goblin_dead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="orc_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\orc_dead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scorpion_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scorpion_dead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slime_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slime_dead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wizard_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wizard_dead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

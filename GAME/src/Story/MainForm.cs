@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using WindowsFormsApp1.Characters;
 using WindowsFormsApp1.WeaponControls;
 using WindowsFormsApp1.Weapons.WeaponControl;
+using Game.Audio;
 
 namespace WindowsFormsApp1
 {
@@ -21,6 +22,7 @@ namespace WindowsFormsApp1
         public MainForm()
         {
             InitializeComponent();
+            SoundManager.PlayBgmLoop("mainscreen_bgm.wav");
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)

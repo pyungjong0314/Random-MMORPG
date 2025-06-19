@@ -16,8 +16,10 @@ namespace Game.Monsters
                 coinValue: new Random().Next(10, 20),
                 mapId: 1,
                 location: (4, 2),
-                hp: new Random().Next(55, 70),
-                attack: new Random().Next(15, 30),
+                // hp: new Random().Next(55, 70),
+                hp : 10000,
+                //attack: new Random().Next(15, 30),
+                attack : 1000,
                 defense: 30,
                 exp: new Random().Next(15, 30))
         { }
@@ -38,7 +40,8 @@ namespace Game.Monsters
                 coinValue: new Random().Next(5, 10),
                 mapId: 10,
                 location: (4, 2),
-                hp: new Random().Next(40, 60),
+                //hp: new Random().Next(40, 60),
+                hp: 10,
                 attack: new Random().Next(5, 10),
                 defense: 30,
                 exp: new Random().Next(10, 20))
@@ -60,7 +63,8 @@ namespace Game.Monsters
                 coinValue: 200,
                 mapId: 10,
                 location: (4, 2),
-                hp: 500,
+                // hp: 500,
+                hp :10,
                 attack: 55,
                 defense: 30,
                 exp:100)
@@ -128,8 +132,8 @@ namespace Game.Monsters
                 coinValue: 90,
                 mapId: 10,
                 location: (4, 2),
-                hp: 500,
-                attack: 55,
+                hp: 10,
+                attack: 1000,
                 defense: 30,
                 exp:14)
         { }
