@@ -168,10 +168,10 @@ namespace WindowsFormsApp1.MapControls
         private async void OnAttackOpponentClicked(object sender, EventArgs e)
         {
             form.Invalidate();
-            Console.WriteLine("전투 요청");
 
             if(form is FirstMap firstMap)
             {
+                Console.WriteLine("전투 요청");
                 firstMap.StartBattle(lastClickedOpponent);
             }
         }

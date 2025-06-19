@@ -148,6 +148,11 @@ namespace WindowsFormsApp1
 
             // 이동
             client = c;
+            StartNetwork();
+
+            // 상태 클라이언트
+            clientStatus = new GameWebSocketClient();
+            clientStatus.ConnectAsync();
         }
 
 
@@ -159,14 +164,9 @@ namespace WindowsFormsApp1
 
         public async Task InitializeClients()
         {
-            // 상태 클라이언트
-            clientStatus = new GameWebSocketClient();
-            await clientStatus.ConnectAsync();
-            StartNetwork();
-
             // 전투 클라이언트
             clientBattle = new GameWebSocketClient();
-            await clientBattle.ConnectAsync(); // ✅ 반드시 await!
+            await clientBattle.ConnectAsync();
             StartListening();
         }
 
@@ -270,42 +270,35 @@ namespace WindowsFormsApp1
 
                 try
                 {
-                    while (!token.IsCancellationRequested)
+                    string msg = await clientBattle.WaitForCmd(115, token);
+
+                    if (msg != null)
                     {
-                        var msg = await clientBattle.WaitForCmd(115);
+                        Console.WriteLine("[대기 스레드] 전투 요청 수신됨!");
 
-                        if (msg != null)
+                        var response = JsonConvert.DeserializeObject<CombatResponse>(msg);
+                        string opponentUid = response.uid2;
+
+                        Character battleOpponent = null;
+                        foreach (var c in firstMap.opponentCharacters)
                         {
-                            Console.WriteLine("[대기 스레드] 전투 요청 수신됨!");
-
-                            var response = JsonConvert.DeserializeObject<CombatResponse>(msg);
-                            string opponentUid = response.uid2;
-
-                            Character battleOpponent = null;
-                            foreach (var c in firstMap.opponentCharacters)
+                            if (c.GetCharacterId().ToString() == opponentUid)
                             {
-                                if (c.GetCharacterId().ToString() == opponentUid)
-                                {
-                                    battleOpponent = c;
-                                    break;
-                                }
+                                battleOpponent = c;
+                                break;
                             }
-
-                            if (battleOpponent != null)
-                            {
-                                MessageBox.Show($"전투를 시작합니다.");
-                                var battleForm = new BattleForm(myCharacter, battleOpponent, this);
-                                battleForm.Show();
-                            }
-                            else
-                            {
-                                Console.WriteLine($"[대기 스레드] 상대 캐릭터 UID({opponentUid})를 찾을 수 없습니다.");
-                            }
-
-                            break; // 루프 종료
                         }
 
-                        await Task.Delay(100, token);
+                        if (battleOpponent != null)
+                        {
+                            MessageBox.Show($"전투를 시작합니다.");
+                            var battleForm = new BattleForm(myCharacter, battleOpponent, this);
+                            battleForm.Show();
+                        }
+                        else
+                        {
+                            Console.WriteLine($"[대기 스레드] 상대 캐릭터 UID({opponentUid})를 찾을 수 없습니다.");
+                        }
                     }
                 }
                 catch (OperationCanceledException)
@@ -344,7 +337,12 @@ namespace WindowsFormsApp1
 
         public void StartBattle(Character battleOpponent)
         {
-            StopListening(); // 기존 대기 종료
+            StopListening(); // 기존 수신 대기 중지
+            Console.WriteLine("쓰레드 종료");
+
+            // 새로운 CancellationTokenSource 생성
+            var battleCancelTokenSource = new CancellationTokenSource();
+            CancellationToken token = battleCancelTokenSource.Token;
 
             Task.Run(async () =>
             {
@@ -353,17 +351,17 @@ namespace WindowsFormsApp1
                     string myUid = myCharacter.GetCharacterId().ToString();
                     string opponentUid = battleOpponent.GetCharacterId().ToString();
 
-                    // 1. 서버에 전투 수락 요청 (cmd = 115)
-                    await clientBattle.CmdPvPAccept(myUid, opponentUid);
-                    Console.WriteLine($"[StartBattle] CmdPvPAccept 전송 완료: {myUid} vs {opponentUid}");
+                    // 1. 서버에 PvP 요청 (cmd = 106)
+                    await clientBattle.CmdPvPRequest(myUid, opponentUid);
+                    Console.WriteLine($"[StartBattle] CmdPvPRequest 전송 완료: {myUid} vs {opponentUid}");
 
-                    // 2. 서버에서 cmd=115 응답 대기
+                    // 2. 서버에서 cmd=115 응답 대기 (취소 가능)
                     Console.WriteLine("[StartBattle] cmd=115 응답 대기 중...");
-                    string responseJson = await clientBattle.WaitForCmd(115);
+                    string responseJson = await clientBattle.WaitForCmd(115, token);
                     var response = JsonConvert.DeserializeObject<CombatResponse>(responseJson);
                     Console.WriteLine($"[StartBattle] cmd=115 수신 완료: message = {response.message}");
 
-                    // 3. 전투 UI 실행 (UI 스레드에서 실행 필요)
+                    // 3. 전투 UI 실행 (UI 스레드에서)
                     if (Application.OpenForms.Count > 0)
                     {
                         var mainForm = Application.OpenForms[0];
@@ -374,6 +372,10 @@ namespace WindowsFormsApp1
                             battleForm.Show();
                         }));
                     }
+                }
+                catch (OperationCanceledException)
+                {
+                    Console.WriteLine("[StartBattle] 취소됨");
                 }
                 catch (Exception ex)
                 {
@@ -387,7 +389,7 @@ namespace WindowsFormsApp1
                     }
                     Console.WriteLine($"[StartBattle] 오류: {ex}");
                 }
-            });
+            }, token);
         }
 
 
