@@ -26,6 +26,7 @@ namespace WindowsFormsApp1
         private GameWebSocketClient client;
         private Thread _networkThread;
         private bool _isRunningNetwork = false;
+        public readonly object _opponentLock = new object();
 
         // Map
         Image firstMapImg;
@@ -192,26 +193,29 @@ namespace WindowsFormsApp1
                             }
                         }
 
-                        foreach (var p in response.body.players)
+                        lock (_opponentLock)
                         {
-                            // 본인은 제외
-                            if (p.characterId == myCharacter.GetCharacterId())
-                                continue;
+                            firstMap.opponentCharacters.Clear();
 
-                            // DTO → Character 변환
-                            var opponent = new Character.Builder()
-                                .SetCharacterId(p.characterId)
-                                .SetCharacterName(p.characterName)
-                                .SetCharacterLevel(p.characterLevel)
-                                .SetCharacterExp(p.characterExp)
-                                .SetCharacterMoney(p.characterMoney)
-                                .SetCharacterMapId(p.characterMapId)
-                                .SetCharacterLocation(p.characterLocation.x, p.characterLocation.y)
-                                .SetCharacterHp(p.characterHp)
-                                .SetCharacterAttack(p.characterAttack)
-                                .Build();
+                            foreach (var p in response.body.players)
+                            {
+                                if (p.characterId == myCharacter.GetCharacterId())
+                                    continue;
 
-                            firstMap.opponentCharacters.Add(opponent);
+                                var opponent = new Character.Builder()
+                                    .SetCharacterId(p.characterId)
+                                    .SetCharacterName(p.characterName)
+                                    .SetCharacterLevel(p.characterLevel)
+                                    .SetCharacterExp(p.characterExp)
+                                    .SetCharacterMoney(p.characterMoney)
+                                    .SetCharacterMapId(p.characterMapId)
+                                    .SetCharacterLocation(p.characterLocation.x, p.characterLocation.y)
+                                    .SetCharacterHp(p.characterHp)
+                                    .SetCharacterAttack(p.characterAttack)
+                                    .Build();
+
+                                firstMap.opponentCharacters.Add(opponent);
+                            }
                         }
                     }
 
@@ -314,12 +318,15 @@ namespace WindowsFormsApp1
         // 맵에 존재하는 몬스터 위치 찾기
         private Character FrindOpponentAtPoint(Point point)
         {
-            foreach (var opponent in firstMap.opponentCharacters)
+            lock (_opponentLock)
             {
-                Rectangle opponentRect = new Rectangle(opponent.GetCharacterLocation().x, opponent.GetCharacterLocation().y, 64, 64);
-                if (opponentRect.Contains(point))
+                foreach (var opponent in firstMap.opponentCharacters)
                 {
-                    return opponent;
+                    Rectangle opponentRect = new Rectangle(opponent.GetCharacterLocation().x, opponent.GetCharacterLocation().y, 64, 64);
+                    if (opponentRect.Contains(point))
+                    {
+                        return opponent;
+                    }
                 }
             }
             return null;
