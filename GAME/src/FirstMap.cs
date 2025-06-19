@@ -342,35 +342,52 @@ namespace WindowsFormsApp1
             }
         }
 
-        public async void StartBattle(Character battleOpponent)
+        public void StartBattleThreaded(Character battleOpponent)
         {
             StopListening(); // 기존 대기 종료
 
-            try
+            Task.Run(async () =>
             {
-                string myUid = myCharacter.GetCharacterId().ToString();
-                string opponentUid = battleOpponent.GetCharacterId().ToString();
+                try
+                {
+                    string myUid = myCharacter.GetCharacterId().ToString();
+                    string opponentUid = battleOpponent.GetCharacterId().ToString();
 
-                // 1. 서버에 전투 수락 요청 (cmd = 115)
-                await clientBattle.CmdPvPAccept(myUid, opponentUid);
-                Console.WriteLine($"[StartBattle] CmdPvPAccept 전송 완료: {myUid} vs {opponentUid}");
+                    // 1. 서버에 전투 수락 요청 (cmd = 115)
+                    await clientBattle.CmdPvPAccept(myUid, opponentUid);
+                    Console.WriteLine($"[StartBattle] CmdPvPAccept 전송 완료: {myUid} vs {opponentUid}");
 
-                // 2. 서버에서 cmd=115 응답 대기
-                Console.WriteLine("[StartBattle] cmd=115 응답 대기 중...");
-                string responseJson = await clientBattle.WaitForCmd(115);
-                var response = JsonConvert.DeserializeObject<CombatResponse>(responseJson);
-                Console.WriteLine($"[StartBattle] cmd=115 수신 완료: message = {response.message}");
+                    // 2. 서버에서 cmd=115 응답 대기
+                    Console.WriteLine("[StartBattle] cmd=115 응답 대기 중...");
+                    string responseJson = await clientBattle.WaitForCmd(115);
+                    var response = JsonConvert.DeserializeObject<CombatResponse>(responseJson);
+                    Console.WriteLine($"[StartBattle] cmd=115 수신 완료: message = {response.message}");
 
-                // 3. 전투 UI 실행
-                MessageBox.Show("전투를 시작합니다.");
-                var battleForm = new BattleForm(myCharacter, battleOpponent, this);
-                battleForm.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"전투 시작 실패: {ex.Message}");
-                Console.WriteLine($"[StartBattle] 오류: {ex}");
-            }
+                    // 3. 전투 UI 실행 (UI 스레드에서 실행 필요)
+                    if (Application.OpenForms.Count > 0)
+                    {
+                        var mainForm = Application.OpenForms[0];
+                        mainForm.Invoke(new Action(() =>
+                        {
+                            MessageBox.Show("전투를 시작합니다.");
+                            var battleForm = new BattleForm(myCharacter, battleOpponent, this);
+                            battleForm.Show();
+                        }));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (Application.OpenForms.Count > 0)
+                    {
+                        var mainForm = Application.OpenForms[0];
+                        mainForm.Invoke(new Action(() =>
+                        {
+                            MessageBox.Show($"전투 시작 실패: {ex.Message}");
+                        }));
+                    }
+                    Console.WriteLine($"[StartBattle] 오류: {ex}");
+                }
+            });
         }
 
 
