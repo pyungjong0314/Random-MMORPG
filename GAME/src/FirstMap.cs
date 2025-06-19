@@ -129,9 +129,6 @@ namespace WindowsFormsApp1
 
 
             // 다른 캐릭터 테스트
-            Character c1 = CharacterFactory.CharacterCreate("적1");
-            c1.MoveLocation(800, 200);
-            firstMap.opponentCharacters.Add(c1);
 
             this.DoubleBuffered = true;
 
@@ -179,7 +176,7 @@ namespace WindowsFormsApp1
                     Console.WriteLine($"[CmdAll] 유저 수: {response.body.players?.Count}");
 
 
-                    //if(frame % 10 == 0)
+                    if(frame % 10 == 0)
                     {
                         if (response.body.monsters != null)
                         {
@@ -193,6 +190,28 @@ namespace WindowsFormsApp1
                                     shouldUpdateMonsterBufferServer = true;
                                 }
                             }
+                        }
+
+                        foreach (var p in response.body.players)
+                        {
+                            // 본인은 제외
+                            if (p.characterId == myCharacter.GetCharacterId())
+                                continue;
+
+                            // DTO → Character 변환
+                            var opponent = new Character.Builder()
+                                .SetCharacterId(p.characterId)
+                                .SetCharacterName(p.characterName)
+                                .SetCharacterLevel(p.characterLevel)
+                                .SetCharacterExp(p.characterExp)
+                                .SetCharacterMoney(p.characterMoney)
+                                .SetCharacterMapId(p.characterMapId)
+                                .SetCharacterLocation(p.characterLocation.x, p.characterLocation.y)
+                                .SetCharacterHp(p.characterHp)
+                                .SetCharacterAttack(p.characterAttack)
+                                .Build();
+
+                            firstMap.opponentCharacters.Add(opponent);
                         }
                     }
 
@@ -224,6 +243,7 @@ namespace WindowsFormsApp1
                     }
                 }
             }
+            this.Invalidate();
         }
 
 
