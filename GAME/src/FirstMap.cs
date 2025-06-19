@@ -149,7 +149,6 @@ namespace WindowsFormsApp1
             // 이동
             client = c;
             StartNetwork();
-
         }
 
 
@@ -236,12 +235,6 @@ namespace WindowsFormsApp1
             Console.WriteLine("Start PvPRequest");
             await clientBattle.CmdPvPRequest(myUid, targetUid);
             Console.WriteLine($"Sending PvPRequest: {myUid} vs {targetUid}");
-
-            Console.WriteLine("Waiting for PvP accept (cmd 115)...");
-            var acceptMsg = await clientBattle.WaitForCmd(115);
-            Console.WriteLine("PvP accepted: " + acceptMsg);
-
-            // 이후 전투 진행 로직 추가 가능
         }
 
 
@@ -277,6 +270,7 @@ namespace WindowsFormsApp1
 
                     // 2. 상태 요청 (10프레임에 1번 = 약 1초마다)
                     var response = await client.CmdAllAsync(2);
+
                     Console.WriteLine($"[CmdAll] 유저 수: {response.body.players?.Count}");
 
 

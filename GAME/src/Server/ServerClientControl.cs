@@ -139,7 +139,7 @@ namespace GameClientLib
             var message = new
             {
                 cmd = 119,
-                uid = character.characterId,
+                uid = character.characterId.ToString(),
                 characterName = character.characterName,
                 characterLevel = character.characterLevel,
                 characterExp = character.characterExp,
@@ -202,6 +202,14 @@ namespace GameClientLib
         {
             var json = JsonConvert.SerializeObject(message);
             var bytes = Encoding.UTF8.GetBytes(json);
+            Console.WriteLine($"[Client SendOnly] Sending: {json}");
+
+            if (ws.State != WebSocketState.Open)
+            {
+                Console.WriteLine($"[Client SendOnly] WebSocket not open! State = {ws.State}");
+                return;
+            }
+
             await ws.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
