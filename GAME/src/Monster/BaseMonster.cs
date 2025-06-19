@@ -21,7 +21,7 @@ namespace Game.BaseMonster
 
         // 일반몹 속성
         public string MonsterName;
-        public string MonsterId; // mid
+        public int MonsterId; // mid
         public int MonsterLevel;
         public int MonsterCoinValue = 0;
         public int MonsterMapId;
@@ -41,7 +41,7 @@ namespace Game.BaseMonster
         // 몬스터 기본 생성자
         public Monster(
             string name,
-            string id,
+            int id,
             int level,
             int coinValue,
             int mapId,
@@ -68,7 +68,7 @@ namespace Game.BaseMonster
 
         // 몬스터 Setter
         public void setName(string name) => MonsterName = name;
-        public void setId(string id) => MonsterId = id;
+        public void setId(int id) => MonsterId = id;
         public void setLevel(int level) => MonsterLevel = level;
         public void setcoinvalue(int coin) => MonsterCoinValue = coin;
         public void SetMapId(int mapId) => MonsterMapId = mapId;
@@ -80,7 +80,7 @@ namespace Game.BaseMonster
         
         // 몬스터 Getter
         public string GetName() => MonsterName;
-        public string GetId() => MonsterId;
+        public int GetId() => MonsterId;
         public int GetLevel() => MonsterLevel;
         public int GetCoinValue() => MonsterCoinValue;
         public int GetMapId() => MonsterMapId;

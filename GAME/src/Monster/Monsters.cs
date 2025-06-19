@@ -11,7 +11,7 @@ namespace Game.Monsters
         public Goblin()
             : base(
                 name: "Goblin",
-                id: (100).ToString(),
+                id: 0,
                 level: 4,
                 coinValue: new Random().Next(10, 20),
                 mapId: 1,
@@ -33,7 +33,7 @@ namespace Game.Monsters
         public Slime()
             : base(
                 name: "Slime",
-                id: (200 + slimeCount++).ToString(),
+                id: 0,
                 level: 1,
                 coinValue: new Random().Next(5, 10),
                 mapId: 10,
@@ -55,7 +55,7 @@ namespace Game.Monsters
         public Scorpion()
             : base(
                 name: "Scorpion",
-                id: (300 + scorpionCount++).ToString(),
+                id: 0,
                 level: 5,
                 coinValue: 200,
                 mapId: 10,
@@ -77,7 +77,7 @@ namespace Game.Monsters
         public Witch()
             : base(
                 name: "Witch",
-                id: (400 + witchCount++).ToString(),
+                id: 0,
                 level: 5,
                 coinValue: 150,
                 mapId: 10,
@@ -100,7 +100,7 @@ namespace Game.Monsters
         public Basilisk()
             : base(
                 name: "Basilisk",
-                id: (500 + basiliskCount++).ToString(),
+                id: 0,
                 level: 5,
                 coinValue: 90,
                 mapId: 10,
@@ -123,7 +123,7 @@ namespace Game.Monsters
         public Orc()
             : base(
                 name: "Orc",
-                id: (600 + orcCount++).ToString(),
+                id: 0,
                 level: 5,
                 coinValue: 90,
                 mapId: 10,

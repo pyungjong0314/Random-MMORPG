@@ -2,13 +2,18 @@
 using Game.Characters;
 using Game.Maps;
 using Game.Weapons;
+using GameClientLib;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.WebSockets;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.Characters;
@@ -21,19 +26,30 @@ namespace WindowsFormsApp1
 {
     public partial class StartingForm : Form
     {
+        // 통신
+        private GameWebSocketClient client;
+        private Thread _sendThread;
+        private bool _isRunning = false;
+
+        // 캐릭터
         public Character myCharacter;
+
+        // Map 이동
         private MapController controller;
         Game.Maps.Map map = new Game.Maps.Map();
-        public List<Weapon> storeWeaponList = new List<Weapon>();
 
         // 상점
+        public List<Weapon> storeWeaponList = new List<Weapon>();
         private ContextMenuStrip StoreContextMenu;
         private ToolStripMenuItem StoreContextMunuItem;
 
-        public StartingForm(Character character)
+        public StartingForm(GameWebSocketClient c, Character character)
         {
             InitializeComponent();
             InitializeStoreContextMenu();
+
+            // 통신
+            client = c;
 
             // 캐릭터 위치 설정
             myCharacter = character;
@@ -49,9 +65,50 @@ namespace WindowsFormsApp1
             controller = new MapController(character, map, this);
             this.MouseClick += FirstMap_MouseClick;
             this.KeyDown += StartingForm_KeyDown;
+
+            MoveStart();
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        // 통신 (이동)
+        public void MoveStart()
+        {
+            _isRunning = true;
+            _sendThread = new Thread(() => SendLoopAsync().GetAwaiter().GetResult());
+            _sendThread.IsBackground = true;
+            _sendThread.Start();
+        }
+
+        public void MoveStop()
+        {
+            _isRunning = false;
+            _sendThread?.Join();
+        }
+
+        private async Task SendLoopAsync()
+        {
+            while (_isRunning)
+            {
+                try
+                {
+                    var loc = myCharacter.GetCharacterLocation();
+
+                    await client.CmdMoveAsync(myCharacter.GetCharacterId().ToString(), 1, loc.x, loc.y);
+                    Console.WriteLine($"[좌표 전송] x: {loc.x}, y: {loc.y}");
+
+                    await Task.Delay(100);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("좌표 전송 중 예외 발생: " + ex.Message);
+                    break;
+                }
+            }
+        }
+
+
+        // 통신 (몬스터 리스트)
+
+    protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
@@ -80,6 +137,7 @@ namespace WindowsFormsApp1
             return false;
         }
 
+        // 포탈 이동
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Rectangle charRect = new Rectangle(myCharacter.GetCharacterLocation().x, myCharacter.GetCharacterLocation().y, 64, 64);
@@ -89,7 +147,8 @@ namespace WindowsFormsApp1
 
             if (isColliding)
             {
-                FirstMap firstmap = new FirstMap(myCharacter);
+                FirstMap firstmap = new FirstMap(client, myCharacter);
+                MoveStop();
                 firstmap.Show();
                 this.Close();
             }

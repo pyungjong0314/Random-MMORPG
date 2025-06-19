@@ -114,8 +114,8 @@ public class CombatSession
 
             Program.SendToClient(Uid1, res1);
             Program.SendToClient(Uid2, res2);
-            
-            
+
+
         }
     }
 }
@@ -269,7 +269,7 @@ public class Program
             case 103: await HandleAllAsync(ws, req); break;
             case 104: await HandleRemoveAsync(ws, req); break;
             case 105: await HandleMonsterInfoAsync(ws, req); break;
-            
+
             case 107: await HandleMonsterBattleAsync(ws, req); break;
             case 108: await HandleAttackAsync(ws, req); break;
             case 109: await HandleDefendAsync(ws, req); break;

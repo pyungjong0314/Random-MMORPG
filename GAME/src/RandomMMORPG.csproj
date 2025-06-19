@@ -106,6 +106,8 @@
     <Compile Include="Obstacle\Obstacle.cs" />
     <Compile Include="Obstacle\ObstacleManager.cs" />
     <Compile Include="Map\MapController.cs" />
+    <Compile Include="Server\ServerBattle.cs" />
+    <Compile Include="Server\ServerClientControl.cs" />
     <Compile Include="StartingForm.cs">
       <SubType>Form</SubType>
     </Compile>

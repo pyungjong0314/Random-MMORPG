@@ -10,7 +10,7 @@ namespace Game.BaseBossMonster
     // 보스몹 기본 클래스
     public class BossMonster : Monster
     {
-        public BossMonster(string name, string id, int level, int coinValue, int mapId, (int x, int y) location, int hp, int attack, int defense, int exp)
+        public BossMonster(string name, int id, int level, int coinValue, int mapId, (int x, int y) location, int hp, int attack, int defense, int exp)
             : base(name, id, level, coinValue, mapId, location, hp, attack, defense, exp) { }
 
         public virtual void UltimateSkill() { }

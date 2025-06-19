@@ -11,7 +11,7 @@ namespace Game.BossMonsters
         public GoblinKing()
             : base(
                 name: "GoblinKing",
-                id: "1000",
+                id: 1000,
                 level: 5,
                 coinValue: 1000,
                 mapId: 10,
@@ -39,7 +39,7 @@ namespace Game.BossMonsters
         public LunaCrab()
             : base(
                 name: "LunaCrab",
-                id: "2000",
+                id: 2000,
                 level: 5,
                 coinValue: 1000,
                 mapId: 10,
@@ -67,7 +67,7 @@ namespace Game.BossMonsters
         public DarkKnight()
             : base(
                 name: "DarkKnight",
-                id: "3000",
+                id: 3000,
                 level: 5,
                 coinValue: 1000,
                 mapId: 10,

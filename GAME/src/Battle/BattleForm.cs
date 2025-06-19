@@ -1,6 +1,7 @@
 ﻿using Game.BaseMonster;
 using Game.Characters;
 using Game.Monsters;
+using GameClientLib;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -17,6 +18,9 @@ namespace WindowsFormsApp1
         Character targetCharacter;
         Monster targetMonster;
         public Form parentForm;
+
+        // 통신
+        private GameWebSocketClient clientBattle;
 
         public BattleForm(Character character, Object target, Form parentForm)
         {
@@ -86,6 +90,11 @@ namespace WindowsFormsApp1
                         break;
                 }
             }
+
+
+            // 전투용 소켓
+            clientBattle = new GameWebSocketClient();
+            clientBattle.ConnectAsync();
         }
 
         private void AttackButton_Click(object sender, EventArgs e)
@@ -290,11 +299,12 @@ namespace WindowsFormsApp1
                 monster.SetHp(10);
 
                 // 몬스터 버퍼 다시 그리기
-                if (parentForm is FirstMap firstMapForm)
-                { 
-                    firstMapForm.UpdateMonsterBuffer();
-                    firstMapForm.Invalidate();
+                if (parentForm is FirstMap firstMap)
+                {
+                    firstMap.UpdateMonsterBuffer();
+                    firstMap.Invalidate();
                 }
+                clientBattle.CmdMonsterRespwanAsync(2, monster.MonsterId);
             };
 
             timer.Start();
@@ -345,6 +355,14 @@ namespace WindowsFormsApp1
                 this.Close();
                 upDateImage();
                 Respawn(targetMonster);
+
+                // 죽었다고 알려주기
+                if (parentForm is FirstMap firstMap)
+                {
+                    firstMap.UpdateMonsterBuffer();
+                    firstMap.Invalidate();
+                }
+                clientBattle.CmdMonsterKillAsync(2, targetMonster.MonsterId);
             }
         }
 
@@ -389,11 +407,14 @@ namespace WindowsFormsApp1
                         labelTimer.Stop();
                         labelTimer.Dispose();
 
-                        parentForm.Invoke(new Action(() =>
+                        if (parentForm != null && !parentForm.IsDisposed && parentForm.IsHandleCreated)
                         {
-                            parentForm.Controls.Remove(coinLabel);
-                            coinLabel.Dispose();
-                        }));
+                            parentForm.Invoke(new Action(() =>
+                            {
+                                parentForm.Controls.Remove(coinLabel);
+                                coinLabel.Dispose();
+                            }));
+                        }
                     };
                     labelTimer.Start();
                 }));

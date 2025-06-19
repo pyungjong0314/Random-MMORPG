@@ -10,12 +10,24 @@ using Game.Characters;
 using WindowsFormsApp1.MapControls;
 using Game.MonsterManagers;
 using Game.BossMonsters;
+using System.Threading.Tasks;
+using System.Threading;
+using System;
+using GameClientLib;
+using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 
 namespace WindowsFormsApp1
 {
     public partial class FirstMap : Form
     {
+        // 통신
+        private GameWebSocketClient client;
+        private Thread _networkThread;
+        private bool _isRunningNetwork = false;
+
+        // Map
         Image firstMapImg;
         private Character myCharacter;
         private MapController controller;
@@ -27,8 +39,9 @@ namespace WindowsFormsApp1
         // 이미지 생성
         private Monster lastClickedMonster;
         private Character lastClickedOpponent;
+        bool shouldUpdateMonsterBuffer = false;
 
-        public FirstMap(Character character)
+        public FirstMap(GameWebSocketClient c, Character character)
         {
             InitializeComponent();
             myCharacter = character;
@@ -41,25 +54,25 @@ namespace WindowsFormsApp1
             List<Monster> monsters = new List<Monster>
             {
                 // Slime 10마리
-                new Slime { MonsterLocation = (135, 199) },
-                new Slime { MonsterLocation = (53, 281)  },
-                new Slime { MonsterLocation = (160, 320) },
-                new Slime { MonsterLocation = (302, 281) },
-                new Slime { MonsterLocation = (157, 461) },
-                new Slime { MonsterLocation = (290, 462) },
-                new Slime { MonsterLocation = (388, 382) },
-                new Slime { MonsterLocation = (461, 485) },
-                new Slime { MonsterLocation = (507, 332) },
-                new Slime { MonsterLocation = (550, 411) },
+                new Slime { MonsterId = 0, MonsterLocation = (135, 199) },
+                new Slime { MonsterId = 1, MonsterLocation = (53, 281)  },
+                new Slime { MonsterId = 2, MonsterLocation = (160, 320) },
+                new Slime { MonsterId = 3, MonsterLocation = (302, 281) },
+                new Slime { MonsterId = 4, MonsterLocation = (157, 461) },
+                new Slime { MonsterId = 5, MonsterLocation = (290, 462) },
+                new Slime { MonsterId = 6, MonsterLocation = (388, 382) },
+                new Slime { MonsterId = 7, MonsterLocation = (461, 485) },
+                new Slime { MonsterId = 8, MonsterLocation = (507, 332) },
+                new Slime { MonsterId = 9, MonsterLocation = (550, 411) },
 
-                // Goblin 6마리
-                new Goblin { MonsterLocation = (643, 433) },
-                new Goblin { MonsterLocation = (779, 499) },
-                new Goblin { MonsterLocation = (931, 474) },
-                new Goblin { MonsterLocation = (708, 332) },
-                new Goblin { MonsterLocation = (828, 382) },
-                new Goblin { MonsterLocation = (933, 332) },
-                new Goblin { MonsterLocation = (933, 332) },
+                // Goblin 7마리
+                new Goblin { MonsterId = 10, MonsterLocation = (779, 499) },
+                new Goblin { MonsterId = 11, MonsterLocation = (643, 433) },
+                new Goblin { MonsterId = 12, MonsterLocation = (931, 474) },
+                new Goblin { MonsterId = 13, MonsterLocation = (708, 332) },
+                new Goblin { MonsterId = 14, MonsterLocation = (828, 382) },
+                new Goblin { MonsterId = 15, MonsterLocation = (933, 332) },
+                new Goblin { MonsterId = 16, MonsterLocation = (933, 332) },
             };
 
             // 생성할 장애물 리스트
@@ -125,10 +138,78 @@ namespace WindowsFormsApp1
             // 키보드 입력
             controller = new MapController(character, firstMap, this);
             this.KeyDown += TestForm_KeyDown;
-
             this.MouseClick += FirstMap_MouseClick;
+
+            // 통신
+            client = c;
+            StartNetwork();
         }
 
+        // 통신
+        public void StartNetwork()
+        {
+            if (_isRunningNetwork) return;
+
+            _isRunningNetwork = true;
+            _networkThread = new Thread(() => NetworkLoop().GetAwaiter().GetResult());
+            _networkThread.IsBackground = true;
+            _networkThread.Start();
+        }
+
+        public void StopNetwork()
+        {
+            _isRunningNetwork = false;
+            _networkThread?.Join();
+        }
+
+        private async Task NetworkLoop()
+        {
+            int frame = 0;
+
+            while (_isRunningNetwork)
+            {
+                try
+                {
+                    // 1. 좌표 전송
+                    var loc = myCharacter.GetCharacterLocation();
+                    await client.CmdMoveAsync(myCharacter.GetCharacterId().ToString(), 2, loc.x, loc.y);
+
+                    // 2. 상태 요청 (10프레임에 1번 = 약 1초마다)
+                    var response = await client.CmdAllAsync(2);
+                    Console.WriteLine($"[CmdAll] 유저 수: {response.body.players?.Count}");
+
+
+                    if(frame % 10 == 0)
+                    {
+                        if (response.body.monsters != null)
+                        {
+                            Console.WriteLine($"[CmdAll] 몬스터 데이터: {string.Join(",", response.body.monsters)}");
+
+                            for (int i = 0; i < firstMap.Monsters.Count; i++)
+                            {
+                                if (firstMap.Monsters[i].IsDead == response.body.monsters[i])
+                                {
+                                    firstMap.Monsters[i].IsDead = !response.body.monsters[i];
+                                    shouldUpdateMonsterBuffer = true;
+                                }
+                            }
+                        }
+                    }
+
+                    frame++;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[NetworkLoop] 예외 발생: {ex.Message}");
+                    break;
+                }
+
+                await Task.Delay(100); // 0.1초마다 실행
+            }
+        }
+
+
+        // 이미지 처리
         public void UpdateMonsterBuffer()
         {
             using (Graphics g = Graphics.FromImage(monsterBuffer))
@@ -154,6 +235,11 @@ namespace WindowsFormsApp1
             e.Graphics.DrawImage(backgroundBufferBitmap, 0, 0);
 
             // 2. 살아있는 몬스터는 따로 다시 그림
+            if (shouldUpdateMonsterBuffer)
+            {
+                UpdateMonsterBuffer();
+                shouldUpdateMonsterBuffer = false;
+            }
             e.Graphics.DrawImage(monsterBuffer, 0, 0);
 
             // 3. 캐릭터도 그리기
@@ -246,9 +332,9 @@ namespace WindowsFormsApp1
 
             if (isColliding)
             {
-                StartingForm starttmap = new StartingForm(myCharacter);
-                starttmap.Show();
-                this.Close();
+                //StartingForm starttmap = new StartingForm(myCharacter);
+                //starttmap.Show();
+                //this.Close();
             }
         }
 

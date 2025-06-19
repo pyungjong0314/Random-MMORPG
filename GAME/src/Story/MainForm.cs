@@ -38,9 +38,9 @@ namespace WindowsFormsApp1
                 MessageBox.Show($"캐릭터 '{loadCharacter.GetCharacterName()}' 로드 완료!");
 
                 // 예시: 게임 화면으로 넘어가기
-                StartingForm map1Form = new StartingForm(loadCharacter);
-                map1Form.Show();
-                this.Hide();
+                //StartingForm map1Form = new StartingForm(loadCharacter);
+                //map1Form.Show();
+                //this.Hide();
             }
             catch (FileNotFoundException ex)
             {
