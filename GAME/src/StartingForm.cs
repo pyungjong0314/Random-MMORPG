@@ -111,7 +111,7 @@ namespace WindowsFormsApp1
 
         // 통신 (몬스터 리스트)
 
-    protected override void OnPaint(PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 

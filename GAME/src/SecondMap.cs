@@ -101,7 +101,7 @@ namespace WindowsFormsApp1
             e.Graphics.DrawImage(backgroundBufferBitmap, 0, 0);
             e.Graphics.DrawImage(monsterBuffer, 0, 0);
             controller.DrawCharacter(e.Graphics);
-            controller.DrawOpponentCharacter(e.Graphics);
+            //DrawOpponentCharacter(e.Graphics);
         }
 
         private void ThirdMap_KeyDown(object sender, KeyEventArgs e)
@@ -170,8 +170,8 @@ namespace WindowsFormsApp1
             if (isColliding)
             {
                 SoundManager.StopBgm();
-                FirstMap firstMap = new FirstMap(myCharacter);
-                firstMap.Show();
+                //FirstMap firstMap = new FirstMap(myCharacter);
+                //firstMap.Show();
                 this.Close();
             }
         }

@@ -352,9 +352,6 @@ namespace WindowsFormsApp1
             }
         }
 
-<<<<<<< HEAD
-=======
-
         public void ShowDeadImage(object target)
         {
             if (target == null) return;
@@ -410,10 +407,6 @@ namespace WindowsFormsApp1
             removeTimer.Start();
         }
 
-
-
-
->>>>>>> a207ab9 (updated)
         public void AttackMonster(int damage)
         {
             targetMonster.MonsterGetAttack(damage, myCharacter);
