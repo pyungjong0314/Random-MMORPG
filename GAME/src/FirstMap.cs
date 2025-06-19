@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Game.Characters;
 using WindowsFormsApp1.MapControls;
 using Game.MonsterManagers;
+<<<<<<< HEAD
 using Game.BossMonsters;
 using System.Threading.Tasks;
 using System.Threading;
@@ -18,6 +19,9 @@ using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Game.Maps;
 using Newtonsoft.Json;
+=======
+using Game.Audio;
+>>>>>>> a207ab9 (updated)
 
 
 namespace WindowsFormsApp1
@@ -50,11 +54,20 @@ namespace WindowsFormsApp1
         private Image opponentImage = Properties.Resources.Player2Character;
         bool shouldUpdateMonsterBufferServer = false;
 
+<<<<<<< HEAD
         public FirstMap(GameWebSocketClient c, Character character)
+=======
+
+
+
+        public FirstMap(Character character)
+>>>>>>> a207ab9 (updated)
         {
             InitializeComponent();
+            SoundManager.PlayBgmLoop("firstmap_bgm.wav");
             myCharacter = character;
             myCharacter.MoveLocation(-10, -50);
+
 
             // 내부 그릴 수 있는 영역 크기
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -74,6 +87,7 @@ namespace WindowsFormsApp1
                 new Slime { MonsterId = 8, MonsterLocation = (507, 332) },
                 new Slime { MonsterId = 9, MonsterLocation = (550, 411) },
 
+<<<<<<< HEAD
                 // Goblin 7마리
                 new Goblin { MonsterId = 10, MonsterLocation = (779, 499) },
                 new Goblin { MonsterId = 11, MonsterLocation = (643, 433) },
@@ -82,6 +96,18 @@ namespace WindowsFormsApp1
                 new Goblin { MonsterId = 14, MonsterLocation = (828, 382) },
                 new Goblin { MonsterId = 15, MonsterLocation = (933, 332) },
                 new Goblin { MonsterId = 16, MonsterLocation = (933, 332) },
+=======
+                // Goblin 6마리
+                new Goblin { MonsterLocation = (643, 433) },
+                new Goblin { MonsterLocation = (779, 499) },
+                new Goblin { MonsterLocation = (931, 474) },
+                new Goblin { MonsterLocation = (708, 332) },
+                new Goblin { MonsterLocation = (828, 382) },
+                new Goblin { MonsterLocation = (933, 332) },
+                new Goblin { MonsterLocation = (933, 332) },
+
+
+>>>>>>> a207ab9 (updated)
             };
 
             // 생성할 장애물 리스트
@@ -394,6 +420,7 @@ namespace WindowsFormsApp1
             Monster clickedMonster = FindMonsterAtPoint(e.Location);
             Character clickedOpponent = FrindOpponentAtPoint(e.Location);
 
+
             // 캐릭터 클릭
             if (FindCharacterAtPoint(e.Location))
                 controller.ShowCharacterContextMenu(this, myCharacter, e.Location);
@@ -467,11 +494,16 @@ namespace WindowsFormsApp1
 
             if (isColliding)
             {
+<<<<<<< HEAD
                 // 통신 종료
                 clientBattle.CmdRemoveAsync(myCharacter.GetCharacterId().ToString());
                 StopNetwork();
 
                 StartingForm starttmap = new StartingForm(client, myCharacter);
+=======
+                SoundManager.StopBgm();
+                StartingForm starttmap = new StartingForm(myCharacter);
+>>>>>>> a207ab9 (updated)
                 starttmap.Show();
                 this.Close();
             }
@@ -479,7 +511,17 @@ namespace WindowsFormsApp1
 
         private void pictureBox2_Click(object sender, System.EventArgs e)
         {
+            Rectangle charRect = new Rectangle(myCharacter.GetCharacterLocation().x, myCharacter.GetCharacterLocation().y, 64, 64);
+            Rectangle picRect = pictureBox2.Bounds;
 
+            bool isColliding = charRect.IntersectsWith(picRect);
+
+            if (isColliding)
+            {
+                SecondMap thirdMap = new SecondMap(myCharacter);
+                thirdMap.Show();
+                this.Close();
+            }
         }
 
     }

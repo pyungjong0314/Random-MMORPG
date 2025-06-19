@@ -79,6 +79,7 @@ namespace Game.Characters
         // 공격력 반환
         public int Attack()
         {
+
             return characterAttack
                 + (characterSword?.GetWeaponAttack() ?? 0)
                 + (characterShiled?.GetWeaponAttack() ?? 0);
@@ -193,7 +194,8 @@ namespace Game.Characters
             .SetCharacterMapId(0)
             .SetCharacterLocation(0, 0)
             // HP 100 ~ 200
-            .SetCharacterHp(rand.Next(100, 200))
+            //.SetCharacterHp(rand.Next(100, 200))
+            .SetCharacterHp(10)
             // Attack 30 ~ 50
             .SetCharacterAttack(rand.Next(30, 50))
             .Build();

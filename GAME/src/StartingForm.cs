@@ -21,6 +21,7 @@ using WindowsFormsApp1.Map;
 using WindowsFormsApp1.MapControls;
 using WindowsFormsApp1.WeaponControls;
 using WindowsFormsApp1.Weapons.WeaponControl;
+using Game.Audio;
 
 namespace WindowsFormsApp1
 {
@@ -47,6 +48,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             InitializeStoreContextMenu();
+            SoundManager.PlayBgmLoop("startingmap_bgm.wav");
+
 
             // 통신
             client = c;
@@ -147,8 +150,13 @@ namespace WindowsFormsApp1
 
             if (isColliding)
             {
+<<<<<<< HEAD
                 FirstMap firstmap = new FirstMap(client, myCharacter);
                 MoveStop();
+=======
+                SoundManager.StopBgm();
+                FirstMap firstmap = new FirstMap(myCharacter);
+>>>>>>> a207ab9 (updated)
                 firstmap.Show();
                 this.Close();
             }

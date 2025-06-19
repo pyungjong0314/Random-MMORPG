@@ -7,8 +7,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using WindowsFormsApp1.Battle;
 using WindowsFormsApp1.Battle.BattlePanel;
+using WindowsFormsApp1.Properties;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using Game.Audio;
 
 namespace WindowsFormsApp1
 {
@@ -22,6 +24,9 @@ namespace WindowsFormsApp1
         public BattleForm(Character character, Object target, Form parentForm)
         {
             InitializeComponent();
+
+
+            DamageLabel.Font = new Font("궁서", 22, FontStyle.Bold);
 
             myCharacter = character;
             initBattle(target);
@@ -94,6 +99,8 @@ namespace WindowsFormsApp1
             selectControl myControl = new selectControl(this);
             myControl.AttackPanel.Visible = true;
             myControl.AttackPanel.Location = new Point(200, 200);
+                
+            DamageLabel.Location = new Point(Player2Character.Location.X+30, Player2Character.Location.Y - 30);
 
             this.Controls.Add(myControl.AttackPanel);
             myControl.AttackPanel.BringToFront();
@@ -104,8 +111,10 @@ namespace WindowsFormsApp1
             int damage = Deffense();
             setBattleStatus();
 
-            DamageLabel.Text = damage.ToString();
+            DamageLabel.Text = "-" + damage.ToString();
+            DamageLabel.Location = new Point(Player1Character.Location.X+30, Player1Character.Location.Y - 30);
             DamageLabel.Visible = true;
+
 
             Timer timer = new Timer();
             timer.Interval = 1000;
@@ -319,14 +328,19 @@ namespace WindowsFormsApp1
 
         public void AttackCharacter(int damage)
         {
+
             targetCharacter.Defense(damage);
+            BlinkImage(Player2Character); // ← 내 캐릭터 깜빡이기
+
+
             setBattleStatus();
 
             if(targetCharacter.GetCharacterHp() <= 0)
             {
                 PlayerVictory();
                 upDateImage();
-                
+                ShowDeadImage(targetCharacter);
+
                 // 캐릭터 죽은 로직
                 if (parentForm is FirstMap firstMapForm)
                 {
@@ -338,13 +352,78 @@ namespace WindowsFormsApp1
             }
         }
 
+<<<<<<< HEAD
+=======
+
+        public void ShowDeadImage(object target)
+        {
+            if (target == null) return;
+
+            PictureBox deadImage = new PictureBox();
+            deadImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            deadImage.Size = new Size(64, 64);
+            deadImage.BackColor = Color.Transparent;
+
+            Point location;
+
+            if (target is Monster monster)
+            {
+                location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y);
+
+                if (monster is Slime) deadImage.Image = Properties.Resources.slime_dead;
+                else if (monster is Goblin) deadImage.Image = Properties.Resources.goblin_dead;
+                else if (monster is Scorpion) deadImage.Image = Properties.Resources.scorpion_dead;
+                else if (monster is Witch) deadImage.Image = Properties.Resources.wizard_dead;
+                else if (monster is Orc) deadImage.Image = Properties.Resources.orc_dead;
+            }
+            else if (target is Character character)
+            {
+                location = new Point(character.characterLocation.x, character.characterLocation.y+20);
+                deadImage.Image = Properties.Resources.character_dead;
+            }
+            else return;
+
+            deadImage.Location = location;
+
+            parentForm?.Invoke(new Action(() =>
+            {
+                parentForm.Controls.Add(deadImage);
+                deadImage.BringToFront();
+            }));
+
+            Timer removeTimer = new Timer();
+            removeTimer.Interval = 3000;
+            removeTimer.Tick += (s, e) =>
+            {
+                removeTimer.Stop();
+                removeTimer.Dispose();
+
+                parentForm?.Invoke(new Action(() =>
+                {
+                    if (deadImage != null && !deadImage.IsDisposed)
+                    {
+                        parentForm.Controls.Remove(deadImage);
+                        deadImage.Dispose();
+                    }
+                }));
+            };
+            removeTimer.Start();
+        }
+
+
+
+
+>>>>>>> a207ab9 (updated)
         public void AttackMonster(int damage)
         {
             targetMonster.MonsterGetAttack(damage, myCharacter);
+            BlinkImage(Player2Character);
+
             setBattleStatus();
 
             if (targetMonster.IsDead)
             {
+                ShowDeadImage(targetMonster);
                 ShowExpLabel(targetMonster); // 경험치 라벨 표시
                 DropCoin(targetMonster); // ← 코인 드랍
                 //PlayerVictory();
@@ -368,13 +447,14 @@ namespace WindowsFormsApp1
             coinBox.SizeMode = PictureBoxSizeMode.StretchImage;
             coinBox.Size = new Size(32, 32);
             coinBox.BackColor = Color.Transparent;
-            coinBox.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y);
+            coinBox.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y-20);
 
             // 클릭 이벤트 추가: 코인을 주움
             coinBox.Click += (s, e) =>
             {
                 int coinValue = monster.MonsterCoinValue;
                 myCharacter.AquireMoney(coinValue);
+
 
                 parentForm.Invoke(new Action(() =>
                 {
@@ -384,12 +464,12 @@ namespace WindowsFormsApp1
 
                     // 라벨 생성
                     Label coinLabel = new Label();
-                    coinLabel.Text = $"+{coinValue}";
+                    coinLabel.Text = $"+{coinValue} Coins";
                     coinLabel.Font = new Font("Arial", 14, FontStyle.Bold);
                     coinLabel.ForeColor = Color.Gold;
                     coinLabel.BackColor = Color.Transparent;
                     coinLabel.AutoSize = true;
-                    coinLabel.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y - 20);
+                    coinLabel.Location = new Point(monster.MonsterLocation.x, monster.MonsterLocation.y);
 
                     parentForm.Controls.Add(coinLabel);
                     coinLabel.BringToFront();
@@ -516,8 +596,32 @@ namespace WindowsFormsApp1
             // 상대 캐릭터로 이미지 변경
             myCharacter.Defense(targetCharacter.Attack());
             GetMotionImage(targetCharacter);
+            BlinkImage(Player1Character); // ← 내 캐릭터 깜빡이기
 
             return targetCharacter.GetCharacterAttack();
+        }
+
+
+        private void BlinkImage(PictureBox target, int blinkCount = 3, int interval = 100)
+        {
+            int count = 0;
+            Timer blinkTimer = new Timer();
+            blinkTimer.Interval = interval;
+
+            blinkTimer.Tick += (s, e) =>
+            {
+                target.Visible = !target.Visible;
+                count++;
+
+                if (count >= blinkCount * 2)
+                {
+                    blinkTimer.Stop();
+                    blinkTimer.Dispose();
+                    target.Visible = true;
+                }
+            };
+
+            blinkTimer.Start();
         }
 
 
@@ -553,10 +657,12 @@ namespace WindowsFormsApp1
         }
 
 
+
         public int DefenseMonster()
         {
-            GetMotionImage(targetMonster);
             myCharacter.Defense(targetMonster.MonsterAttackAbility);
+            GetMotionImage(targetMonster);
+            BlinkImage(Player1Character);
 
             return targetMonster.MonsterAttackAbility;
         }
@@ -574,6 +680,11 @@ namespace WindowsFormsApp1
         }
 
         private void Player2Character_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

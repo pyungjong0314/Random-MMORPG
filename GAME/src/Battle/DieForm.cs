@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Game.Audio; 
 
 namespace WindowsFormsApp1.Battle
 {
@@ -14,6 +15,7 @@ namespace WindowsFormsApp1.Battle
     {
         public DieForm()
         {
+            SoundManager.PlaySoundOnce("dead_bgm.wav");
             InitializeComponent();
         }
     }
