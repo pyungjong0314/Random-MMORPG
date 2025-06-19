@@ -17,6 +17,7 @@ using GameClientLib;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Game.Maps;
+using Newtonsoft.Json;
 
 
 namespace WindowsFormsApp1
@@ -25,10 +26,14 @@ namespace WindowsFormsApp1
     {
         // 통신
         private GameWebSocketClient client;
+        public GameWebSocketClient clientStatus;
         public GameWebSocketClient clientBattle;
         private Thread _networkThread;
         private bool _isRunningNetwork = false;
         public readonly object _opponentLock = new object();
+        // 전투
+        private CancellationTokenSource _listenCancelTokenSource;
+        private Task _listenTask;
 
         // Map
         Image firstMapImg;
@@ -141,12 +146,17 @@ namespace WindowsFormsApp1
             this.KeyDown += TestForm_KeyDown;
             this.MouseClick += FirstMap_MouseClick;
 
-            // 통신
+            // 이동
             client = c;
+            // 다른 행동
+            clientStatus = new GameWebSocketClient();
+            clientStatus.ConnectAsync();
+            // 다른 캐릭터 상태
             StartNetwork();
-            
+            // 전투 소켓
             clientBattle = new GameWebSocketClient();
             clientBattle.ConnectAsync();
+            StartListening();
         }
 
         // 통신
@@ -234,6 +244,108 @@ namespace WindowsFormsApp1
                 }
 
                 await Task.Delay(100); // 0.1초마다 실행
+            }
+        }
+
+        // 전투 대기
+        public void StartListening()
+        {
+            _listenCancelTokenSource = new CancellationTokenSource();
+            CancellationToken token = _listenCancelTokenSource.Token;
+
+            _listenTask = Task.Run(async () =>
+            {
+                Console.WriteLine("[대기 스레드] 전투 요청 수신 대기 중...");
+
+                try
+                {
+                    while (!token.IsCancellationRequested)
+                    {
+                        var msg = await clientBattle.WaitForCmd(106);
+
+                        if (msg != null)
+                        {
+                            Console.WriteLine("[대기 스레드] 전투 요청 수신됨!");
+
+                            var response = JsonConvert.DeserializeObject<CombatResponse>(msg);
+                            string opponentUid = response.uid2;
+
+                            Character battleOpponent = null;
+                            foreach (var c in firstMap.opponentCharacters)
+                            {
+                                if (c.GetCharacterId().ToString() == opponentUid)
+                                {
+                                    battleOpponent = c;
+                                    break;
+                                }
+                            }
+
+                            if (battleOpponent != null)
+                            {
+                                MessageBox.Show($"전투를 시작합니다.");
+                                var battleForm = new BattleForm(myCharacter, battleOpponent, this);
+                                battleForm.Show();
+                            }
+                            else
+                            {
+                                Console.WriteLine($"[대기 스레드] 상대 캐릭터 UID({opponentUid})를 찾을 수 없습니다.");
+                            }
+
+                            break; // 루프 종료
+                        }
+
+                        await Task.Delay(100, token);
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    Console.WriteLine("[대기 스레드] 취소됨");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[대기 스레드] 오류 발생: {ex.Message}");
+                }
+            }, token);
+        }
+
+        public void StopListening()
+        {
+            if (_listenCancelTokenSource != null)
+            {
+                _listenCancelTokenSource.Cancel();
+                try
+                {
+                    _listenTask?.Wait(); // 작업이 완전히 끝날 때까지 대기
+                }
+                catch (AggregateException ex)
+                {
+                    // Task 취소로 인한 예외 무시
+                }
+                finally
+                {
+                    _listenCancelTokenSource.Dispose();
+                    _listenCancelTokenSource = null;
+                    _listenTask = null;
+                    Console.WriteLine("[대기 스레드] 정상 종료됨");
+                }
+            }
+        }
+
+        public async void StartBattle(Character battleOpponent)
+        {
+            StopListening();
+            try
+            {
+                // 1. 서버에 전투 수락 API 요청 (cmd=115)
+                await clientBattle.CmdPvPAccept(myCharacter.GetCharacterId().ToString(), battleOpponent.GetCharacterId().ToString());
+                Console.WriteLine($"[StartBattle] CmdPvPAccept 전송 완료: {myCharacter.GetCharacterId().ToString()} vs {battleOpponent.GetCharacterId().ToString()}");
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"전투 시작 실패: {ex.Message}");
+                Console.WriteLine($"[StartBattle] 오류: {ex}");
             }
         }
 
@@ -377,7 +489,7 @@ namespace WindowsFormsApp1
             if (isColliding)
             {
                 // 통신 종료
-                clientBattle.CmdRemoveAsync(myCharacter.GetCharacterId().ToString());
+                clientStatus.CmdRemoveAsync(myCharacter.GetCharacterId().ToString());
                 StopNetwork();
 
                 StartingForm starttmap = new StartingForm(client, myCharacter);

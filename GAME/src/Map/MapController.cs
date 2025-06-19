@@ -36,7 +36,6 @@ namespace WindowsFormsApp1.MapControls
         private readonly ContextMenuStrip monsterContextMenu;
         private ToolStripMenuItem monsterAttackMenuItem;
 
-        
 
         public MapController(Character character, Game.Maps.Map map, Form form)
         {
@@ -166,10 +165,21 @@ namespace WindowsFormsApp1.MapControls
         }
 
         // 캐릭터 공격 처리
-        private void OnAttackOpponentClicked(object sender, EventArgs e)
+        private async void OnAttackOpponentClicked(object sender, EventArgs e)
         {
             form.Invalidate();
+            Console.WriteLine("전투 요청");
 
+            if(form is FirstMap firstMap)
+            {
+                await firstMap.clientBattle.CmdPvPRequest(character.GetCharacterId().ToString(), lastClickedOpponent.GetCharacterId().ToString());
+
+                Console.WriteLine("[B] 초대 대기...");
+                await firstMap.clientBattle.WaitForCmd(115);
+
+                MessageBox.Show("전투가 수락 되었습니다.");
+            }
+            
             var battleForm = new BattleForm(character, lastClickedOpponent, form);
             battleForm.Show();
         }
