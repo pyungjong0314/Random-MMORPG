@@ -342,7 +342,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void StartBattleThreaded(Character battleOpponent)
+        public void StartBattle(Character battleOpponent)
         {
             StopListening(); // 기존 대기 종료
 
