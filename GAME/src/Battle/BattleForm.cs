@@ -19,9 +19,6 @@ namespace WindowsFormsApp1
         Monster targetMonster;
         public Form parentForm;
 
-        // 통신
-        private GameWebSocketClient clientBattle;
-
         public BattleForm(Character character, Object target, Form parentForm)
         {
             InitializeComponent();
@@ -90,11 +87,6 @@ namespace WindowsFormsApp1
                         break;
                 }
             }
-
-
-            // 전투용 소켓
-            clientBattle = new GameWebSocketClient();
-            clientBattle.ConnectAsync();
         }
 
         private void AttackButton_Click(object sender, EventArgs e)
@@ -303,8 +295,8 @@ namespace WindowsFormsApp1
                 {
                     firstMap.UpdateMonsterBuffer();
                     firstMap.Invalidate();
+                    firstMap.clientBattle.CmdMonsterRespwanAsync(2, monster.MonsterId);
                 }
-                clientBattle.CmdMonsterRespwanAsync(2, monster.MonsterId);
             };
 
             timer.Start();
@@ -345,6 +337,7 @@ namespace WindowsFormsApp1
                 }
             }
         }
+
         public void AttackMonster(int damage)
         {
             targetMonster.MonsterGetAttack(damage, myCharacter);
@@ -360,12 +353,11 @@ namespace WindowsFormsApp1
                 Respawn(targetMonster);
 
                 // 죽었다고 알려주기
-                /*if (parentForm is FirstMap firstMap)
+                if (parentForm is FirstMap firstMap)
                 {
-                    firstMap.UpdateMonsterBuffer();
-                    firstMap.Invalidate();
-                }*/
-                clientBattle.CmdMonsterKillAsync(2, targetMonster.MonsterId);
+                    firstMap.clientBattle.CmdMonsterKillAsync(2, targetMonster.MonsterId);
+                }
+
             }
         }
 

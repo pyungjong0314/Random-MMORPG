@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Game.MonsterManagers;
 using Game.Characters;
+using GameClientLib;
 
 namespace Game.Maps
 {

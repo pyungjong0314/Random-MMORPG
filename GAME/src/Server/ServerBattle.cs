@@ -1,4 +1,4 @@
-﻿// Program.cs
+﻿/*// Program.cs
 // Requires Newtonsoft.Json (Json.NET) package. Install via NuGet: Install-Package Newtonsoft.Json
 using System;
 using System.Net.WebSockets;
@@ -49,7 +49,7 @@ namespace WindowsFormsApp1.Client
     class Location { public int x; public int y; }
 
     // PvP 관련 응답용 DTO
-    class CombatResponse
+    public class CombatResponse
     {
         public int status { get; set; }
         public int cmd { get; set; }
@@ -215,3 +215,4 @@ namespace WindowsFormsApp1.Client
         }
     }
 }
+*/

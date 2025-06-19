@@ -38,6 +38,7 @@ namespace WindowsFormsApp1
                 newCharacter.characterId = Convert.ToInt32(uid);
 
                 MessageBox.Show($"캐릭터 이름이 {newCharacter.GetCharacterName()} 으로 설정되었습니다.", "캐릭터 생성 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await client.CmdSendCharacterAsync(newCharacter);
 
                 StoryForm storyForm = new StoryForm();
                 storyForm.Show();

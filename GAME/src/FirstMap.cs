@@ -25,6 +25,7 @@ namespace WindowsFormsApp1
     {
         // 통신
         private GameWebSocketClient client;
+        public GameWebSocketClient clientBattle;
         private Thread _networkThread;
         private bool _isRunningNetwork = false;
         public readonly object _opponentLock = new object();
@@ -143,6 +144,9 @@ namespace WindowsFormsApp1
             // 통신
             client = c;
             StartNetwork();
+            
+            clientBattle = new GameWebSocketClient();
+            clientBattle.ConnectAsync();
         }
 
         // 통신
@@ -372,9 +376,13 @@ namespace WindowsFormsApp1
 
             if (isColliding)
             {
-                //StartingForm starttmap = new StartingForm(myCharacter);
-                //starttmap.Show();
-                //this.Close();
+                // 통신 종료
+                clientBattle.CmdRemoveAsync(myCharacter.GetCharacterId().ToString());
+                StopNetwork();
+
+                StartingForm starttmap = new StartingForm(client, myCharacter);
+                starttmap.Show();
+                this.Close();
             }
         }
 

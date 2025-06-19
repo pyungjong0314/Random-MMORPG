@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
+using Game.Characters;
 
 namespace GameClientLib
 {
@@ -55,6 +56,18 @@ namespace GameClientLib
     }
 
     public class Location { public int x; public int y; }
+
+    public class CombatResponse
+    {
+        public int status { get; set; }
+        public int cmd { get; set; }
+        public int my_damage { get; set; }
+        public int target_damage { get; set; }
+        public string from { get; set; }
+        public string message { get; set; }
+        public string uid1 { get; set; }
+        public string uid2 { get; set; }
+    }
     #endregion
 
     public class GameWebSocketClient : IDisposable
@@ -121,6 +134,71 @@ namespace GameClientLib
             });
         }
 
+        public async Task CmdSendCharacterAsync(Character character)
+        {
+            var message = new
+            {
+                cmd = 119,
+                uid = character.characterId,
+                characterName = character.characterName,
+                characterLevel = character.characterLevel,
+                characterExp = character.characterExp,
+                characterMoney = character.characterMoney,
+                characterMapId = character.characterMapId,
+                characterLocation = new
+                {
+                    x = character.characterLocation.x,
+                    y = character.characterLocation.y
+                },
+                characterHp = character.characterHp,
+                characterAttack = character.characterAttack
+            };
+
+            await SendAndReceive(message);
+        }
+
+        public async Task CmdPvPRequest(string uid1, string uid2)
+        {
+            await SendAndReceive(new { cmd = 106, uid1, uid2 });
+        }
+
+        public async Task CmdPvPAccept(string uid1, string uid2)
+        {
+            await SendAndReceive(new { cmd = 115, uid1, uid2 });
+        }
+
+        public async Task CmdPvPAttack(int damage, int modifier, string targetUid)
+        {
+            await SendAndReceive(new { cmd = 108, damage, modifier, target_uid = targetUid });
+        }
+
+        public async Task CmdPvPDefense(int modifier, string targetUid)
+        {
+            await SendAndReceive(new { cmd = 109, modifier, target_uid = targetUid });
+        }
+
+        public async Task<string> WaitForCmd(int expectedCmd)
+        {
+            while (true)
+            {
+                var msg = await ReceiveOnce();
+                var res = JsonConvert.DeserializeObject<CombatResponse>(msg);
+                if (res.cmd == expectedCmd) return msg;
+            }
+        }
+
+        public async Task WaitForStatuses(params int[] statuses)
+        {
+            while (true)
+            {
+                var msg = await ReceiveOnce();
+                var res = JsonConvert.DeserializeObject<CombatResponse>(msg);
+                foreach (var s in statuses)
+                    if (res.status == s)
+                        return;
+            }
+        }
+
         private async Task<string> SendAndReceive(object message)
         {
             var json = JsonConvert.SerializeObject(message);
@@ -131,6 +209,14 @@ namespace GameClientLib
             var result = await ws.ReceiveAsync(buffer, CancellationToken.None);
             return Encoding.UTF8.GetString(buffer.Array, 0, result.Count);
         }
+
+        private async Task<string> ReceiveOnce()
+        {
+            var buffer = new ArraySegment<byte>(new byte[8192]);
+            var res = await ws.ReceiveAsync(buffer, CancellationToken.None);
+            return Encoding.UTF8.GetString(buffer.Array, 0, res.Count);
+        }
+
 
         public void Dispose()
         {
