@@ -295,7 +295,7 @@ namespace WindowsFormsApp1
                 timer.Stop();
                 timer.Dispose();
 
-                monster.IsDead = false;
+                //monster.IsDead = false;
                 monster.SetHp(10);
 
                 // 몬스터 버퍼 다시 그리기
@@ -357,11 +357,11 @@ namespace WindowsFormsApp1
                 Respawn(targetMonster);
 
                 // 죽었다고 알려주기
-                if (parentForm is FirstMap firstMap)
+                /*if (parentForm is FirstMap firstMap)
                 {
                     firstMap.UpdateMonsterBuffer();
                     firstMap.Invalidate();
-                }
+                }*/
                 clientBattle.CmdMonsterKillAsync(2, targetMonster.MonsterId);
             }
         }

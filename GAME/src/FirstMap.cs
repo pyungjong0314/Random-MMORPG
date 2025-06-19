@@ -39,7 +39,7 @@ namespace WindowsFormsApp1
         // 이미지 생성
         private Monster lastClickedMonster;
         private Character lastClickedOpponent;
-        bool shouldUpdateMonsterBuffer = false;
+        bool shouldUpdateMonsterBufferServer = false;
 
         public FirstMap(GameWebSocketClient c, Character character)
         {
@@ -179,7 +179,7 @@ namespace WindowsFormsApp1
                     Console.WriteLine($"[CmdAll] 유저 수: {response.body.players?.Count}");
 
 
-                    if(frame % 10 == 0)
+                    //if(frame % 10 == 0)
                     {
                         if (response.body.monsters != null)
                         {
@@ -190,7 +190,7 @@ namespace WindowsFormsApp1
                                 if (firstMap.Monsters[i].IsDead == response.body.monsters[i])
                                 {
                                     firstMap.Monsters[i].IsDead = !response.body.monsters[i];
-                                    shouldUpdateMonsterBuffer = true;
+                                    shouldUpdateMonsterBufferServer = true;
                                 }
                             }
                         }
@@ -235,10 +235,10 @@ namespace WindowsFormsApp1
             e.Graphics.DrawImage(backgroundBufferBitmap, 0, 0);
 
             // 2. 살아있는 몬스터는 따로 다시 그림
-            if (shouldUpdateMonsterBuffer)
+            if (shouldUpdateMonsterBufferServer)
             {
                 UpdateMonsterBuffer();
-                shouldUpdateMonsterBuffer = false;
+                shouldUpdateMonsterBufferServer = false;
             }
             e.Graphics.DrawImage(monsterBuffer, 0, 0);
 
