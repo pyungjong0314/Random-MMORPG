@@ -235,6 +235,8 @@ namespace WindowsFormsApp1
             Console.WriteLine("Start PvPRequest");
             await clientBattle.CmdPvPRequest(myUid, targetUid);
             Console.WriteLine($"Sending PvPRequest: {myUid} vs {targetUid}");
+
+            BattleForm battleForm = new BattleForm(myCharacter, battleOpponent, this);
         }
 
 
