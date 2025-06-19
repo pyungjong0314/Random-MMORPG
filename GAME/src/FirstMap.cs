@@ -53,9 +53,6 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
-            // SoundManager 초기화
-            SoundManager.PlayBgmLoop("firstmap_bgm.wav");
-
             myCharacter = character;
             myCharacter.MoveLocation(-10, -50);
 
@@ -161,6 +158,9 @@ namespace WindowsFormsApp1
             {
                 Console.WriteLine("Init error: " + ex.Message);
             }
+
+            // SoundManager 초기화
+            SoundManager.PlayBgmLoop("firstmap_bgm.wav");
         }
 
         public async Task InitializeClients()
@@ -226,6 +226,9 @@ namespace WindowsFormsApp1
             Console.WriteLine("Start PvPRequest");
             await clientBattle.CmdPvPRequest(myUid, targetUid);
             Console.WriteLine($"Sending PvPRequest: {myUid} vs {targetUid}");
+
+            BattleForm battleForm = new BattleForm(myCharacter, battleOpponent, this);
+            battleForm.Show();
         }
 
 
@@ -438,7 +441,7 @@ namespace WindowsFormsApp1
         }
 
         // 시작 마을 포탈 클릭
-        private void pictureBox1_Click(object sender, System.EventArgs e)
+        private async void pictureBox1_Click(object sender, System.EventArgs e)
         {
             Rectangle charRect = new Rectangle(myCharacter.GetCharacterLocation().x, myCharacter.GetCharacterLocation().y, 64, 64);
             Rectangle picRect = pictureBox1.Bounds;
@@ -446,8 +449,8 @@ namespace WindowsFormsApp1
             if (charRect.IntersectsWith(picRect))
             {
                 // 통신 종료 관련 코드 필요 시 주석 해제
-                // await clientBattle.CmdRemoveAsync(myCharacter.GetCharacterId().ToString());
-                // StopNetwork();
+                await clientBattle.CmdRemoveAsync(myCharacter.GetCharacterId().ToString());
+                StopNetwork();
 
                 SoundManager.StopBgm();
                 StartingForm starttmap = new StartingForm(client, myCharacter);
@@ -457,13 +460,17 @@ namespace WindowsFormsApp1
         }
 
         // 두 번째 포탈 클릭
-        private void pictureBox2_Click(object sender, System.EventArgs e)
+        private async void pictureBox2_Click(object sender, System.EventArgs e)
         {
             Rectangle charRect = new Rectangle(myCharacter.GetCharacterLocation().x, myCharacter.GetCharacterLocation().y, 64, 64);
             Rectangle picRect = pictureBox2.Bounds;
 
             if (charRect.IntersectsWith(picRect))
             {
+                // 통신 종료 관련 코드 필요 시 주석 해제
+                await clientBattle.CmdRemoveAsync(myCharacter.GetCharacterId().ToString());
+                StopNetwork();
+
                 SecondMap thirdMap = new SecondMap(myCharacter);
                 thirdMap.Show();
                 this.Close();

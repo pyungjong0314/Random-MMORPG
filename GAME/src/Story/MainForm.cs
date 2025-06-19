@@ -14,6 +14,7 @@ using WindowsFormsApp1.Characters;
 using WindowsFormsApp1.WeaponControls;
 using WindowsFormsApp1.Weapons.WeaponControl;
 using Game.Audio;
+using GameClientLib;
 
 namespace WindowsFormsApp1
 {
@@ -32,17 +33,22 @@ namespace WindowsFormsApp1
             this.Hide();
         }
 
-        private void LoadGameButton_Click(object sender, EventArgs e)
+        private async void LoadGameButton_Click(object sender, EventArgs e)
         {
             try
             {
                 Character loadCharacter = CharacterStorage.LoadCharacter();
                 MessageBox.Show($"캐릭터 '{loadCharacter.GetCharacterName()}' 로드 완료!");
 
+
+                GameWebSocketClient client = new GameWebSocketClient();
+                await client.ConnectAsync();
+                string uid = await client.CmdConnectAsync();
+
                 // 예시: 게임 화면으로 넘어가기
-                //StartingForm map1Form = new StartingForm(loadCharacter);
-                //map1Form.Show();
-                //this.Hide();
+                StartingForm map1Form = new StartingForm(client, loadCharacter);
+                map1Form.Show();
+                this.Hide();
             }
             catch (FileNotFoundException ex)
             {

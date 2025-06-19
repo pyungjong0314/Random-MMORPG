@@ -194,7 +194,7 @@ namespace Game.Characters
             .SetCharacterMapId(0)
             .SetCharacterLocation(0, 0)
             // HP 100 ~ 200
-            //.SetCharacterHp(rand.Next(100, 200))
+            .SetCharacterHp(rand.Next(100, 200))
             .SetCharacterHp(10)
             // Attack 30 ~ 50
             .SetCharacterAttack(rand.Next(30, 50))

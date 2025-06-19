@@ -72,8 +72,9 @@ namespace GameClientLib
 
     public class GameWebSocketClient : IDisposable
     {
+        // 14.42.12.49
         private ClientWebSocket ws;
-        private Uri serverUri = new Uri("ws://14.42.12.49:25565/ws/");
+        private Uri serverUri = new Uri("ws://localhost:25565/ws/");
 
         public async Task ConnectAsync()
         {
