@@ -148,14 +148,25 @@ namespace WindowsFormsApp1
 
             // 이동
             client = c;
+        }
+
+
+        private async void FirstMap_Load(object sender, EventArgs e)
+        {
             // 다른 행동
+            await InitializeClients();
+        }
+
+        public async Task InitializeClients()
+        {
+            // 상태 클라이언트
             clientStatus = new GameWebSocketClient();
-            clientStatus.ConnectAsync();
-            // 다른 캐릭터 상태
+            await clientStatus.ConnectAsync();
             StartNetwork();
-            // 전투 소켓
+
+            // 전투 클라이언트
             clientBattle = new GameWebSocketClient();
-            clientBattle.ConnectAsync();
+            await clientBattle.ConnectAsync(); // ✅ 반드시 await!
             StartListening();
         }
 
@@ -261,7 +272,7 @@ namespace WindowsFormsApp1
                 {
                     while (!token.IsCancellationRequested)
                     {
-                        var msg = await clientBattle.WaitForCmd(106);
+                        var msg = await clientBattle.WaitForCmd(115);
 
                         if (msg != null)
                         {
@@ -333,14 +344,27 @@ namespace WindowsFormsApp1
 
         public async void StartBattle(Character battleOpponent)
         {
-            StopListening();
+            StopListening(); // 기존 대기 종료
+
             try
             {
-                // 1. 서버에 전투 수락 API 요청 (cmd=115)
-                await clientBattle.CmdPvPAccept(myCharacter.GetCharacterId().ToString(), battleOpponent.GetCharacterId().ToString());
-                Console.WriteLine($"[StartBattle] CmdPvPAccept 전송 완료: {myCharacter.GetCharacterId().ToString()} vs {battleOpponent.GetCharacterId().ToString()}");
+                string myUid = myCharacter.GetCharacterId().ToString();
+                string opponentUid = battleOpponent.GetCharacterId().ToString();
 
+                // 1. 서버에 전투 수락 요청 (cmd = 115)
+                await clientBattle.CmdPvPAccept(myUid, opponentUid);
+                Console.WriteLine($"[StartBattle] CmdPvPAccept 전송 완료: {myUid} vs {opponentUid}");
 
+                // 2. 서버에서 cmd=115 응답 대기
+                Console.WriteLine("[StartBattle] cmd=115 응답 대기 중...");
+                string responseJson = await clientBattle.WaitForCmd(115);
+                var response = JsonConvert.DeserializeObject<CombatResponse>(responseJson);
+                Console.WriteLine($"[StartBattle] cmd=115 수신 완료: message = {response.message}");
+
+                // 3. 전투 UI 실행
+                MessageBox.Show("전투를 시작합니다.");
+                var battleForm = new BattleForm(myCharacter, battleOpponent, this);
+                battleForm.Show();
             }
             catch (Exception ex)
             {
@@ -502,5 +526,6 @@ namespace WindowsFormsApp1
         {
 
         }
+
     }
 }

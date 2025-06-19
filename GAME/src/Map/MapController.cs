@@ -172,16 +172,8 @@ namespace WindowsFormsApp1.MapControls
 
             if(form is FirstMap firstMap)
             {
-                await firstMap.clientBattle.CmdPvPRequest(character.GetCharacterId().ToString(), lastClickedOpponent.GetCharacterId().ToString());
-
-                Console.WriteLine("[B] 초대 대기...");
-                await firstMap.clientBattle.WaitForCmd(115);
-
-                MessageBox.Show("전투가 수락 되었습니다.");
+                firstMap.StartBattle(lastClickedOpponent);
             }
-            
-            var battleForm = new BattleForm(character, lastClickedOpponent, form);
-            battleForm.Show();
         }
 
         // 컨텍스트 메뉴 열릴 때 거리 기반 공격 메뉴 활성화
